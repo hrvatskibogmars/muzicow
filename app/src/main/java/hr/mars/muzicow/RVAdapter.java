@@ -1,19 +1,16 @@
 package hr.mars.muzicow;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
 
-    private String[] mDataset;
+    private List<DummyData> mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -21,28 +18,34 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
+
+        public TextView songName;
+        public TextView authorName;
         public TextView mTextView;
-        public ViewHolder(TextView v) {
+
+        public ViewHolder(View v) {
             super(v);
-            mTextView = v;
+            //mTextView = v;
+            songName = (TextView) v.findViewById(R.id.song_name);
+            //songName =  (TextView) v.findViewById(R.id.song_name);
+            authorName = (TextView) v.findViewById(R.id.author_name);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(String[] myDataset) {
-        mDataset = myDataset;
+    public RVAdapter(List<DummyData> dummyDataList) {
+        mDataset = dummyDataList;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
+    public RVAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item, parent, false);
+        View v = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.content_main, viewGroup, false);
         // set the view's size, margins, paddings and layout parameters
         //...
-        ViewHolder vh = new ViewHolder((TextView)v);
+        ViewHolder vh = new ViewHolder(v);
         return vh;
     }
 
@@ -51,13 +54,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.mTextView.setText(mDataset[position]);
+        holder.songName.setText(mDataset.get(position).songName);
+        holder.authorName.setText(mDataset.get(position).authorName);
 
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 }
