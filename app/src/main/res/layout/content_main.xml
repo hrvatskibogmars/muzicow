@@ -5,19 +5,42 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     >
-        <TextView
-            android:id="@+id/song_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:textSize="30sp" />
+    <TextView
+        android:id="@+id/song_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/author_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/song_name"
-            android:layout_toRightOf="@+id/song_name" />
+    <TextView
+        android:id="@+id/author_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/song_name"
+        android:layout_alignLeft="@id/song_name"
+        android:layout_toRightOf="@+id/song_name"
+        android:textAlignment="textStart"
+        android:textSize="10dp" />
+
+    <TextView
+        android:id="@+id/total_up_voted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentEnd="true"
+
+
+        />
+    <ImageView
+        android:id="@+id/up_vote"
+        android:layout_height="30dp"
+        android:layout_width="30dp"
+        android:src="@drawable/passion"
+        android:layout_centerInParent="true"
+        android:layout_toLeftOf="@+id/total_up_voted"
+
+
+        />
 
 
 </RelativeLayout>

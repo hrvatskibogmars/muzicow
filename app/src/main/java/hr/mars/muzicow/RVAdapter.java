@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -22,13 +23,18 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
         public TextView songName;
         public TextView authorName;
         public TextView mTextView;
+        public ImageView upVote;
+        public TextView totalUpVote;
+
 
         public ViewHolder(View v) {
             super(v);
             //mTextView = v;
             songName = (TextView) v.findViewById(R.id.song_name);
-            //songName =  (TextView) v.findViewById(R.id.song_name);
+            //songName =  (TextView)  .findViewById(R.id.song_name);
             authorName = (TextView) v.findViewById(R.id.author_name);
+            upVote = (ImageView) v.findViewById(R.id.up_vote);
+            totalUpVote = (TextView) v.findViewById(R.id.total_up_voted);
         }
     }
 
@@ -45,9 +51,21 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
                 .inflate(R.layout.content_main, viewGroup, false);
         // set the view's size, margins, paddings and layout parameters
         //...
+
+
+
+
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
+
+    //// TODO: 19/10/15
+    /*
+        Disable event
+        Dodaj refresh animation
+        Pretvoriti Mdataset u JSON
+
+     */
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
@@ -56,6 +74,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
         // - replace the contents of the view with that element
         holder.songName.setText(mDataset.get(position).songName);
         holder.authorName.setText(mDataset.get(position).authorName);
+        holder.totalUpVote.setText(mDataset.get(position).upVote);
 
     }
 
