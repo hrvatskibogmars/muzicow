@@ -2,12 +2,14 @@ package hr.mars.muzicow;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +29,13 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(v,"I am not working yet",Snackbar.LENGTH_LONG).setAction("Action", null).show();
 
+            }
+        });
         //Generate Dummy data
         initializeData();
 
@@ -39,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
 
@@ -80,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         dummyDataList.add(new DummyData("Gogol Bordello", "My Companjera", "https://www.youtube.com/watch?v=yXU5zUHA1Ak", "Gypsy Punk", "11", "3"));
         dummyDataList.add(new DummyData("Pink Floyd", "The Gunner's Dream", "https://www.youtube.com/watch?v=g9mhU1mm5P0", "English Rock", "3", "2"));
         dummyDataList.add(new DummyData("Scorpions", "Wind of change", "https://www.youtube.com/watch?v=n4RjJKxsamQ", "Classic Rock", "10", "1"));
-        dummyDataList.add(new DummyData("Dara Bubamara", "Žena zma", "https://www.youtube.com/watch?v=rrX4UHMpjQk", "The Caja", "1", "5"));
+        dummyDataList.add(new DummyData("Dara Bubamara", "ï¿½ena zma", "https://www.youtube.com/watch?v=rrX4UHMpjQk", "The Caja", "1", "5"));
         dummyDataList.add(new DummyData("Bob Marley", "Buffalo soldier", "https://www.youtube.com/watch?v=S5FCdx7Dn0o", "Regge", "420", "0"));
         dummyDataList.add(new DummyData("Pink Floyd", "Dark Side Of The Moon", "https://www.youtube.com/watch?v=DLOth-BuCNY", "English rock", "7", "3"));
         dummyDataList.add(new DummyData("The Doors", "Riders on the Storm", "https://www.youtube.com/watch?v=BLBV6ZwLKDU", "Classic rock", "10", "6"));

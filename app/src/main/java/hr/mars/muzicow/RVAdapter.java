@@ -1,5 +1,6 @@
 package hr.mars.muzicow;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
             authorName = (TextView) v.findViewById(R.id.author_name);
             upVote = (ImageView) v.findViewById(R.id.up_vote);
             totalUpVote = (TextView) v.findViewById(R.id.total_up_voted);
+
+            upVote.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Snackbar.make(v, authorName.getText(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                }
+            });
         }
     }
 
