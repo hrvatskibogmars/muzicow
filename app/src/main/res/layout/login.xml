@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <in.championswimmer.libsocialbuttons.buttons.BtnFacebook
+        android:text="Sign in with Facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/view"
+        android:layout_above="@+id/view2"
+        android:layout_centerHorizontal="true"
+        android:onClick="buttonClickFunction"/>
+
+
+    <in.championswimmer.libsocialbuttons.buttons.BtnTwitter
+        android:text="Sign in with Twitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/view2"
+        android:layout_above="@+id/view3"
+        android:layout_alignStart="@+id/view"
+        android:layout_alignEnd="@+id/view" />
+
+    <in.championswimmer.libsocialbuttons.buttons.BtnYoutube
+        android:text="Sign in with SoundCloud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/view3"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/view2"
+        android:layout_alignEnd="@+id/view2" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:entries="@array/spinner"
+        android:layout_above="@+id/view"
+        android:layout_alignStart="@+id/view"
+        android:gravity="center"
+        android:layout_alignEnd="@+id/view" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_above="@+id/spinner" />
+
+
+</RelativeLayout>
