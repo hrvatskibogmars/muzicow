@@ -16,6 +16,9 @@ Requirements
  - Android Support library
 
 
-Installing project
+# Installation
+Install `MusiCow` by cloning it:
+```
 	$ git clone https://github.com/mar5/muzicow.git && cd muziCow
-	
+```
+That's it! You're good to go.
