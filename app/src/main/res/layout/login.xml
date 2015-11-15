@@ -20,7 +20,8 @@
         android:id="@+id/view2"
         android:layout_above="@+id/view3"
         android:layout_alignStart="@+id/view"
-        android:layout_alignEnd="@+id/view" />
+        android:layout_alignEnd="@+id/view"
+        android:onClick="buttonClickFunction"/>
 
     <in.championswimmer.libsocialbuttons.buttons.BtnYoutube
         android:text="Sign in with SoundCloud"
@@ -29,7 +30,8 @@
         android:id="@+id/view3"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/view2"
-        android:layout_alignEnd="@+id/view2" />
+        android:layout_alignEnd="@+id/view2"
+        android:onClick="buttonClickFunction"/>
 
     <Spinner
         android:layout_width="wrap_content"

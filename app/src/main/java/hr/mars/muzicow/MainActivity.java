@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Spinner;
-import android.widget.Toast;
+
+import hr.mars.muzicow.Adapters.FragmentAdapter;
 
 /**
  * Created by mars on 14/11/15.
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 //if (text.equals("Korisnik")){
 
 
-                Intent myIntent = new Intent(MainActivity.this, User.class);
+                Intent myIntent = new Intent(MainActivity.this, FragmentAdapter.class);
                         myIntent.putExtra("userRole",text.toString());
                 MainActivity.this.startActivity(myIntent);
                 //}

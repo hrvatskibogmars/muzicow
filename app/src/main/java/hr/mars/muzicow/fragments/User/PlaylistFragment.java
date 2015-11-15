@@ -1,4 +1,4 @@
-package hr.mars.muzicow;
+package hr.mars.muzicow.fragments.User;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import hr.mars.muzicow.R;
+import hr.mars.muzicow.localdata.TestData;
 
 public class PlaylistFragment extends Fragment {
 

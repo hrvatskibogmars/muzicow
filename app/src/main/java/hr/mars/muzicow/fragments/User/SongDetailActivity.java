@@ -14,33 +14,37 @@
  * limitations under the License.
  */
 
-package hr.mars.muzicow;
+package hr.mars.muzicow.fragments.User;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-
-import java.util.Random;
+import hr.mars.muzicow.Adapters.FragmentAdapter;
+import hr.mars.muzicow.MainActivity;
+import hr.mars.muzicow.R;
 
 public class SongDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_NAME = "song_name";
+    Context context;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.fragment_song_detail);
+        context = getApplicationContext();
 
         Intent intent = getIntent();
         final String cheeseName = intent.getStringExtra(EXTRA_NAME);
+        //final String role = "Korisnik";
+        //intent.putExtra("userRole", role);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -50,5 +54,10 @@ public class SongDetailActivity extends AppCompatActivity {
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(cheeseName);
 
+
+    }
+    public void buttonClickFunction(View v) {
+        Toast toast = Toast.makeText(context, "You have successfully upvoted song", Toast.LENGTH_LONG);
+        toast.show();
     }
 }

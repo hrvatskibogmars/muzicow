@@ -1,4 +1,4 @@
-package hr.mars.muzicow;
+package hr.mars.muzicow.fragments.User;
 
 
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import hr.mars.muzicow.R;
 
 /**
  * Created by mars on 27/10/15.

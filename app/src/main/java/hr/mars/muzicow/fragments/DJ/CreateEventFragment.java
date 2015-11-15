@@ -1,4 +1,4 @@
-package hr.mars.muzicow;
+package hr.mars.muzicow.fragments.DJ;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,23 +6,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
+import hr.mars.muzicow.R;
 
 /**
- * Created by mars on 27/10/15.
+ * Created by mars on 15/11/15.
  */
-public class ArtistFragment extends Fragment {
+public class CreateEventFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_artist, container, false);
-        //Toast.makeText(getContext(), "Opening: Artist Fragment", Toast.LENGTH_LONG).show();
-
-        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_create_event, container, false);
         return view;
-
     }
 }

@@ -20,14 +20,14 @@ man
 
 
         <activity android:label="@string/app_name"
-            android:name=".User"/>
+            android:name=".Adapters.FragmentAdapter"/>
 
         <activity
-            android:name=".SongDetailActivity"
-            android:parentActivityName=".User">
+            android:name=".fragments.User.SongDetailActivity"
+            android:parentActivityName=".Adapters.FragmentAdapter">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".User" />
+                android:value=".Adapters.FragmentAdapter" />
         </activity>
     </application>
 

@@ -1,6 +1,8 @@
-package hr.mars.muzicow;
+package hr.mars.muzicow.localdata;
 
 import java.util.Random;
+
+import hr.mars.muzicow.R;
 
 public class TestData {
 

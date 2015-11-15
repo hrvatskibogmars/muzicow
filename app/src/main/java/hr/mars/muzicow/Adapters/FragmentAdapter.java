@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-package hr.mars.muzicow;
+package hr.mars.muzicow.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -36,10 +35,18 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import hr.mars.muzicow.R;
+import hr.mars.muzicow.fragments.DJ.EditProfileFragment;
+import hr.mars.muzicow.fragments.DJ.ReviewPlaylistFragment;
+import hr.mars.muzicow.fragments.User.AboutDJFragment;
+import hr.mars.muzicow.fragments.DJ.CreateEventFragment;
+import hr.mars.muzicow.fragments.User.EventFragment;
+import hr.mars.muzicow.fragments.User.PlaylistFragment;
+
 /**
  * TODO
  */
-public class User extends AppCompatActivity {
+public class FragmentAdapter extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     Context context;
     String role;
@@ -94,6 +101,13 @@ public class User extends AppCompatActivity {
 
 
     }
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+
+        role = "Korisnik";
+
+    }
 
 
     @Override
@@ -120,14 +134,14 @@ public class User extends AppCompatActivity {
         if (role.equals("Korisnik")) {
 
 
-            adapter.addFragment(new ArtistFragment(), "DJ");
+            adapter.addFragment(new AboutDJFragment(), "DJ");
             adapter.addFragment(new PlaylistFragment(), "Playlist");
             adapter.addFragment(new EventFragment(), "Event");
         }
         else {
-            adapter.addFragment(new ProfileFragment(), "Profile");
-            adapter.addFragment(new ProfileFragment(), "Create Event");
-            adapter.addFragment(new ProfileFragment(), "Review Playlist");
+            adapter.addFragment(new EditProfileFragment(), "Profile");
+            adapter.addFragment(new CreateEventFragment(), "Manage Event");
+            adapter.addFragment(new PlaylistFragment(), "Review Playlist");
         }
        viewPager.setAdapter(adapter);
 
@@ -146,20 +160,20 @@ public class User extends AppCompatActivity {
     }
 
     static class Adapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragments = new ArrayList<>();
+        private final List<android.support.v4.app.Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
 
         public Adapter(FragmentManager fm) {
             super(fm);
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        public void addFragment(android.support.v4.app.Fragment fragment, String title) {
             mFragments.add(fragment);
             mFragmentTitles.add(title);
         }
 
         @Override
-        public Fragment getItem(int position) {
+        public android.support.v4.app.Fragment getItem(int position) {
             return mFragments.get(position);
         }
 
