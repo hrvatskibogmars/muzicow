@@ -3,34 +3,36 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <in.championswimmer.libsocialbuttons.buttons.BtnFacebook
         android:text="Sign in with Facebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/view"
-        android:layout_above="@+id/view2"
+        android:id="@+id/facebook"
+        android:layout_above="@+id/twitter"
         android:layout_centerHorizontal="true"
         android:onClick="buttonClickFunction"/>
 
 
-    <in.championswimmer.libsocialbuttons.buttons.BtnTwitter
+    <com.twitter.sdk.android.core.identity.TwitterLoginButton
         android:text="Sign in with Twitter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/view2"
-        android:layout_above="@+id/view3"
-        android:layout_alignStart="@+id/view"
-        android:layout_alignEnd="@+id/view"
-        android:onClick="buttonClickFunction"/>
+        android:id="@+id/twitter"
+        android:layout_above="@+id/soundCloud"
+        android:layout_alignStart="@+id/facebook"
+        android:layout_alignEnd="@+id/facebook"
+        />
 
     <in.championswimmer.libsocialbuttons.buttons.BtnYoutube
         android:text="Sign in with SoundCloud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/view3"
+        android:id="@+id/soundCloud"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/view2"
-        android:layout_alignEnd="@+id/view2"
+        android:layout_alignStart="@+id/twitter"
+        android:layout_alignEnd="@+id/twitter"
         android:onClick="buttonClickFunction"/>
 
     <Spinner
@@ -38,10 +40,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:entries="@array/spinner"
-        android:layout_above="@+id/view"
-        android:layout_alignStart="@+id/view"
+        android:layout_above="@+id/facebook"
+        android:layout_alignStart="@+id/facebook"
         android:gravity="center"
-        android:layout_alignEnd="@+id/view" />
+        android:layout_alignEnd="@+id/facebook" />
 
     <ImageView
         android:layout_width="wrap_content"

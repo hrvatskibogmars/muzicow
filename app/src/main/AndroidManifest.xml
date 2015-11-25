@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.DesignDemo">
-man
+
         <activity
             android:name=".MainActivity">
             <intent-filter>
@@ -29,6 +29,10 @@ man
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Adapters.FragmentAdapter" />
         </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="0be54a5bc8899c0fe931fd9b4c032df69c4d27a9" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
