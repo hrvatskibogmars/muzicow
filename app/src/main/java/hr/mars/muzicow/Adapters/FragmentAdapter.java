@@ -32,12 +32,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.twitter.sdk.android.Twitter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.fragments.DJ.EditProfileFragment;
 import hr.mars.muzicow.fragments.DJ.ReviewPlaylistFragment;
+import hr.mars.muzicow.fragments.Login.Login;
 import hr.mars.muzicow.fragments.User.AboutDJFragment;
 import hr.mars.muzicow.fragments.DJ.CreateEventFragment;
 import hr.mars.muzicow.fragments.User.EventFragment;
@@ -68,8 +71,8 @@ public class FragmentAdapter extends AppCompatActivity {
 
         context = getApplicationContext();
 
-        Toast toast = Toast.makeText(context, role, Toast.LENGTH_LONG);
-        toast.show();
+       // Toast toast = Toast.makeText(context, role, Toast.LENGTH_LONG);
+       // toast.show();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -105,7 +108,7 @@ public class FragmentAdapter extends AppCompatActivity {
     public void onResume() {
         super.onResume();  // Always call the superclass method first
 
-        role = "Korisnik";
+        //role = "Korisnik";
 
     }
 
@@ -132,13 +135,22 @@ public class FragmentAdapter extends AppCompatActivity {
         Adapter adapter = new Adapter(getSupportFragmentManager());
 
         if (role.equals("Korisnik")) {
+            if(Twitter.getSessionManager().getActiveSession().equals(true)){
+                adapter.addFragment(new AboutDJFragment(), "DJ");
+                adapter.addFragment(new PlaylistFragment(), "Playlist");
+                adapter.addFragment(new EventFragment(), "Event");
+            }
+            else
+            {
+                Toast toast = Toast.makeText(FragmentAdapter.this, "TREBA NAPRAVITI NOVI FRAGMETN ZA LOGIN", Toast.LENGTH_LONG);
+                toast.show();
+
+            }
 
 
-            adapter.addFragment(new AboutDJFragment(), "DJ");
-            adapter.addFragment(new PlaylistFragment(), "Playlist");
-            adapter.addFragment(new EventFragment(), "Event");
         }
         else {
+
             adapter.addFragment(new EditProfileFragment(), "Profile");
             adapter.addFragment(new CreateEventFragment(), "Manage Event");
             adapter.addFragment(new PlaylistFragment(), "Review Playlist");

@@ -30,9 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
         Context context;
         private TwitterLoginButton loginButton;
-        String text;
-    //Spinner mySpinner=(Spinner) findViewById(R.id.spinner);
-    //String text1 = mySpinner.getSelectedItem().toString();
+
+
 
 
 
@@ -42,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
                 super.onCreate(savedInstanceState);
                 TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
                 Fabric.with(this, new Twitter(authConfig));
-                setContentView(R.layout.login);
+                setContentView(R.layout.proba);
                 context = getApplicationContext();
-
+/*
             loginButton = (TwitterLoginButton) findViewById(R.id.twitter);
             loginButton.setCallback(new Callback<TwitterSession>() {
                 @Override
@@ -61,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     toast.show();
                 }
             });
+            */
 
 
 
@@ -76,29 +76,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-/*
+
         public void buttonClickFunction(View v) {
 
-
-                Spinner mySpinner=(Spinner) findViewById(R.id.spinner);
-                String text = mySpinner.getSelectedItem().toString();
-
-
-                //Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
-                //toast.show();
+            Spinner mySpinner=(Spinner) findViewById(R.id.spinner);
+            String uloga = mySpinner.getSelectedItem().toString();
+            Intent myIntent = new Intent(MainActivity.this, FragmentAdapter.class);
+            myIntent.putExtra("userRole",uloga);
+            MainActivity.this.startActivity(myIntent);
 
 
 
-                //if (text.equals("Korisnik")){
-
-
-                Intent myIntent = new Intent(MainActivity.this, FragmentAdapter.class);
-                        myIntent.putExtra("userRole",text.toString());
-                MainActivity.this.startActivity(myIntent);
-
-                //else
-                        //Toast.makeText(this,"hh",Toast.LENGTH_LONG);
         }
 
-*/
+
 }
