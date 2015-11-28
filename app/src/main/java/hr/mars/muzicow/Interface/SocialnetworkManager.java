@@ -5,11 +5,12 @@ package hr.mars.muzicow.Interface;
  */
 public interface SocialnetworkManager {
 
+
     /**
      * TODO
      * return true or falls
      */
-    public boolean authenticateUser();
+    //public boolean authenticateUser();
     /**
      * TODO
      * Number of tweets
@@ -19,11 +20,16 @@ public interface SocialnetworkManager {
      * Description
      */
 
-    public void getUserData();
+    //public void getUserData();
 
     /**
      * TODO
      * Profile picture
      */
-    public void getUserPicture();
+    //public void getUserPicture();
+
+    public  void setSesija(String sesija);
+    public  String getSesija();
+
 };
+

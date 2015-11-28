@@ -29,53 +29,17 @@ public class MainActivity extends AppCompatActivity {
     private static final String TWITTER_SECRET = "deHaJ2nBf5Lj5luPg2Avu7w0JOxbb61GUNZavlb4SELDyK0WUV ";
 
         Context context;
-        private TwitterLoginButton loginButton;
-
-
-
-
-
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
+                //instanciram singleton fabric da mogu provjerit dal postoji sesija
                 TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
                 Fabric.with(this, new Twitter(authConfig));
                 setContentView(R.layout.proba);
                 context = getApplicationContext();
-/*
-            loginButton = (TwitterLoginButton) findViewById(R.id.twitter);
-            loginButton.setCallback(new Callback<TwitterSession>() {
-                @Override
-                public void success(Result<TwitterSession> result) {
-                    text=result.data.getUserName();
-                    Intent myIntent = new Intent(MainActivity.this, FragmentAdapter.class);
-                    myIntent.putExtra("userRole",text.toString());
-                    MainActivity.this.startActivity(myIntent);
-                }
-
-                @Override
-                public void failure(TwitterException exception) {
-                    Toast toast = Toast.makeText(MainActivity.this, "ne radi", Toast.LENGTH_LONG);
-                    toast.show();
-                }
-            });
-            */
-
-
 
         }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Pass the activity result to the login button.
-        loginButton.onActivityResult(requestCode, resultCode, data);
-    }
-
-
-
 
         public void buttonClickFunction(View v) {
 
@@ -83,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
             String uloga = mySpinner.getSelectedItem().toString();
             Intent myIntent = new Intent(MainActivity.this, FragmentAdapter.class);
             myIntent.putExtra("userRole",uloga);
+            myIntent.putExtra("sesija","");
             MainActivity.this.startActivity(myIntent);
 
 

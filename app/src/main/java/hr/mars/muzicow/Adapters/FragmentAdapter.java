@@ -28,6 +28,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ import com.twitter.sdk.android.Twitter;
 import java.util.ArrayList;
 import java.util.List;
 
+import hr.mars.muzicow.Interface.Sesija;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.fragments.DJ.EditProfileFragment;
 import hr.mars.muzicow.fragments.DJ.ReviewPlaylistFragment;
@@ -53,6 +55,8 @@ public class FragmentAdapter extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     Context context;
     String role;
+    String sesija;
+    int counter;
 
 
     @Override
@@ -66,13 +70,16 @@ public class FragmentAdapter extends AppCompatActivity {
 
         if(bundle != null){
             role = bundle.getString("userRole");
+            //user = bundle.getString("user");
+            sesija =bundle.getString("sesija");
+
         }
 
 
         context = getApplicationContext();
 
-       // Toast toast = Toast.makeText(context, role, Toast.LENGTH_LONG);
-       // toast.show();
+        Toast toast = Toast.makeText(FragmentAdapter.this, role, Toast.LENGTH_LONG);
+        toast.show();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -135,15 +142,22 @@ public class FragmentAdapter extends AppCompatActivity {
         Adapter adapter = new Adapter(getSupportFragmentManager());
 
         if (role.equals("Korisnik")) {
-            if(Twitter.getSessionManager().getActiveSession().equals(true)){
-                adapter.addFragment(new AboutDJFragment(), "DJ");
-                adapter.addFragment(new PlaylistFragment(), "Playlist");
-                adapter.addFragment(new EventFragment(), "Event");
+
+
+            if(sesija.equals("")){
+                Intent intent = new Intent(this, Login.class);
+                intent.putExtra("userRole","Korisnik");
+                startActivity(intent);
             }
             else
             {
-                Toast toast = Toast.makeText(FragmentAdapter.this, "TREBA NAPRAVITI NOVI FRAGMETN ZA LOGIN", Toast.LENGTH_LONG);
-                toast.show();
+
+               // Toast toast = Toast.makeText(FragmentAdapter.this, "TREBA NAPRAVITI NOVI FRAGMETN ZA LOGIN", Toast.LENGTH_LONG);
+                //toast.show();
+                adapter.addFragment(new AboutDJFragment(), "DJ");
+                adapter.addFragment(new PlaylistFragment(), "Playlist");
+                adapter.addFragment(new EventFragment(), "Event");
+
 
             }
 
@@ -151,13 +165,39 @@ public class FragmentAdapter extends AppCompatActivity {
         }
         else {
 
-            adapter.addFragment(new EditProfileFragment(), "Profile");
-            adapter.addFragment(new CreateEventFragment(), "Manage Event");
-            adapter.addFragment(new PlaylistFragment(), "Review Playlist");
+            if(sesija.equals("")){
+                Intent intent = new Intent(this, Login.class);
+                intent.putExtra("userRole","DJ");
+                startActivity(intent);
+            }
+            else {
+
+                adapter.addFragment(new EditProfileFragment(), "Profile");
+                adapter.addFragment(new CreateEventFragment(), "Manage Event");
+                adapter.addFragment(new PlaylistFragment(), "Review Playlist");
+            }
         }
        viewPager.setAdapter(adapter);
 
         }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            counter++;
+            Toast toast = Toast.makeText(FragmentAdapter.this, "Press back to exit on more time?", Toast.LENGTH_LONG);
+            toast.show();
+            if(counter==2){
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                counter=0;
+            }
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
 
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(

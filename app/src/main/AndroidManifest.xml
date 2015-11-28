@@ -29,6 +29,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Adapters.FragmentAdapter" />
         </activity>
+
+        <activity
+            android:name=".fragments.Login.Login">
+    </activity>
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="0be54a5bc8899c0fe931fd9b4c032df69c4d27a9" />
