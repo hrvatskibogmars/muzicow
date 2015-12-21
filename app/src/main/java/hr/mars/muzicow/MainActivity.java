@@ -34,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 //instanciram singleton fabric da mogu provjerit dal postoji sesija
-                TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
-                Fabric.with(this, new Twitter(authConfig));
+
                 setContentView(R.layout.proba);
                 context = getApplicationContext();
 

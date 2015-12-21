@@ -164,18 +164,19 @@ public class FragmentAdapter extends AppCompatActivity {
 
         }
         else {
-
+/*
             if(sesija.equals("")){
                 Intent intent = new Intent(this, Login.class);
                 intent.putExtra("userRole","DJ");
                 startActivity(intent);
             }
-            else {
 
+            else {
+*/
                 adapter.addFragment(new EditProfileFragment(), "Profile");
                 adapter.addFragment(new CreateEventFragment(), "Manage Event");
                 adapter.addFragment(new PlaylistFragment(), "Review Playlist");
-            }
+         //   }
         }
        viewPager.setAdapter(adapter);
 

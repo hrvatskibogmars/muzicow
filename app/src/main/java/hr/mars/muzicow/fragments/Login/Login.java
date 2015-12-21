@@ -23,13 +23,15 @@ import hr.mars.muzicow.R;
  * Created by Emil on 26.11.2015..
  */
 public class Login extends AppCompatActivity  {
-
+/*
 
     private TwitterLoginButton loginButton;
     String role;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+          TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+                Fabric.with(this, new Twitter(authConfig));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
@@ -46,10 +48,11 @@ public class Login extends AppCompatActivity  {
 
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter);
         loginButton.setCallback(new Callback<TwitterSession>() {
+
             @Override
             public void success(Result<TwitterSession> result) {
                 String text = Twitter.getSessionManager().getActiveSession().toString();
-              Intent myIntent = new Intent(Login.this, FragmentAdapter.class);
+                Intent myIntent = new Intent(Login.this, FragmentAdapter.class);
                 myIntent.putExtra("userRole", "Korisnik");
                 Sesija.getInstance().equals(text);
                 myIntent.putExtra("sesija", text);
@@ -75,5 +78,5 @@ public class Login extends AppCompatActivity  {
 
     }
 
-
+*/
 }
