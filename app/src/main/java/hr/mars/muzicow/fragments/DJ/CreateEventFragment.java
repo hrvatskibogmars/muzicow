@@ -59,19 +59,21 @@ public class CreateEventFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
+        /*
         listaEvent.add(event.getText().toString());
         listaEvent.add(time.getText().toString());
         listaEvent.add(genre.getText().toString());
         listaEvent.add(latitude.getText().toString());
         listaEvent.add(longitude.getText().toString());
+        */
         eventAPI eventRetrofit = ServiceGenerator.createService(eventAPI.class);
-        Call<String>call = eventRetrofit.slanjeEventa(listaEvent.get(0),listaEvent.get(0)
-                ,listaEvent.get(0),listaEvent.get(0),listaEvent.get(0));
+        Call<String>call = eventRetrofit.slanjeEventa();
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Response<String> response, Retrofit retrofit) {
                 // primanje odgovora
                 Log.e("TAG",response.message());
+                //Log.e("TAG",response.body());
             }
 
             @Override
