@@ -7,7 +7,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/event"
         android:hint="Event name"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="36dp"
@@ -18,46 +18,47 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
+        android:id="@+id/vrijme"
         android:hint="Start time"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:layout_below="@+id/event"
+        android:layout_alignStart="@+id/event" />
 
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText3"
+        android:id="@+id/longitude"
         android:hint="Longitude"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/editText4"
-        android:layout_alignStart="@+id/editText4" />
+        android:layout_below="@+id/latitude"
+        android:layout_alignStart="@+id/latitude" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText4"
+        android:id="@+id/latitude"
         android:hint="Latitude"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/editText5"
-        android:layout_alignStart="@+id/editText5" />
+        android:layout_below="@+id/genre"
+        android:layout_alignStart="@+id/genre" />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText5"
+        android:id="@+id/genre"
         android:hint="Genre"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:layout_below="@+id/vrijme"
+        android:layout_alignStart="@+id/vrijme" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create Event"
         android:id="@+id/button2"
-        android:layout_below="@+id/editText3"
+        android:layout_below="@+id/longitude"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp" />
+        android:layout_marginTop="36dp"
+        android:onClick="createEvent" />
 
 </RelativeLayout>
