@@ -12,6 +12,8 @@ import android.widget.EditText;
 
 import com.squareup.okhttp.OkHttpClient;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import hr.mars.muzicow.Interface.eventAPI;
@@ -65,7 +67,7 @@ public class CreateEventFragment extends Fragment implements View.OnClickListene
         listaEvent.add(genre.getText().toString());
         listaEvent.add(latitude.getText().toString());
         listaEvent.add(longitude.getText().toString());
-        */
+
         eventAPI eventRetrofit = ServiceGenerator.createService(eventAPI.class);
         Call<String>call = eventRetrofit.slanjeEventa();
         call.enqueue(new Callback<String>() {
@@ -73,7 +75,6 @@ public class CreateEventFragment extends Fragment implements View.OnClickListene
             public void onResponse(Response<String> response, Retrofit retrofit) {
                 // primanje odgovora
                 Log.e("TAG",response.message());
-                //Log.e("TAG",response.body());
             }
 
             @Override
@@ -81,5 +82,7 @@ public class CreateEventFragment extends Fragment implements View.OnClickListene
                 Log.e("TAG",t.getMessage());
             }
         });
+    */
     }
+
 }

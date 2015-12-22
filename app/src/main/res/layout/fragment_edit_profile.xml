@@ -7,12 +7,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="ID"
         android:ems="10"
-        android:id="@+id/editText6"
+        android:id="@+id/IDFd"
         android:layout_marginTop="22dp"
         android:layout_below="@+id/textView9"
-        android:layout_alignStart="@+id/editText7" />
+        android:layout_alignStart="@+id/CityFd" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -20,18 +20,20 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:hint="youremail@domain.com"
-        android:id="@+id/editText7"
-        android:layout_below="@+id/editText6"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/CityFd"
+        android:layout_below="@+id/IDFd"
+        android:layout_centerHorizontal="true"
+        android:text="City" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText8"
+        android:id="@+id/CountryFd"
         android:hint="Music portfolio link"
-        android:layout_below="@+id/editText7"
-        android:layout_alignStart="@+id/editText7"
-        android:layout_alignEnd="@+id/editText7" />
+        android:layout_below="@+id/CityFd"
+        android:layout_alignStart="@+id/CityFd"
+        android:layout_alignEnd="@+id/CityFd"
+        android:text="Country" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,28 +49,40 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText9"
-        android:layout_below="@+id/editText8"
-        android:layout_alignStart="@+id/editText8"
+        android:id="@+id/NameFd"
+        android:layout_below="@+id/CountryFd"
+        android:layout_alignStart="@+id/CountryFd"
         android:hint="Formed"
-        android:layout_alignEnd="@+id/editText8" />
+        android:layout_alignEnd="@+id/CountryFd"
+        android:text="Name" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText10"
-        android:layout_below="@+id/editText9"
-        android:layout_alignStart="@+id/editText9"
-        android:layout_alignEnd="@+id/editText9"
-        android:hint="Genre" />
+        android:id="@+id/NicknameFd"
+        android:layout_below="@+id/NameFd"
+        android:layout_alignStart="@+id/NameFd"
+        android:layout_alignEnd="@+id/NameFd"
+        android:hint="Genre"
+        android:text="Nickname" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update Profile"
-        android:id="@+id/button3"
-        android:layout_below="@+id/editText10"
-        android:layout_alignStart="@+id/editText10"
-        android:layout_alignEnd="@+id/editText10" />
+        android:id="@+id/editProfileButt"
+        android:layout_below="@+id/WebsiteFd"
+        android:layout_alignStart="@+id/WebsiteFd"
+        android:layout_alignEnd="@+id/WebsiteFd" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/WebsiteFd"
+        android:hint="Genre"
+        android:text="WebSite"
+        android:layout_below="@+id/NicknameFd"
+        android:layout_alignStart="@+id/NicknameFd"
+        android:layout_alignEnd="@+id/NicknameFd" />
 
 </RelativeLayout>
