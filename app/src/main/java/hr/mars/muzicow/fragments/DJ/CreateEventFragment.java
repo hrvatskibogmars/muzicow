@@ -3,28 +3,15 @@ package hr.mars.muzicow.fragments.DJ;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.squareup.okhttp.OkHttpClient;
-
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
-import hr.mars.muzicow.Interface.eventAPI;
 import hr.mars.muzicow.R;
-import hr.mars.muzicow.ServiceGenerator;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
-import retrofit.http.Field;
 
 /**
  * Created by mars on 15/11/15.
@@ -68,7 +55,7 @@ public class CreateEventFragment extends Fragment implements View.OnClickListene
         listaEvent.add(latitude.getText().toString());
         listaEvent.add(longitude.getText().toString());
 
-        eventAPI eventRetrofit = ServiceGenerator.createService(eventAPI.class);
+        editProfileDjAPI eventRetrofit = ServiceGenerator.createService(editProfileDjAPI.class);
         Call<String>call = eventRetrofit.slanjeEventa();
         call.enqueue(new Callback<String>() {
             @Override

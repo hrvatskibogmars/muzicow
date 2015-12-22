@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import hr.mars.muzicow.DJAtributes;
-import hr.mars.muzicow.Interface.eventAPI;
+import hr.mars.muzicow.Interface.editProfileDjAPI;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.ServiceGenerator;
 import retrofit.Call;
@@ -58,7 +58,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(final View view) {
-        eventAPI eventRetrofit = ServiceGenerator.createService(eventAPI.class);
+        editProfileDjAPI eventRetrofit = ServiceGenerator.createService(editProfileDjAPI.class);
         Call<List<DJAtributes>> call = eventRetrofit.getDJ();
         call.enqueue(new Callback<List<DJAtributes>>() {
             @Override

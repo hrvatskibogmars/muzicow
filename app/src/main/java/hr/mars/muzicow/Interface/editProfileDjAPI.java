@@ -15,7 +15,7 @@ import retrofit.http.POST;
 /**
  * Created by Emil on 21.12.2015..
  */
-public interface eventAPI {
+public interface editProfileDjAPI {
 
     @GET("/api/djs")
     Call<List<DJAtributes>> getDJ();
