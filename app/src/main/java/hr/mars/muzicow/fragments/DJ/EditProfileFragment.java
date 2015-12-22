@@ -149,13 +149,13 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
                     }
                 else {
-                    Log.d("Error", response.raw().toString());
+                    Log.d("Response error", response.raw().toString());
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Log.d("Error", t.toString());
+                Log.d("onFailureError", t.toString());
             }
         });
 

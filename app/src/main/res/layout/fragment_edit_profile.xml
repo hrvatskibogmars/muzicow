@@ -12,14 +12,16 @@
         android:id="@+id/IDFd"
         android:layout_marginTop="22dp"
         android:layout_below="@+id/textView9"
-        android:layout_alignStart="@+id/CityFd" />
+        android:layout_alignStart="@+id/CityFd"
+        android:editable="false"
+        android:focusable="false" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:hint="youremail@domain.com"
+        android:hint="City"
         android:id="@+id/CityFd"
         android:layout_below="@+id/IDFd"
         android:layout_centerHorizontal="true"
@@ -29,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/CountryFd"
-        android:hint="Music portfolio link"
+        android:hint="Country"
         android:layout_below="@+id/CityFd"
         android:layout_alignStart="@+id/CityFd"
         android:layout_alignEnd="@+id/CityFd"
@@ -52,7 +54,7 @@
         android:id="@+id/NameFd"
         android:layout_below="@+id/CountryFd"
         android:layout_alignStart="@+id/CountryFd"
-        android:hint="Formed"
+        android:hint="Name"
         android:layout_alignEnd="@+id/CountryFd"
         android:text="Name" />
 
@@ -63,7 +65,7 @@
         android:layout_below="@+id/NameFd"
         android:layout_alignStart="@+id/NameFd"
         android:layout_alignEnd="@+id/NameFd"
-        android:hint="Genre"
+        android:hint="Nickname"
         android:text="Nickname" />
 
     <Button
@@ -81,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/WebsiteFd"
-        android:hint="Genre"
+        android:hint="Website"
         android:text="WebSite"
         android:layout_below="@+id/NicknameFd"
         android:layout_alignStart="@+id/NicknameFd"
@@ -95,6 +97,8 @@
         android:ems="10"
         android:id="@+id/email"
         android:layout_below="@+id/WebsiteFd"
-        android:layout_alignStart="@+id/updateProfileButton" />
+        android:layout_alignStart="@+id/updateProfileButton"
+        android:editable="false"
+        android:focusable="false"/>
 
 </RelativeLayout>
