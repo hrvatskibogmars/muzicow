@@ -1,9 +1,9 @@
-package hr.mars.muzicow;
+package hr.mars.muzicow.RESTful.model;
 
 /**
  * Created by Emil on 22.12.2015..
  */
-public class DJAtributes {
+public class DJ {
         String _ID;
         String name;
         String website;

@@ -13,10 +13,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import hr.mars.muzicow.DJAtributes;
-import hr.mars.muzicow.Interface.editProfileDjAPI;
+import hr.mars.muzicow.RESTful.model.DJ;
+import hr.mars.muzicow.RESTful.api.API;
 import hr.mars.muzicow.R;
-import hr.mars.muzicow.ServiceGenerator;
+import hr.mars.muzicow.RESTful.ServiceGenerator;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -26,7 +26,7 @@ import retrofit.Retrofit;
  * Created by mars on 14/11/15.
  */
 public class EditProfileFragment extends Fragment implements View.OnClickListener {
-    List<DJAtributes>DJlist;
+    List<DJ>DJlist;
     Button buttonCL;
     TextView id;
     TextView city;
@@ -56,13 +56,14 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     }
 
 
+
     @Override
     public void onClick(final View view) {
-        editProfileDjAPI eventRetrofit = ServiceGenerator.createService(editProfileDjAPI.class);
-        Call<List<DJAtributes>> call = eventRetrofit.getDJ();
-        call.enqueue(new Callback<List<DJAtributes>>() {
+        API eventRetrofit = ServiceGenerator.createService(API.class);
+        Call<List<DJ>> call = eventRetrofit.getDJ();
+        call.enqueue(new Callback<List<DJ>>() {
             @Override
-            public void onResponse(Response<List<DJAtributes>> response, Retrofit retrofit) {
+            public void onResponse(Response<List<DJ>> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
                     Log.d("Error", "uspijeh");
                     DJlist = response.body();

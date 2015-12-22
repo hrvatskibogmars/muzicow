@@ -1,4 +1,4 @@
-package hr.mars.muzicow;
+package hr.mars.muzicow.RESTful;
 
 import com.squareup.okhttp.OkHttpClient;
 

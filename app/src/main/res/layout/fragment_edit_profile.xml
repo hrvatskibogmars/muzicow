@@ -69,11 +69,19 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update Profile"
+        android:text="Get Profile"
         android:id="@+id/editProfileButt"
         android:layout_below="@+id/WebsiteFd"
         android:layout_alignStart="@+id/WebsiteFd"
         android:layout_alignEnd="@+id/WebsiteFd" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Profile"
+        android:id="@+id/updateProfileButton"
+        android:layout_below="@+id/editProfileButt"
+        android:layout_alignStart="@+id/editProfileButt"
+        android:layout_alignEnd="@+id/editProfileButt" />
 
     <EditText
         android:layout_width="wrap_content"

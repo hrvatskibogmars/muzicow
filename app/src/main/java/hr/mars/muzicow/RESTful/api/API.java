@@ -1,24 +1,24 @@
-package hr.mars.muzicow.Interface;
-
-import org.json.JSONObject;
+package hr.mars.muzicow.RESTful.api;
 
 import java.util.List;
 
-import hr.mars.muzicow.DJAtributes;
+import hr.mars.muzicow.RESTful.model.DJ;
 import retrofit.Call;
-import retrofit.Callback;
-import retrofit.http.Field;
-import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
 
 /**
  * Created by Emil on 21.12.2015..
  */
-public interface editProfileDjAPI {
+public interface API {
 
     @GET("/api/djs")
-    Call<List<DJAtributes>> getDJ();
+    Call<List<DJ>> getDJ();
+
+    @POST("/api/djs/update")
+    Call<List<DJ>> updateDJ();
+
+
 
     //Call<JSONObject> slanjeEventa(@Field("_ID") String ID);
     /*
