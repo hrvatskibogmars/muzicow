@@ -68,10 +68,10 @@ public class FragmentAdapter extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        if(bundle != null){
+        if (bundle != null) {
             role = bundle.getString("userRole");
             //user = bundle.getString("user");
-            sesija =bundle.getString("sesija");
+            sesija = bundle.getString("sesija");
 
         }
 
@@ -111,6 +111,7 @@ public class FragmentAdapter extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onResume() {
         super.onResume();  // Always call the superclass method first
@@ -143,28 +144,28 @@ public class FragmentAdapter extends AppCompatActivity {
 
         if (role.equals("Korisnik")) {
 
-
-            if(sesija.equals("")){
-                Intent intent = new Intent(this, Login.class);
-                intent.putExtra("userRole","Korisnik");
+            /*
+            //if (sesija.equals("")) {
+             //   Intent intent = new Intent(this, Login.class);
+             //
+             intent.putExtra("userRole", "Korisnik");
                 startActivity(intent);
-            }
-            else
-            {
+            //}
 
-               // Toast toast = Toast.makeText(FragmentAdapter.this, "TREBA NAPRAVITI NOVI FRAGMETN ZA LOGIN", Toast.LENGTH_LONG);
+            else {
+*/
+                // Toast toast = Toast.makeText(FragmentAdapter.this, "TREBA NAPRAVITI NOVI FRAGMETN ZA LOGIN", Toast.LENGTH_LONG);
                 //toast.show();
                 adapter.addFragment(new AboutDJFragment(), "DJ");
                 adapter.addFragment(new PlaylistFragment(), "Playlist");
                 adapter.addFragment(new EventFragment(), "Event");
 
 
-            }
+            //}
 
 
-        }
-        else {
-/*
+        } else {
+            /*
             if(sesija.equals("")){
                 Intent intent = new Intent(this, Login.class);
                 intent.putExtra("userRole","DJ");
@@ -172,27 +173,28 @@ public class FragmentAdapter extends AppCompatActivity {
             }
 
             else {
-*/
-                adapter.addFragment(new EditProfileFragment(), "Profile");
-                adapter.addFragment(new CreateEventFragment(), "Manage Event");
-                adapter.addFragment(new PlaylistFragment(), "Review Playlist");
-         //   }
+            */
+            adapter.addFragment(new EditProfileFragment(), "Profile");
+            adapter.addFragment(new CreateEventFragment(), "Manage Event");
+            adapter.addFragment(new PlaylistFragment(), "Review Playlist");
+            //   }
         }
-       viewPager.setAdapter(adapter);
+        viewPager.setAdapter(adapter);
 
-        }
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             counter++;
             Toast toast = Toast.makeText(FragmentAdapter.this, "Press back to exit on more time?", Toast.LENGTH_LONG);
             toast.show();
-            if(counter==2){
+            if (counter == 2) {
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                counter=0;
+                counter = 0;
             }
             return true;
         }

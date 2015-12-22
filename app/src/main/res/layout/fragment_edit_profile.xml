@@ -69,19 +69,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Profile"
-        android:id="@+id/editProfileButt"
-        android:layout_below="@+id/WebsiteFd"
-        android:layout_alignStart="@+id/WebsiteFd"
-        android:layout_alignEnd="@+id/WebsiteFd" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Update Profile"
         android:id="@+id/updateProfileButton"
-        android:layout_below="@+id/editProfileButt"
-        android:layout_alignStart="@+id/editProfileButt"
-        android:layout_alignEnd="@+id/editProfileButt" />
+        android:layout_below="@+id/WebsiteFd"
+        android:layout_alignStart="@+id/WebsiteFd"
+        android:layout_marginTop="52dp"
+        android:layout_alignEnd="@+id/WebsiteFd"
+        android:onClick="updateProfile"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -92,5 +86,15 @@
         android:layout_below="@+id/NicknameFd"
         android:layout_alignStart="@+id/NicknameFd"
         android:layout_alignEnd="@+id/NicknameFd" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="example@domain.com"
+        android:ems="10"
+        android:id="@+id/email"
+        android:layout_below="@+id/WebsiteFd"
+        android:layout_alignStart="@+id/updateProfileButton" />
 
 </RelativeLayout>
