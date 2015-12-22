@@ -27,7 +27,4 @@
         android:textAlignment="center"
         android:layout_above="@+id/spinner" />
 
-
-
-
 </LinearLayout>
