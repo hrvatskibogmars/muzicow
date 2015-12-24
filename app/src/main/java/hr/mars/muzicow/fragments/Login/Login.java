@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
@@ -52,7 +53,7 @@ public class Login extends AppCompatActivity  {
     protected void onCreate(final Bundle savedInstanceState) {
           TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
                 Fabric.with(this, new Twitter(authConfig));
-       // FacebookSdk.sdkInitialize(getApplicationContext());
+        //FacebookSdk.sdkInitialize(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
@@ -86,9 +87,10 @@ public class Login extends AppCompatActivity  {
 
                 Log.i("TAG",error.toString());
             }
-        });
 
-*/
+        });
+    */
+
 
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter);
         loginButton.setCallback(new Callback<TwitterSession>() {
@@ -138,7 +140,7 @@ public class Login extends AppCompatActivity  {
         loginButton.onActivityResult(requestCode, resultCode, data);
 
     }
-/*
+    /*
     @Override
     protected void onResume() {
         super.onResume();
@@ -154,6 +156,6 @@ public class Login extends AppCompatActivity  {
         // Logs 'app deactivate' App Event.
         AppEventsLogger.deactivateApp(this);
     }
+    */
 
-*/
 }

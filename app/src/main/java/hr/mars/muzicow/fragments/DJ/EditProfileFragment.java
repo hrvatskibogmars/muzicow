@@ -71,11 +71,12 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     }
 
-    String emaill = "/api/djs?filter=%7B%22where%22%3A%7B%22email%22%3A%22string%22%7D%7D";
+
+    String urlEmail = "djs?filter=%7B%22where%22%3A%7B%22email%22%3A%22" + "string" + "%22%7D%7D";
 
     public void loadData(){
         API eventRetrofit = ServiceGenerator.createService(API.class);
-        eventRetrofit.getDJ("embalint@mail.com",new Callback<List<DJ>>() {
+        eventRetrofit.getDJ(urlEmail,new Callback<List<DJ>>() {
             @Override
             public void success(List<DJ> djs, Response response) {
 
@@ -86,129 +87,36 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                     city.setText(djs.get(0).getCity());
                     email.setText(djs.get(0).getEmail());
                     nickname.setText(djs.get(0).getNickname());
-
-
-
-
-
             }
 
             @Override
             public void failure(RetrofitError error) {
-                Log.d("prikaz", "neuspijeh");
+                //Log.d("Error Get DJ");
             }
         });
-        //Map obj=new LinkedHashMap();
-        //obj.put("email","hrorejas@foi.hr");
-        //String jsonText = JSONValue.toJSONString(obj);
-        /*
-        List<DJ> call = eventRetrofit.getDJ(emaill);
-        call.enqueue(new Callback<List<DJ>>() {
-            @Override
-            public void onResponse(Response<List<DJ>> response, Retrofit retrofit) {
-                if (response.isSuccess()) {
-
-                    Log.d("Error", response.body().toString());
-                    DJlist = response.body();
-
-                    Log.d("Error", DJlist.get(1).get_ID());
-                    Log.d("Error", DJlist.get(1).getCity());
-                    Log.d("Error", DJlist.get(1).getCountry());
-                    Log.d("Error", DJlist.get(1).getName());
-                    Log.d("Error", DJlist.get(1).getNickname());
-                    Log.d("Error", DJlist.get(1).getWebsite());
-
-
-                    for (int i=0;i<DJlist.size();i++){
-                        try {
-                            Log.d("Error", DJlist.get(i).get_ID());
-                            Log.d("Error", DJlist.get(i).getCity());
-                            Log.d("Error", DJlist.get(i).getCountry());
-                            Log.d("Error", DJlist.get(i).getName());
-                            Log.d("Error", DJlist.get(i).getNickname());
-                            Log.d("Error", DJlist.get(i).getWebsite());
-
-                            id.setText(DJlist.get(i).get_ID());
-                            city.setText(DJlist.get(i).getCity());
-                            country.setText(DJlist.get(i).getCountry());
-                            name.setText(DJlist.get(i).getName());
-                            nickname.setText(DJlist.get(i).getNickname());
-                            website.setText(DJlist.get(i).getWebsite());
-                            email.setText(DJlist.get(i).getEmail());
-
-                        }
-
-
-                        catch (Exception e){
-                            e.getMessage();
-                        }
-
-                    }
-
-
-                } else {
-                    Log.d("API response", response.raw().toString());
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Log.d("Error", t.getMessage());
-            }
-        });
-        */
     }
 
+    //appen
+    String url = "update?where=%7B%22_ID%22%" +"3"+ "A%223%22%7D";
     @Override
     public void onClick(View view) {
         API eventRetrofit = ServiceGenerator.createService(API.class);
-
-
-        eventRetrofit.updateDJ(id.getText().toString(),
+        eventRetrofit.updateDJ(url, id.getText().toString(),
                 name.getText().toString(), website.getText().toString(),
                 country.getText().toString(), city.getText().toString(),
                 email.getText().toString(), nickname.getText().toString(),
                 new Callback<List<DJ>>() {
                     @Override
                     public void success(List<DJ> djs, Response response) {
-                        Log.d("prikaz","uspjeh");
+                        Log.d("DJ Update ok","Success Update");
+
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        Log.d("prikaz",error.getMessage());
+                        Log.d("DJ update error",error.getMessage());
 
                     }
                 });
-
-        /*
-        String url = "/api/djs/update?where=%7B%22_ID%22%3A%223%22%7D";
-
-        API eventRetrofit = ServiceGenerator.createService(API.class);
-        Call<List<DJ>> call = eventRetrofit.updateDJ(url, id.getText().toString(), city.getText().toString(), country.getText().toString(),
-                name.getText().toString(), nickname.getText().toString(), website.getText().toString(), email.getText().toString());
-        call.enqueue(new Callback<List<DJ>>() {
-            @Override
-            public void onResponse(Response<List<DJ>> response, Retrofit retrofit) {
-                if (response.isSuccess()) {
-                    Log.d("Error Sucess", "uspijeh");
-                    DJlist = response.body();
-
-                    }
-                else {
-                    Log.d("Response error", response.raw().toString());
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Log.d("onFailureError", t.toString());
-            }
-        });
-
-        */
     }
-
-
-
 }
