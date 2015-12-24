@@ -43,10 +43,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Edit your profile DJ information"
         android:id="@+id/textView9"
-        android:layout_marginTop="27dp"
+        android:textStyle="bold"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"

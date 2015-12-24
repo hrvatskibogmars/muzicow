@@ -38,10 +38,8 @@ import com.twitter.sdk.android.Twitter;
 import java.util.ArrayList;
 import java.util.List;
 
-import hr.mars.muzicow.Interface.Sesija;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.fragments.DJ.EditProfileFragment;
-import hr.mars.muzicow.fragments.DJ.ReviewPlaylistFragment;
 import hr.mars.muzicow.fragments.Login.Login;
 import hr.mars.muzicow.fragments.User.AboutDJFragment;
 import hr.mars.muzicow.fragments.DJ.CreateEventFragment;
@@ -57,7 +55,6 @@ public class FragmentAdapter extends AppCompatActivity {
     String role;
     String sesija;
     int counter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,28 +141,26 @@ public class FragmentAdapter extends AppCompatActivity {
 
         if (role.equals("Korisnik")) {
 
-            /*
-            //if (sesija.equals("")) {
-             //   Intent intent = new Intent(this, Login.class);
-             //
+
+            if (sesija.equals("")) {
+                Intent intent = new Intent(this, Login.class);
+
              intent.putExtra("userRole", "Korisnik");
                 startActivity(intent);
-            //}
+            }
 
             else {
-*/
-                // Toast toast = Toast.makeText(FragmentAdapter.this, "TREBA NAPRAVITI NOVI FRAGMETN ZA LOGIN", Toast.LENGTH_LONG);
-                //toast.show();
+
                 adapter.addFragment(new AboutDJFragment(), "DJ");
                 adapter.addFragment(new PlaylistFragment(), "Playlist");
                 adapter.addFragment(new EventFragment(), "Event");
 
 
-            //}
+            }
 
 
         } else {
-            /*
+
             if(sesija.equals("")){
                 Intent intent = new Intent(this, Login.class);
                 intent.putExtra("userRole","DJ");
@@ -173,11 +168,11 @@ public class FragmentAdapter extends AppCompatActivity {
             }
 
             else {
-            */
+
             adapter.addFragment(new EditProfileFragment(), "Profile");
             adapter.addFragment(new CreateEventFragment(), "Manage Event");
             adapter.addFragment(new PlaylistFragment(), "Review Playlist");
-            //   }
+              }
         }
         viewPager.setAdapter(adapter);
 
