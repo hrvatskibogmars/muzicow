@@ -49,7 +49,7 @@ public interface API {
 */
 
     @GET("/api/djs?filter=%7B%22where%22%3A%7B%22email%22%3A%22hrorejas@foi.hr%22%7D%7D")
-    void getDJ(@Query("email") String st, Callback<List<DJ>> cb);
+    void getDJ( Callback<List<DJ>> cb);
 
     @FormUrlEncoded
     @POST("/api/djs/update?where=%7B%22_ID%22%3A%221%22%7D")

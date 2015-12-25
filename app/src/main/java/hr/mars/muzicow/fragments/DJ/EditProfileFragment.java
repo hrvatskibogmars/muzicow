@@ -38,6 +38,7 @@ import retrofit.client.Response;
  */
 public class EditProfileFragment extends Fragment implements View.OnClickListener {
     List<DJ>DJlist;
+
     Button updateProfileButton;
     TextView id;
     TextView city;
@@ -65,6 +66,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         nickname = (TextView)view.findViewById(R.id.NicknameFd);
         website = (TextView)view.findViewById(R.id.WebsiteFd);
         email =(TextView)view.findViewById(R.id.email);
+
         loadData();
 
         return view;
@@ -75,7 +77,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     public void loadData(){
         API eventRetrofit = ServiceGenerator.createService(API.class);
-        eventRetrofit.getDJ("embalint@mail.com",new Callback<List<DJ>>() {
+        eventRetrofit.getDJ(new Callback<List<DJ>>() {
             @Override
             public void success(List<DJ> djs, Response response) {
 

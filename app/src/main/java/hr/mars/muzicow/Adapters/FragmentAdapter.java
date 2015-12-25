@@ -28,19 +28,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.twitter.sdk.android.Twitter;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import hr.mars.muzicow.R;
+import hr.mars.muzicow.RESTful.model.DJ;
 import hr.mars.muzicow.fragments.DJ.EditProfileFragment;
-import hr.mars.muzicow.fragments.Login.Login;
+import hr.mars.muzicow.Login.Login;
 import hr.mars.muzicow.fragments.User.AboutDJFragment;
 import hr.mars.muzicow.fragments.DJ.CreateEventFragment;
 import hr.mars.muzicow.fragments.User.EventFragment;
@@ -65,12 +65,30 @@ public class FragmentAdapter extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
+
         if (bundle != null) {
+
             role = bundle.getString("userRole");
-            //user = bundle.getString("user");
             sesija = bundle.getString("sesija");
 
         }
+
+        if(sesija.isEmpty()){
+
+        }
+        else {
+            try {
+                DJ djObject = bundle.getParcelable("hr.mars.muzicow.RESTful.model.DJ");
+                Log.d("prikaz",djObject.get_ID());
+            }
+           catch (Exception e){
+               Log.d("prikaz", e.getMessage());
+
+           }
+
+        }
+
+
 
 
         context = getApplicationContext();
@@ -212,6 +230,7 @@ public class FragmentAdapter extends AppCompatActivity {
     static class Adapter extends FragmentPagerAdapter {
         private final List<android.support.v4.app.Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
+       // private final List<String> mFragmentBundle = new ArrayList<>();
 
         public Adapter(FragmentManager fm) {
             super(fm);
@@ -220,6 +239,8 @@ public class FragmentAdapter extends AppCompatActivity {
         public void addFragment(android.support.v4.app.Fragment fragment, String title) {
             mFragments.add(fragment);
             mFragmentTitles.add(title);
+          //  mFragmentBundle.add((bundle));
+
         }
 
         @Override
