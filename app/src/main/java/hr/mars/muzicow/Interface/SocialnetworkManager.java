@@ -6,6 +6,5 @@ package hr.mars.muzicow.Interface;
 public interface SocialnetworkManager {
 
     public void retTwitterData();
-
 };
 

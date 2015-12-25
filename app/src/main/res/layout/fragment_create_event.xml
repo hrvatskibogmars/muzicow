@@ -7,58 +7,73 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/event"
-        android:hint="Event name"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="36dp"
+        android:id="@+id/eventID"
+        android:hint="event ID"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/vrijme"
-        android:hint="Start time"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/event"
-        android:layout_alignStart="@+id/event" />
-
+        android:layout_marginTop="60dp"
+        android:layout_alignStart="@+id/djID"
+        android:layout_alignEnd="@+id/djID" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/longitude"
-        android:hint="Longitude"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/latitude"
-        android:layout_alignStart="@+id/latitude" />
+        android:id="@+id/djID"
+        android:hint="DJ ID"
+        android:layout_below="@+id/eventID"
+        android:layout_alignStart="@+id/latitude"
+        android:layout_alignEnd="@+id/latitude" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/latitude"
-        android:hint="Latitude"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/genre"
-        android:layout_alignStart="@+id/genre" />
+        android:hint="latitude"
+        android:layout_below="@+id/djID"
+        android:layout_alignStart="@+id/longitude"
+        android:layout_alignEnd="@+id/longitude" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/longitude"
+        android:hint="longitude"
+        android:layout_below="@+id/latitude"
+        android:layout_alignStart="@+id/eventName"
+        android:layout_alignEnd="@+id/eventName" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventName"
+        android:hint="Event Name"
+        android:layout_below="@+id/longitude"
+        android:layout_alignStart="@+id/status"
+        android:layout_alignEnd="@+id/status" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/status"
+        android:hint="Status"
+        android:layout_below="@+id/eventName"
+        android:layout_alignStart="@+id/genre"
+        android:layout_alignEnd="@+id/genre" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/genre"
         android:hint="Genre"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/vrijme"
-        android:layout_alignStart="@+id/vrijme" />
+        android:layout_below="@+id/status"
+        android:layout_alignEnd="@+id/createEvent"
+        android:layout_alignStart="@+id/createEvent" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create Event"
-        android:id="@+id/button2"
-        android:layout_below="@+id/longitude"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
-        android:onClick="onClick" />
+        android:text="Create event"
+        android:id="@+id/createEvent"
+        android:layout_below="@+id/genre"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

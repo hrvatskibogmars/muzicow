@@ -42,7 +42,7 @@ import hr.mars.muzicow.RESTful.model.DJ;
 import hr.mars.muzicow.fragments.DJ.EditProfileFragment;
 import hr.mars.muzicow.Login.Login;
 import hr.mars.muzicow.fragments.User.AboutDJFragment;
-import hr.mars.muzicow.fragments.DJ.CreateEventFragment;
+import hr.mars.muzicow.fragments.DJ.ManageEventFragment;
 import hr.mars.muzicow.fragments.User.EventFragment;
 import hr.mars.muzicow.fragments.User.PlaylistFragment;
 
@@ -93,8 +93,8 @@ public class FragmentAdapter extends AppCompatActivity {
 
         context = getApplicationContext();
 
-        Toast toast = Toast.makeText(FragmentAdapter.this, role, Toast.LENGTH_LONG);
-        toast.show();
+        //Toast toast = Toast.makeText(FragmentAdapter.this, role, Toast.LENGTH_LONG);
+        //toast.show();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -188,7 +188,7 @@ public class FragmentAdapter extends AppCompatActivity {
             else {
 
             adapter.addFragment(new EditProfileFragment(), "Profile");
-            adapter.addFragment(new CreateEventFragment(), "Manage Event");
+            adapter.addFragment(new ManageEventFragment(), "Manage Event");
             adapter.addFragment(new PlaylistFragment(), "Review Playlist");
               }
         }
@@ -231,6 +231,7 @@ public class FragmentAdapter extends AppCompatActivity {
         private final List<android.support.v4.app.Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
        // private final List<String> mFragmentBundle = new ArrayList<>();
+
 
         public Adapter(FragmentManager fm) {
             super(fm);
