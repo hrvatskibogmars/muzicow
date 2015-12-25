@@ -91,7 +91,6 @@ public class Login extends AppCompatActivity  {
         });
     */
 
-
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter);
         loginButton.setCallback(new Callback<TwitterSession>() {
 

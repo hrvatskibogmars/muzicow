@@ -211,6 +211,7 @@ public class FragmentAdapter extends AppCompatActivity {
         private final List<android.support.v4.app.Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
 
+
         public Adapter(FragmentManager fm) {
             super(fm);
         }

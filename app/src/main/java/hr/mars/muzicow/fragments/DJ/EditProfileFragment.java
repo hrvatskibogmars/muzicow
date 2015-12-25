@@ -71,8 +71,8 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     }
 
-
-    String urlEmail = "djs?filter=%7B%22where%22%3A%7B%22email%22%3A%22" + "string" + "%22%7D%7D";
+    //String email = twitter.getEmail();
+    //String urlEmail = "djs?filter=%7B%22where%22%3A%7B%22email%22%3A%22" + email + "%22%7D%7D";
 
     public void loadData(){
         API eventRetrofit = ServiceGenerator.createService(API.class);
