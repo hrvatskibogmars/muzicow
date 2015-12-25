@@ -58,6 +58,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         nickname = (TextView)view.findViewById(R.id.NicknameFd);
         website = (TextView)view.findViewById(R.id.WebsiteFd);
         email =(TextView)view.findViewById(R.id.email);
+        // sa ovim faObjectom imas pristup svemu o dju
         Log.d("DjShowData", "Twitter ID : "+ faObject.getDjObject().get_ID());
         loadData();
         return view;
