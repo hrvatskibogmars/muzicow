@@ -8,6 +8,9 @@
     bergkase cream cheese fromage frais cheesy feet port-salut airedale. St. agur blue cheese rubber
     cheese caerphilly cheddar cheesecake cream cheese manchego lancashire. Roquefort squirty cheese
     the big cheese.</string>
+     <string name="no_location_detected">
+        No location detected. Make sure location is enabled on the device.
+    </string>
     <string name="menu_settings">Settings</string>
     <string-array name="spinner">
         <item>Korisnik</item>

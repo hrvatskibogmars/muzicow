@@ -33,8 +33,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.twitter.sdk.android.Twitter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +40,7 @@ import hr.mars.muzicow.R;
 import hr.mars.muzicow.fragments.DJ.EditProfileFragment;
 import hr.mars.muzicow.fragments.Login.Login;
 import hr.mars.muzicow.fragments.User.AboutDJFragment;
-import hr.mars.muzicow.fragments.DJ.CreateEventFragment;
+import hr.mars.muzicow.fragments.DJ.ManageEventFragment;
 import hr.mars.muzicow.fragments.User.EventFragment;
 import hr.mars.muzicow.fragments.User.PlaylistFragment;
 
@@ -75,8 +73,8 @@ public class FragmentAdapter extends AppCompatActivity {
 
         context = getApplicationContext();
 
-        Toast toast = Toast.makeText(FragmentAdapter.this, role, Toast.LENGTH_LONG);
-        toast.show();
+        //Toast toast = Toast.makeText(FragmentAdapter.this, role, Toast.LENGTH_LONG);
+        //toast.show();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -170,7 +168,7 @@ public class FragmentAdapter extends AppCompatActivity {
             else {
 
             adapter.addFragment(new EditProfileFragment(), "Profile");
-            adapter.addFragment(new CreateEventFragment(), "Manage Event");
+            adapter.addFragment(new ManageEventFragment(), "Manage Event");
             adapter.addFragment(new PlaylistFragment(), "Review Playlist");
               }
         }

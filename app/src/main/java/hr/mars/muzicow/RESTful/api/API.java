@@ -43,7 +43,7 @@ public interface API {
                      Callback<List<Event>> cb);
 
     //Check for active event - if active get event
-    @GET("/api/events/{event_active}")
+    @GET("/api/{event_active}")
     void getActiveEvent(@Path(value="event_active", encode=false) String ea, Callback<List<Event>> ev);
 
     //Update event
