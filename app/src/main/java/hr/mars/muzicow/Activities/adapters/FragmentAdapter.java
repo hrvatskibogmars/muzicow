@@ -56,21 +56,21 @@ public class FragmentAdapter extends AppCompatActivity {
     String sesija;
     int counter;
 
+
+    public static DJ djObject;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-
 
         if (bundle != null) {
 
             role = bundle.getString("userRole");
             sesija = bundle.getString("sesija");
-
         }
 
         if(sesija.isEmpty()){
@@ -78,24 +78,15 @@ public class FragmentAdapter extends AppCompatActivity {
         }
         else {
             try {
-                DJ djObject = bundle.getParcelable("hr.mars.muzicow.RESTful.model.DJ");
-                Log.d("prikaz",djObject.get_ID());
+                djObject = bundle.getParcelable("hr.mars.muzicow.RESTful.model.DJ");
+                setDjObject(djObject);
             }
            catch (Exception e){
                Log.d("prikaz", e.getMessage());
-
            }
-
         }
 
-
-
-
         context = getApplicationContext();
-
-        //Toast toast = Toast.makeText(FragmentAdapter.this, role, Toast.LENGTH_LONG);
-        //toast.show();
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
@@ -126,6 +117,14 @@ public class FragmentAdapter extends AppCompatActivity {
 
 
     }
+    public  DJ getDjObject() {
+        return djObject;
+    }
+
+    public void setDjObject(DJ djObject) {
+        FragmentAdapter.djObject = djObject;
+    }
+
 
     @Override
     public void onResume() {

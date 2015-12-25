@@ -15,6 +15,25 @@ public class DJ implements Parcelable{
     String nickname;
     String email;
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getProfileUrl() {
+        return profileUrl;
+    }
+
+    public void setProfileUrl(String profileUrl) {
+        this.profileUrl = profileUrl;
+    }
+
+    String description;
+    String profileUrl;
+
     public DJ(){
     }
     public DJ(Parcel in){readFromParcel(in);}

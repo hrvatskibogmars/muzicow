@@ -84,9 +84,16 @@ public class LoginActivity extends AppCompatActivity implements SocialnetworkMan
                 .verifyCredentials(true, false, new Callback<User>() {
                     @Override
                     public void success(Result<User> userResult) {
-                        dj = new DJ();
                         Intent myIntent = new Intent(LoginActivity.this, FragmentAdapter.class);
+                        dj = new DJ();
                         dj.set_ID(userResult.data.idStr);
+                        dj.setName(userResult.data.name);
+                        dj.setDescription(userResult.data.description);
+                        dj.setCity(userResult.data.location);
+                        dj.setProfileUrl(userResult.data.profileImageUrl);
+                        dj.setNickname(userResult.data.screenName);
+
+
 
                         if(role.equals("Korisnik")) {
                             myIntent.putExtra("userRole", "Korisnik");

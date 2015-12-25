@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import hr.mars.muzicow.APIs.DJAPI;
+import hr.mars.muzicow.Activities.adapters.FragmentAdapter;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.APIs.EventAPI;
 import hr.mars.muzicow.R;
@@ -37,6 +38,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     TextView nickname;
     TextView website;
     TextView email;
+    FragmentAdapter faObject = new FragmentAdapter();
 
 
     @Nullable
@@ -56,13 +58,13 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         nickname = (TextView)view.findViewById(R.id.NicknameFd);
         website = (TextView)view.findViewById(R.id.WebsiteFd);
         email =(TextView)view.findViewById(R.id.email);
-
+        Log.d("DjShowData", "Twitter ID : "+ faObject.getDjObject().get_ID());
         loadData();
         return view;
     }
 
     //String email = twitter.getEmail();
-    String urlEmail = "djs?filter=%7B%22where%22%3A%7B%22email%22%3A%22" + "string" + "%22%7D%7D";
+    String urlEmail = "djs?filter=%7B%22where%22%3A%7B%22_ID%22%3A%22" + faObject.getDjObject().get_ID() + "%22%7D%7D";
 
     public void loadData(){
         DJAPI eventRetrofit = ServiceGenerator.createService(DJAPI.class);
@@ -70,13 +72,13 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
             @Override
             public void success(List<DJ> djs, Response response) {
 
-                    id.setText(djs.get(0).get_ID());
-                    name.setText(djs.get(0).getName());
-                    website.setText(djs.get(0).getWebsite());
-                    country.setText(djs.get(0).getCountry());
-                    city.setText(djs.get(0).getCity());
-                    email.setText(djs.get(0).getEmail());
-                    nickname.setText(djs.get(0).getNickname());
+                id.setText(djs.get(0).get_ID());
+                name.setText(djs.get(0).getName());
+                website.setText(djs.get(0).getWebsite());
+                country.setText(djs.get(0).getCountry());
+                city.setText(djs.get(0).getCity());
+                email.setText(djs.get(0).getEmail());
+                nickname.setText(djs.get(0).getNickname());
             }
 
             @Override
@@ -87,7 +89,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     }
 
     //appen
-    String url = "update?where=%7B%22_ID%22%" +"3"+ "A%223%22%7D";
+    String url = "update?where=%7B%22_ID%22%" +faObject.getDjObject().get_ID()+ "A%223%22%7D";
     @Override
     public void onClick(View view) {
         DJAPI eventRetrofit = ServiceGenerator.createService(DJAPI.class);
