@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package hr.mars.muzicow.Adapters;
+package hr.mars.muzicow.Activities.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -38,13 +38,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hr.mars.muzicow.R;
-import hr.mars.muzicow.RESTful.model.DJ;
-import hr.mars.muzicow.fragments.DJ.EditProfileFragment;
-import hr.mars.muzicow.Login.Login;
-import hr.mars.muzicow.fragments.User.AboutDJFragment;
-import hr.mars.muzicow.fragments.DJ.ManageEventFragment;
-import hr.mars.muzicow.fragments.User.EventFragment;
-import hr.mars.muzicow.fragments.User.PlaylistFragment;
+import hr.mars.muzicow.Models.DJ;
+import hr.mars.muzicow.Activities.Fragments.DJ.EditProfileFragment;
+import hr.mars.muzicow.Activities.LoginActivity;
+import hr.mars.muzicow.Activities.Fragments.User.AboutDJFragment;
+import hr.mars.muzicow.Activities.Fragments.DJ.ManageEventFragment;
+import hr.mars.muzicow.Activities.Fragments.User.EventFragment;
+import hr.mars.muzicow.Activities.Fragments.User.PlaylistFragment;
 
 /**
  * TODO
@@ -161,7 +161,7 @@ public class FragmentAdapter extends AppCompatActivity {
 
 
             if (sesija.equals("")) {
-                Intent intent = new Intent(this, Login.class);
+                Intent intent = new Intent(this, LoginActivity.class);
 
              intent.putExtra("userRole", "Korisnik");
                 startActivity(intent);
@@ -180,7 +180,7 @@ public class FragmentAdapter extends AppCompatActivity {
         } else {
 
             if(sesija.equals("")){
-                Intent intent = new Intent(this, Login.class);
+                Intent intent = new Intent(this, LoginActivity.class);
                 intent.putExtra("userRole","DJ");
                 startActivity(intent);
             }

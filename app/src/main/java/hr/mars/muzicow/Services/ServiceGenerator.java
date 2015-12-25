@@ -1,4 +1,4 @@
-package hr.mars.muzicow.RESTful;
+package hr.mars.muzicow.Services;
 
 import com.squareup.okhttp.OkHttpClient;
 
@@ -6,12 +6,9 @@ import com.squareup.okhttp.OkHttpClient;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 
-
 /**
  * Created by Emil on 21.12.2015..
  */
-
-
 public class ServiceGenerator {
 
     public static final String API_BASE_URL = "http://46.101.121.184:3000";

@@ -1,10 +1,10 @@
-package hr.mars.muzicow.localdata;
+package hr.mars.muzicow.Models;
 
 import java.util.Random;
 
 import hr.mars.muzicow.R;
 
-public class TestData {
+public class DummyDataPlaylist {
 
     private static final Random RANDOM = new Random();
 
@@ -28,8 +28,5 @@ public class TestData {
             "Right Here Right Now","The Passenger" ,"Stuck In The Middle With You","LEK ZA SPAVANJE","Start Wearing Purple",
             "My Companjera","The Gunner's Dream","Wind of change","Žena zna","Buffalo soldier","Dark Side Of The Moon",
             "Riders on the Storm","L.A Woman","The Passenger"
-
-
     };
-
 }

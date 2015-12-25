@@ -1,15 +1,9 @@
-package hr.mars.muzicow.fragments.DJ;
+package hr.mars.muzicow.Activities.Fragments.DJ;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
-import android.content.pm.PackageManager;
 import android.location.Location;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,14 +17,12 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
 
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.List;
 
 import hr.mars.muzicow.R;
-import hr.mars.muzicow.RESTful.ServiceGenerator;
-import hr.mars.muzicow.RESTful.api.API;
-import hr.mars.muzicow.RESTful.model.Event;
+import hr.mars.muzicow.Services.ServiceGenerator;
+import hr.mars.muzicow.APIs.EventAPI;
+import hr.mars.muzicow.Models.Event;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -143,7 +135,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
     public void active_event(){
         //{"where": {"and" : [ {"dj_ID":"6"},{"status":"status"}]}}
         String eventUrl = "events?filter=%7B%22where%22%3A%20%7B%22and%22%20%3A%20%5B%20%7B%22dj_ID%22%3A%226%22%7D%2C%7B%22status%22%3A%22status%22%7D%5D%7D%7D";
-        API eventRetrofit = ServiceGenerator.createService(API.class);
+        EventAPI eventRetrofit = ServiceGenerator.createService(EventAPI.class);
         eventRetrofit.getActiveEvent(eventUrl, new Callback<List<Event>>(){
             @Override
             public void success(List<Event> events, Response response) {
@@ -168,7 +160,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        API eventRetrofit = ServiceGenerator.createService(API.class);
+        EventAPI eventRetrofit = ServiceGenerator.createService(EventAPI.class);
         eventRetrofit.createEvent(djID.getText().toString(), latitude.getText().toString(),
                 longitude.getText().toString(), genre.getText().toString(),
                 status.getText().toString(), eventName.getText().toString(),

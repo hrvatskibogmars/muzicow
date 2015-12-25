@@ -1,4 +1,4 @@
-package hr.mars.muzicow.fragments.User;
+package hr.mars.muzicow.Activities.Fragments.User;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Random;
 
 import hr.mars.muzicow.R;
-import hr.mars.muzicow.localdata.TestData;
+import hr.mars.muzicow.Models.DummyDataPlaylist;
 
 public class PlaylistFragment extends Fragment {
 
@@ -34,7 +34,7 @@ public class PlaylistFragment extends Fragment {
     private void setupRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         recyclerView.setAdapter(new SimpleStringRecyclerViewAdapter(getActivity(),
-                getRandomSublist(TestData.sCheeseStrings, 30)));
+                getRandomSublist(DummyDataPlaylist.sCheeseStrings, 30)));
     }
 
     private List<String> getRandomSublist(String[] array, int amount) {

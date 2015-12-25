@@ -1,4 +1,4 @@
-package hr.mars.muzicow.RESTful.model;
+package hr.mars.muzicow.Models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -15,16 +15,9 @@ public class DJ implements Parcelable{
     String nickname;
     String email;
 
-
     public DJ(){
-
     }
-    public DJ(Parcel in){
-
-        readFromParcel(in);
-    }
-
-
+    public DJ(Parcel in){readFromParcel(in);}
 
     public String getEmail() {return email;}
 
@@ -80,7 +73,6 @@ public class DJ implements Parcelable{
         this.nickname = nickname;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -105,7 +97,6 @@ public class DJ implements Parcelable{
         this.nickname=in.readString();
         this.website=in.readString();
     }
-
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator()
     {

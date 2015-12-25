@@ -1,4 +1,4 @@
-package hr.mars.muzicow.RESTful.model;
+package hr.mars.muzicow.Models;
 
 /**
  * Created by mars on 24/12/15.
@@ -11,6 +11,7 @@ public class Event {
     String latitude;
     String genre;
     String status;
+
     public String getEvent_ID() {
         return event_ID;
     }

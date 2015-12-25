@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package hr.mars.muzicow.fragments.User;
+package hr.mars.muzicow.Activities.Fragments.User;
 
 
 import android.content.Context;
@@ -26,8 +26,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
-import hr.mars.muzicow.Adapters.FragmentAdapter;
-import hr.mars.muzicow.MainActivity;
 import hr.mars.muzicow.R;
 
 public class SongDetailActivity extends AppCompatActivity {

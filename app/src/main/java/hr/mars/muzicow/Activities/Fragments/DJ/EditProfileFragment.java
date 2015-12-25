@@ -1,4 +1,4 @@
-package hr.mars.muzicow.fragments.DJ;
+package hr.mars.muzicow.Activities.Fragments.DJ;
 
 
 import android.os.Bundle;
@@ -11,23 +11,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-
-import org.json.JSONObject;
-
-import java.io.CharArrayReader;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-import hr.mars.muzicow.RESTful.model.DJ;
-import hr.mars.muzicow.RESTful.api.API;
+import hr.mars.muzicow.APIs.DJAPI;
+import hr.mars.muzicow.Models.DJ;
+import hr.mars.muzicow.APIs.EventAPI;
 import hr.mars.muzicow.R;
-import hr.mars.muzicow.RESTful.ServiceGenerator;
+import hr.mars.muzicow.Services.ServiceGenerator;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -68,21 +58,15 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         email =(TextView)view.findViewById(R.id.email);
 
         loadData();
-
         return view;
-
     }
 
     //String email = twitter.getEmail();
-    //String urlEmail = "djs?filter=%7B%22where%22%3A%7B%22email%22%3A%22" + email + "%22%7D%7D";
+    String urlEmail = "djs?filter=%7B%22where%22%3A%7B%22email%22%3A%22" + "string" + "%22%7D%7D";
 
     public void loadData(){
-        API eventRetrofit = ServiceGenerator.createService(API.class);
-<<<<<<< HEAD
-        eventRetrofit.getDJ(new Callback<List<DJ>>() {
-=======
+        DJAPI eventRetrofit = ServiceGenerator.createService(DJAPI.class);
         eventRetrofit.getDJ(urlEmail,new Callback<List<DJ>>() {
->>>>>>> feature/DJ
             @Override
             public void success(List<DJ> djs, Response response) {
 
@@ -106,7 +90,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     String url = "update?where=%7B%22_ID%22%" +"3"+ "A%223%22%7D";
     @Override
     public void onClick(View view) {
-        API eventRetrofit = ServiceGenerator.createService(API.class);
+        DJAPI eventRetrofit = ServiceGenerator.createService(DJAPI.class);
         eventRetrofit.updateDJ(url, id.getText().toString(),
                 name.getText().toString(), website.getText().toString(),
                 country.getText().toString(), city.getText().toString(),

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="251dp"
+        android:id="@+id/imageView3"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_above="@+id/spinner"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.66" />
+
+    <Spinner
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:entries="@array/spinner"
+        android:layout_above="@+id/facebook"
+        android:layout_alignStart="@+id/facebook"
+        android:gravity="center"
+        android:layout_alignEnd="@+id/facebook"
+        android:layout_gravity="center_horizontal" />
+
+    <Button android:id="@+id/acceptButt"
+        android:layout_width="137dp"
+        android:layout_height="wrap_content"
+        android:text="Accept"
+        android:onClick="buttonClickFunction"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
