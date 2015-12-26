@@ -19,6 +19,7 @@ import com.google.android.gms.location.LocationServices;
 
 import java.util.List;
 
+import hr.mars.muzicow.Activities.adapters.FragmentAdapter;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Services.ServiceGenerator;
 import hr.mars.muzicow.APIs.EventAPI;
@@ -39,6 +40,9 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
     EditText status;
     EditText eventName;
     Button createEvent;
+    Button updateEvent;
+    FragmentAdapter faObject = new FragmentAdapter();
+
 
     protected GoogleApiClient mGoogleApiClient;
     protected Location mLastLocation;
@@ -53,14 +57,14 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
 
         View view = inflater.inflate(R.layout.fragment_create_event, container, false);
         createEvent = (Button) view.findViewById(R.id.createEvent);
+        updateEvent = (Button) view.findViewById(R.id.updateEvent);
+        updateEvent.setOnClickListener(this);
         createEvent.setOnClickListener(this);
 
-        eventID  = (EditText)view.findViewById(R.id.eventID);
-        djID = (EditText)view.findViewById(R.id.djID);
+
         latitude= (EditText)view.findViewById(R.id.latitude);
         longitude= (EditText)view.findViewById(R.id.longitude);
         genre= (EditText)view.findViewById(R.id.genre);
-        status = (EditText)view.findViewById(R.id.status);
         eventName = (EditText)view.findViewById(R.id.eventName);
         active_event();
 
@@ -134,22 +138,26 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
 
     public void active_event(){
         //{"where": {"and" : [ {"dj_ID":"6"},{"status":"status"}]}}
-        String eventUrl = "events?filter=%7B%22where%22%3A%20%7B%22and%22%20%3A%20%5B%20%7B%22dj_ID%22%3A%226%22%7D%2C%7B%22status%22%3A%22status%22%7D%5D%7D%7D";
+        String eventUrl = "events?filter=%7B%22where%22%3A%20%7B%22and%22%20%3A%20%5B%20%7B%22dj_ID%22%3A%22"+faObject.getDjObject().get_ID()+"%22%7D%2C%7B%22status%22%3A%22"+ "1"+"%22%7D%5D%7D%7D";
         EventAPI eventRetrofit = ServiceGenerator.createService(EventAPI.class);
-        eventRetrofit.getActiveEvent(eventUrl, new Callback<List<Event>>(){
+        eventRetrofit.getActiveEvent(eventUrl, new Callback<List<Event>>() {
             @Override
             public void success(List<Event> events, Response response) {
-                Log.d("Event update ok", "Success Update");
-                eventID.setText(events.get(0).getDj_ID());
-                djID.setText(events.get(0).getDj_ID());
-                //latitude.setText(events.get(0).getLatitude());
-                //longitude.setText(events.get(0).getLongitude());
-                genre.setText(events.get(0).getGenre());
-                status.setText(events.get(0).getStatus());
-                eventName.setText(events.get(0).getName());
-                createEvent.setText("Update Event");
-
+                if (events.isEmpty()) {
+                    Toast.makeText(getActivity(), "You don't have active events", Toast.LENGTH_LONG).show();
+                } else {
+                    Log.d("Event update ok", "Success Update");
+                    //eventID.setText(events.get(0).getDj_ID());
+                    //djID.setText(events.get(0).getDj_ID());
+                    latitude.setText(events.get(0).getLatitude());
+                    longitude.setText(events.get(0).getLongitude());
+                    genre.setText(events.get(0).getGenre());
+                    //status.setText(events.get(0).getStatus());
+                    eventName.setText(events.get(0).getName());
+                    createEvent.setText("Update Event");
+                }
             }
+
             @Override
             public void failure(RetrofitError error) {
                 Log.d("Event update error", error.getMessage());
@@ -158,24 +166,50 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
         });
     }
 
+
     @Override
     public void onClick(View view) {
         EventAPI eventRetrofit = ServiceGenerator.createService(EventAPI.class);
-        eventRetrofit.createEvent(djID.getText().toString(), latitude.getText().toString(),
-                longitude.getText().toString(), genre.getText().toString(),
-                status.getText().toString(), eventName.getText().toString(),
-                new Callback<List<Event>>() {
-                    @Override
-                    public void success(List<Event> djs, Response response) {
-                        Log.d("Event update ok", "Success Update");
 
-                    }
+        switch (view.getId()) {
 
-                    @Override
-                    public void failure(RetrofitError error) {
-                        Log.d("Event update error", error.getMessage());
-                    }
-                });
+            case R.id.createEvent:
+                eventRetrofit.createEvent(faObject.getDjObject().get_ID(), latitude.getText().toString(),
+                        longitude.getText().toString(), genre.getText().toString(), "1", eventName.getText().toString(),
+                        new Callback<List<Event>>() {
+                            @Override
+                            public void success(List<Event> djs, Response response) {
+                                Log.d("Event update ok", "Success Update");
+
+                            }
+
+                            @Override
+                            public void failure(RetrofitError error) {
+                                Log.d("Event update error", error.getMessage());
+                            }
+                        });
+                break;
+
+            case R.id.updateEvent:
+                String eventUrl = "update?where=%7B%22dj_ID%22%3A%20%22"+faObject.getDjObject().get_ID()+"%22%7D";
+                eventRetrofit.updateEvent(eventUrl, faObject.getDjObject().get_ID(), latitude.getText().toString(),
+                        longitude.getText().toString(), genre.getText().toString(), "1", eventName.getText().toString(),
+                        new Callback<List<Event>>() {
+                            @Override
+                            public void success(List<Event> djs, Response response) {
+                                Log.d("Event update ok", "Success Update");
+
+                            }
+
+                            @Override
+                            public void failure(RetrofitError error) {
+                                Log.d("Event update error", error.getMessage());
+                            }
+                        });
+                break;
+
+        }
+
     }
 
 }

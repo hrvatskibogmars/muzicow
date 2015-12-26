@@ -89,9 +89,10 @@ public class LoginActivity extends AppCompatActivity implements SocialnetworkMan
                         dj.set_ID(userResult.data.idStr);
                         dj.setName(userResult.data.name);
                         dj.setDescription(userResult.data.description);
-                        dj.setCity(userResult.data.location);
-                        dj.setProfileUrl(userResult.data.profileImageUrl);
+                        dj.setLocation(userResult.data.location);
+                        dj.setProfile_url(userResult.data.profileImageUrl);
                         dj.setNickname(userResult.data.screenName);
+                        dj.setWebsite(userResult.data.url);
 
 
 

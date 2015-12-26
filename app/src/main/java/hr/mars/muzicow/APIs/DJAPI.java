@@ -19,13 +19,20 @@ public interface DJAPI {
 
 
     @FormUrlEncoded
-    @POST("/api/djs/{id}")
-    void updateDJ(@Path(value="id", encode = false) String url, @Field("_ID") String ID,
+    @POST("/api/djs/")
+    void createDJ(@Field("_ID") String ID,
                   @Field("name") String name, @Field("website") String website,
-                  @Field("country") String country, @Field("city") String city,
-                  @Field("email") String email, @Field("nickname") String nickname,
+                  @Field("location") String location,@Field("nickname") String nickname,
+                  @Field("profile_url") String profile_url, @Field("twitter_url") String twitter_url,
+                  @Field("description") String description,
                   Callback<List<DJ>> cb);
 
-    @GET("/api/djs?filter=%7B%22where%22%3A%7B%22email%22%3A%22hrorejas@foi.hr%22%7D%7D")
-    void getDJ( Callback<List<DJ>> cb);
+    @FormUrlEncoded
+    @POST("/api/djs/{url}")
+    void updateDJ(@Path(value="url", encode = false) String url,@Field("_ID") String ID,
+                  @Field("name") String name, @Field("website") String website,
+                  @Field("location") String location,@Field("nickname") String nickname,
+                  @Field("profile_url") String profile_url, @Field("twitter_url") String twitter_url,
+                  @Field("description") String description,
+                  Callback<List<DJ>> cb);
 }

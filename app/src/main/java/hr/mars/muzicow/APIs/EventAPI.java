@@ -20,7 +20,7 @@ public interface EventAPI {
     @FormUrlEncoded
     @POST("/api/events/")
     void createEvent(@Field("dj_ID") String djID, @Field("latitude") String latitude,
-                  @Field("longitude") String longitude, @Field("genre") String genre,
+                     @Field("longitude") String longitude, @Field("genre") String genre,
                      @Field("status") String status, @Field("name") String name,
                      Callback<List<Event>> cb);
 
@@ -29,11 +29,12 @@ public interface EventAPI {
     void getActiveEvent(@Path(value="event_active", encode=false) String ea, Callback<List<Event>> ev);
 
     //Update event
-    @POST("/api/events/{where}")
-    void updateEvent(@Field("dj_ID") String djID, @Field("latitude") String latitude,
+    @FormUrlEncoded
+    @POST("/api/events/{eventUrl}")
+    void updateEvent(@Path(value="eventUrl", encode=false) String ea,
+                     @Field("dj_ID") String djID, @Field("latitude") String latitude,
                      @Field("longitude") String longitude, @Field("genre") String genre,
                      @Field("status") String status, @Field("name") String name,
                      Callback<List<Event>> cb);
-
 }
 

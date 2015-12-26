@@ -7,73 +7,68 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/eventID"
-        android:hint="event ID"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="60dp"
-        android:layout_alignStart="@+id/djID"
-        android:layout_alignEnd="@+id/djID" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/djID"
-        android:hint="DJ ID"
-        android:layout_below="@+id/eventID"
-        android:layout_alignStart="@+id/latitude"
-        android:layout_alignEnd="@+id/latitude" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/latitude"
         android:hint="latitude"
-        android:layout_below="@+id/djID"
-        android:layout_alignStart="@+id/longitude"
-        android:layout_alignEnd="@+id/longitude" />
+        android:layout_marginTop="45dp"
+        android:layout_below="@+id/genre"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/longitude"
         android:hint="longitude"
-        android:layout_below="@+id/latitude"
-        android:layout_alignStart="@+id/eventName"
-        android:layout_alignEnd="@+id/eventName" />
+        android:layout_below="@+id/genre"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/eventName"
         android:hint="Event Name"
-        android:layout_below="@+id/longitude"
-        android:layout_alignStart="@+id/status"
-        android:layout_alignEnd="@+id/status" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/status"
-        android:hint="Status"
-        android:layout_below="@+id/eventName"
-        android:layout_alignStart="@+id/genre"
-        android:layout_alignEnd="@+id/genre" />
+        android:layout_below="@+id/textView10"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/genre"
         android:hint="Genre"
-        android:layout_below="@+id/status"
-        android:layout_alignEnd="@+id/createEvent"
-        android:layout_alignStart="@+id/createEvent" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/eventName" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create event"
         android:id="@+id/createEvent"
-        android:layout_below="@+id/genre"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/latitude"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Manage events"
+        android:id="@+id/textView10"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="center" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="update"
+        android:id="@+id/updateEvent"
+        android:layout_below="@+id/createEvent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        />
 
 </RelativeLayout>

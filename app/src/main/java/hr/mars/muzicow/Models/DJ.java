@@ -10,39 +10,33 @@ public class DJ implements Parcelable{
     String _ID;
     String name;
     String website;
-    String country;
-    String city;
+    String location;
     String nickname;
-    String email;
+    String description;
+    String profile_url;
+    String twitter_url;
+
+    public String getTwitter_url() {return twitter_url;}
+
+    public void setTwitter_url(String twitter_url) {this.twitter_url = twitter_url;}
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String description) {this.description = description;}
+
+    public String getProfile_url() {
+        return profile_url;
     }
 
-    public String getProfileUrl() {
-        return profileUrl;
+    public void setProfile_url(String profile_url) {
+        this.profile_url = profile_url;
     }
-
-    public void setProfileUrl(String profileUrl) {
-        this.profileUrl = profileUrl;
-    }
-
-    String description;
-    String profileUrl;
 
     public DJ(){
     }
     public DJ(Parcel in){readFromParcel(in);}
-
-    public String getEmail() {return email;}
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String get_ID() {
         return _ID;
@@ -68,20 +62,12 @@ public class DJ implements Parcelable{
         this.website = website;
     }
 
-    public String getCountry() {
-        return country;
+    public String getLocation() {
+        return location;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getNickname() {
@@ -100,21 +86,25 @@ public class DJ implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this._ID);
-        dest.writeString(this.city);
-        dest.writeString(this.country);
+        dest.writeString(this.location);
         dest.writeString(this.name);
         dest.writeString(this.nickname);
         dest.writeString(this.website);
+        dest.writeString(this.description);
+        dest.writeString(this.profile_url);
+        dest.writeString(this.twitter_url);
     }
 
     private void readFromParcel(Parcel in) {
 
         this._ID=in.readString();
-        this.city=in.readString();
-        this.country=in.readString();
+        this.location=in.readString();
         this.name=in.readString();
         this.nickname=in.readString();
         this.website=in.readString();
+        this.description=in.readString();
+        this.profile_url =in.readString();
+        this.twitter_url =in.readString();
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator()
