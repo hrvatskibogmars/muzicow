@@ -4,7 +4,7 @@ package hr.mars.muzicow.Models;
  * Created by mars on 24/12/15.
  */
 public class Event {
-    String event_ID;
+    String _ID;
     String dj_ID;
     String name;
     String longitude;
@@ -12,12 +12,12 @@ public class Event {
     String genre;
     String status;
 
-    public String getEvent_ID() {
-        return event_ID;
+    public String get_ID() {
+        return _ID;
     }
 
-    public void setEvent_ID(String event_ID) {
-        this.event_ID = event_ID;
+    public void set_ID(String event_ID) {
+        this._ID = _ID;
     }
 
     public String getDj_ID() {

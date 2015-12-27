@@ -17,6 +17,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 import hr.mars.muzicow.Activities.adapters.FragmentAdapter;
@@ -32,7 +35,7 @@ import retrofit.client.Response;
  * Created by mars on 15/11/15.
  */
 public class ManageEventFragment extends Fragment implements View.OnClickListener,GoogleApiClient.ConnectionCallbacks{
-    EditText eventID;
+    String eventID;
     EditText djID;
     EditText latitude;
     EditText longitude;
@@ -41,6 +44,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
     EditText eventName;
     Button createEvent;
     Button updateEvent;
+    Button finishEvent;
     FragmentAdapter faObject = new FragmentAdapter();
 
 
@@ -58,8 +62,10 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_create_event, container, false);
         createEvent = (Button) view.findViewById(R.id.createEvent);
         updateEvent = (Button) view.findViewById(R.id.updateEvent);
+        finishEvent = (Button) view.findViewById(R.id.finishEvent);
         updateEvent.setOnClickListener(this);
         createEvent.setOnClickListener(this);
+        finishEvent.setOnClickListener(this);
 
 
         latitude= (EditText)view.findViewById(R.id.latitude);
@@ -112,13 +118,15 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
 
 
         if (mLastLocation != null) {
-            latitude.setText(String.format("%s: %f", mLatitudeLabel,
-                    mLastLocation.getLatitude()));
-            longitude.setText(String.format("%s: %f", mLongitudeLabel,
-                    mLastLocation.getLongitude()));
+            latitude.setText(String.valueOf(mLastLocation.getLatitude()));
+            longitude.setText(String.valueOf(mLastLocation.getLongitude()));
         } else {
+<<<<<<< HEAD
             Toast.makeText(getActivity(), R.string.no_location_detected, Toast.LENGTH_LONG).show();
 
+=======
+            //Toast.makeText(getActivity(), R.string.no_location_detected, Toast.LENGTH_LONG).show();
+>>>>>>> origin/master
         }
     }
 
@@ -146,23 +154,28 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
             @Override
             public void success(List<Event> events, Response response) {
                 if (events.isEmpty()) {
-                    Toast.makeText(getActivity(), "You don't have active events", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getActivity(), "Create new event", Toast.LENGTH_LONG).show();
+                    createEvent.setEnabled(true);
+                    updateEvent.setEnabled(false);
+                    finishEvent.setEnabled(false);
                 } else {
-                    Log.d("Event update ok", "Success Update");
-                    //eventID.setText(events.get(0).getDj_ID());
+                    //Log.d("Event update ok", "Success Update");
+                    eventID = events.get(0).get_ID();
                     //djID.setText(events.get(0).getDj_ID());
                     latitude.setText(events.get(0).getLatitude());
                     longitude.setText(events.get(0).getLongitude());
                     genre.setText(events.get(0).getGenre());
                     //status.setText(events.get(0).getStatus());
                     eventName.setText(events.get(0).getName());
-                    createEvent.setText("Update Event");
+                    createEvent.setEnabled(false);
+                    Toast.makeText(getActivity(), eventID, Toast.LENGTH_LONG).show();
+
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                Log.d("Event update error", error.getMessage());
+                Log.d("Active event error", error.getMessage());
             }
 
         });
@@ -171,35 +184,44 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        EventAPI eventRetrofit = ServiceGenerator.createService(EventAPI.class);
-
+        final EventAPI eventRetrofit = ServiceGenerator.createService(EventAPI.class);
+        String eventUrl = "update?where=%7B%22_ID%22%3A%20%22"+eventID+"%22%7D";
         switch (view.getId()) {
 
             case R.id.createEvent:
                 eventRetrofit.createEvent(faObject.getDjObject().get_ID(), latitude.getText().toString(),
                         longitude.getText().toString(), genre.getText().toString(), "1", eventName.getText().toString(),
-                        new Callback<List<Event>>() {
+                        new Callback<Response>() {
                             @Override
-                            public void success(List<Event> djs, Response response) {
-                                Log.d("Event update ok", "Success Update");
-
+                            public void success(Response events, Response req) {
+                                Log.d("Event Create ok", "Success Update");
+                                String json = events.getBody().toString();
+                                //Toast.makeText(getActivity(), json, Toast.LENGTH_LONG).show();
+                                Log.d("Event Create ok", json);
+                                updateEvent.setEnabled(true);
+                                createEvent.setEnabled(false);
+                                finishEvent.setEnabled(true);
+                                active_event();
                             }
 
                             @Override
                             public void failure(RetrofitError error) {
-                                Log.d("Event update error", error.getMessage());
+                                Log.d("Event Create error", error.getMessage());
+
+
                             }
                         });
+
                 break;
 
             case R.id.updateEvent:
-                String eventUrl = "update?where=%7B%22dj_ID%22%3A%20%22"+faObject.getDjObject().get_ID()+"%22%7D";
                 eventRetrofit.updateEvent(eventUrl, faObject.getDjObject().get_ID(), latitude.getText().toString(),
                         longitude.getText().toString(), genre.getText().toString(), "1", eventName.getText().toString(),
-                        new Callback<List<Event>>() {
+                        new Callback<Response>() {
                             @Override
-                            public void success(List<Event> djs, Response response) {
-                                Log.d("Event update ok", "Success Update");
+                            public void success(Response resp, Response req) {
+                                String json = resp.getBody().toString();
+                                //Log.d("Event update ok", json);
 
                             }
 
@@ -209,6 +231,27 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                             }
                         });
                 break;
+            case R.id.finishEvent:
+                eventRetrofit.updateEvent(eventUrl, faObject.getDjObject().get_ID(), latitude.getText().toString(),
+                        longitude.getText().toString(), genre.getText().toString(), "0", eventName.getText().toString(),
+                        new Callback<Response>() {
+                            @Override
+                            public void success(Response resp, Response req) {
+                                Log.d("Event finished ok", "Success Update");
+                                createEvent.setEnabled(true);
+                                updateEvent.setEnabled(false);
+                                finishEvent.setEnabled(false);
+                                latitude.setText("");
+                                longitude.setText("");
+                                eventName.setText("");
+                                genre.setText("");
+                            }
+
+                            @Override
+                            public void failure(RetrofitError error) {
+                                Log.d("Event finished error", error.getMessage());
+                            }
+                        });
 
         }
 

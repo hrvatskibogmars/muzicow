@@ -1,6 +1,6 @@
-package hr.mars.muzicow.Login.Utils;
+package hr.mars.muzicow.Utils;
 
-import hr.mars.muzicow.Login.Services.SNetwork;
+import hr.mars.muzicow.Services.SNetwork;
 
 /**
  * Created by Emil on 25.12.2015..

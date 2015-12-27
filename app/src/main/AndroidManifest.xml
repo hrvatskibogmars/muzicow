@@ -23,9 +23,13 @@
             android:name=".Activities.adapters.FragmentAdapter"/>
 
         <activity android:label="@string/app_name"
+<<<<<<< HEAD
             android:name=".Login.Activities.LoginActivity"/>
         <activity android:label="@string/app_name"
             android:name=".Activities.Fragments.User.EventInfo"/>
+=======
+            android:name=".Activities.LoginActivity"/>
+>>>>>>> origin/master
 
         <activity
             android:name=".Activities.Fragments.User.SongDetailActivity"

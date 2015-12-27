@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Login.Models;
+package hr.mars.muzicow.Models;
 
 import com.twitter.sdk.android.core.TwitterSession;
 
@@ -7,6 +7,7 @@ import com.twitter.sdk.android.core.TwitterSession;
  */
 public class LoginAtributes {
     String role;
+    TwitterSession session;
 
     public String getRole() {
         return role;
@@ -24,5 +25,4 @@ public class LoginAtributes {
         this.session = session;
     }
 
-    TwitterSession session;
 }

@@ -6,6 +6,7 @@ import hr.mars.muzicow.Models.DJ;
 
 import hr.mars.muzicow.Models.Event;
 import retrofit.Callback;
+import retrofit.client.Response;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
@@ -22,7 +23,7 @@ public interface EventAPI {
     void createEvent(@Field("dj_ID") String djID, @Field("latitude") String latitude,
                      @Field("longitude") String longitude, @Field("genre") String genre,
                      @Field("status") String status, @Field("name") String name,
-                     Callback<List<Event>> cb);
+                     Callback<Response> cb);
 
     //Check for active event - if active get event
     @GET("/api/{event_active}")
@@ -35,6 +36,6 @@ public interface EventAPI {
                      @Field("dj_ID") String djID, @Field("latitude") String latitude,
                      @Field("longitude") String longitude, @Field("genre") String genre,
                      @Field("status") String status, @Field("name") String name,
-                     Callback<List<Event>> cb);
+                     Callback<Response> cb);
 }
 
