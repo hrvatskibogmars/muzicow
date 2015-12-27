@@ -71,4 +71,13 @@
         android:layout_alignParentEnd="true"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finish event"
+        android:id="@+id/finishEvent"
+        android:layout_below="@+id/updateEvent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

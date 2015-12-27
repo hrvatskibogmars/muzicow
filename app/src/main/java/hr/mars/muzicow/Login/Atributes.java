@@ -7,6 +7,7 @@ import com.twitter.sdk.android.core.TwitterSession;
  */
 public class Atributes {
     String role;
+    TwitterSession session;
 
     public String getRole() {
         return role;
@@ -24,5 +25,4 @@ public class Atributes {
         this.session = session;
     }
 
-    TwitterSession session;
 }
