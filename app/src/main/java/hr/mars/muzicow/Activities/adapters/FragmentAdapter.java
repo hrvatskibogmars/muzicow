@@ -37,10 +37,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import hr.mars.muzicow.Login.LoginActivity;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.Activities.Fragments.DJ.EditProfileFragment;
-import hr.mars.muzicow.Activities.LoginActivity;
 import hr.mars.muzicow.Activities.Fragments.User.AboutDJFragment;
 import hr.mars.muzicow.Activities.Fragments.DJ.ManageEventFragment;
 import hr.mars.muzicow.Activities.Fragments.User.EventFragment;
@@ -171,7 +171,6 @@ public class FragmentAdapter extends AppCompatActivity {
                 adapter.addFragment(new AboutDJFragment(), "DJ");
                 adapter.addFragment(new PlaylistFragment(), "Playlist");
                 adapter.addFragment(new EventFragment(), "Event");
-
 
             }
 
