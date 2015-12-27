@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Login.Models;
+package hr.mars.muzicow.Models;
 
 import com.twitter.sdk.android.core.TwitterSession;
 

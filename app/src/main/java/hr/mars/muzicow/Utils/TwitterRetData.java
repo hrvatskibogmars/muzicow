@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Login.Utils;
+package hr.mars.muzicow.Utils;
 
 import android.util.Log;
 
@@ -8,10 +8,10 @@ import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.models.User;
 
-import hr.mars.muzicow.Login.Services.SNetwork;
-import hr.mars.muzicow.Login.Services.TwitterLoginListener;
+import hr.mars.muzicow.Services.SNetwork;
+import hr.mars.muzicow.Services.TwitterLoginListener;
 
-import static hr.mars.muzicow.Login.Activities.LoginActivity.at;
+import static hr.mars.muzicow.Activities.LoginActivity.at;
 
 /**
  * Created by Emil on 25.12.2015..

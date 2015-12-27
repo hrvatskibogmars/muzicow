@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Login.Services;
+package hr.mars.muzicow.Services;
 
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;

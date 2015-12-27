@@ -34,7 +34,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import hr.mars.muzicow.Login.Activities.LoginActivity;
+import hr.mars.muzicow.Activities.LoginActivity;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.Activities.Fragments.DJ.EditProfileFragment;

@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Login.Activities;
+package hr.mars.muzicow.Activities;
 
 
 import android.content.Intent;
@@ -16,10 +16,10 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 import com.twitter.sdk.android.core.models.User;
 
 import hr.mars.muzicow.Activities.adapters.FragmentAdapter;
-import hr.mars.muzicow.Login.Models.LoginAtributes;
-import hr.mars.muzicow.Login.Services.TwitterLoginListener;
-import hr.mars.muzicow.Login.Utils.SNetworkChooser;
-import hr.mars.muzicow.Login.Utils.TwitterRetData;
+import hr.mars.muzicow.Models.LoginAtributes;
+import hr.mars.muzicow.Services.TwitterLoginListener;
+import hr.mars.muzicow.Utils.SNetworkChooser;
+import hr.mars.muzicow.Utils.TwitterRetData;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.R;
 import io.fabric.sdk.android.Fabric;
