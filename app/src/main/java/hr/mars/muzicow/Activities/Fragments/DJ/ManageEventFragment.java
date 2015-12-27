@@ -110,6 +110,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
 
+
         if (mLastLocation != null) {
             latitude.setText(String.format("%s: %f", mLatitudeLabel,
                     mLastLocation.getLatitude()));
@@ -117,6 +118,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                     mLastLocation.getLongitude()));
         } else {
             Toast.makeText(getActivity(), R.string.no_location_detected, Toast.LENGTH_LONG).show();
+
         }
     }
 
