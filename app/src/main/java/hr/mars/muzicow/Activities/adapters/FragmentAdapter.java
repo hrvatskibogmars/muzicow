@@ -103,8 +103,7 @@ public class FragmentAdapter extends AppCompatActivity {
 
     @Override
     public void onResume() {
-        super.onResume();  // Always call the superclass method first
-        //role = "Korisnik";
+        super.onResume();
     }
 
 

@@ -117,10 +117,8 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
 
 
         if (mLastLocation != null) {
-            latitude.setText(String.format("%s: %f", mLatitudeLabel,
-                    mLastLocation.getLatitude()));
-            longitude.setText(String.format("%s: %f", mLongitudeLabel,
-                    mLastLocation.getLongitude()));
+            latitude.setText(String.valueOf(mLastLocation.getLatitude()));
+            longitude.setText(String.valueOf(mLastLocation.getLongitude()));
         } else {
             //Toast.makeText(getActivity(), R.string.no_location_detected, Toast.LENGTH_LONG).show();
         }
