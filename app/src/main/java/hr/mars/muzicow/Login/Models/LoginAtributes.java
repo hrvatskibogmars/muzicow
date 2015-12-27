@@ -1,11 +1,11 @@
-package hr.mars.muzicow.Login;
+package hr.mars.muzicow.Login.Models;
 
 import com.twitter.sdk.android.core.TwitterSession;
 
 /**
  * Created by Emil on 26.12.2015..
  */
-public class Atributes {
+public class LoginAtributes {
     String role;
 
     public String getRole() {

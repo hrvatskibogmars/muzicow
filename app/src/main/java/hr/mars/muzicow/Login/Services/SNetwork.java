@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Login;
+package hr.mars.muzicow.Login.Services;
 
 /**
  * Created by Emil on 25.12.2015..

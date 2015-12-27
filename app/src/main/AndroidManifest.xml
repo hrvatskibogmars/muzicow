@@ -23,7 +23,7 @@
             android:name=".Activities.adapters.FragmentAdapter"/>
 
         <activity android:label="@string/app_name"
-            android:name=".Login.LoginActivity"/>
+            android:name=".Login.Activities.LoginActivity"/>
 
         <activity
             android:name=".Activities.Fragments.User.SongDetailActivity"

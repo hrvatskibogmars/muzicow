@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Login;
+package hr.mars.muzicow.Login.Activities;
 
 
 import android.content.Intent;
@@ -16,6 +16,10 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 import com.twitter.sdk.android.core.models.User;
 
 import hr.mars.muzicow.Activities.adapters.FragmentAdapter;
+import hr.mars.muzicow.Login.Models.LoginAtributes;
+import hr.mars.muzicow.Login.Services.TwitterLoginListener;
+import hr.mars.muzicow.Login.Utils.SNetworkChooser;
+import hr.mars.muzicow.Login.Utils.TwitterRetData;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.R;
 import io.fabric.sdk.android.Fabric;
@@ -29,28 +33,18 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String TWITTER_KEY = "f6FNdst2ZaoQWZYvYOu2a5QCy";
     private static final String TWITTER_SECRET = "deHaJ2nBf5Lj5luPg2Avu7w0JOxbb61GUNZavlb4SELDyK0WUV ";
-
     private TwitterLoginButton loginButton;
-
-
-    public static Atributes getAt() {
-        return at;
-    }
-
-    public static void setAt(Atributes at) {
-        LoginActivity.at = at;
-    }
-
-    String role;
-    //String sess;
-    //TwitterSession session;
-     DJ djObject;
-    public static Atributes at = new Atributes();
-
-
-
+    DJ djObject;
+    public static LoginAtributes at = new LoginAtributes();
     TwitterRetData tw = new TwitterRetData();
     SNetworkChooser ch = new SNetworkChooser();
+
+    public static LoginAtributes getAt() {
+        return at;
+    }
+    public static void setAt(LoginAtributes at) {
+        LoginActivity.at = at;
+    }
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -97,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 });
-               // Log.d("prikaz", "id od dj login" + );
 
             }
 
@@ -106,7 +99,6 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("TwitterKit", "Login with Twitter failure", exception);
             }
         });
-
 
 
     }

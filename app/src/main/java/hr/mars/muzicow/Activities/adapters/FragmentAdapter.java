@@ -19,25 +19,22 @@ package hr.mars.muzicow.Activities.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import hr.mars.muzicow.Login.LoginActivity;
+import hr.mars.muzicow.Login.Activities.LoginActivity;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.Activities.Fragments.DJ.EditProfileFragment;
@@ -46,17 +43,13 @@ import hr.mars.muzicow.Activities.Fragments.DJ.ManageEventFragment;
 import hr.mars.muzicow.Activities.Fragments.User.EventFragment;
 import hr.mars.muzicow.Activities.Fragments.User.PlaylistFragment;
 
-/**
- * TODO
- */
+
 public class FragmentAdapter extends AppCompatActivity {
-    private DrawerLayout mDrawerLayout;
+
     Context context;
     String role;
     String sesija;
     int counter;
-
-
     public static DJ djObject;
 
     @Override
@@ -68,7 +61,6 @@ public class FragmentAdapter extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
 
         if (bundle != null) {
-
             role = bundle.getString("userRole");
             sesija = bundle.getString("sesija");
         }
@@ -90,28 +82,12 @@ public class FragmentAdapter extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
-        //ab.setHomeAsUpIndicator(R.drawable.ic_menu);
-        //ab.setDisplayHomeAsUpEnabled(true);
-
-        //mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         if (viewPager != null) {
             setupViewPager(viewPager);
         }
 
-        /*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        */
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -125,13 +101,10 @@ public class FragmentAdapter extends AppCompatActivity {
         FragmentAdapter.djObject = djObject;
     }
 
-
     @Override
     public void onResume() {
         super.onResume();  // Always call the superclass method first
-
         //role = "Korisnik";
-
     }
 
 
@@ -141,55 +114,37 @@ public class FragmentAdapter extends AppCompatActivity {
         return true;
     }
 
-
-    /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-        case android.R.id.home:
-            mDrawerLayout.openDrawer(GravityCompat.START);
-            return true;
-    }
-    return super.onOptionsItemSelected(item);
-    }
-*/
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
 
-        if (role.equals("Korisnik")) {
+        switch(role) {
+            case "Korisnik":
+                if (sesija.isEmpty()) {
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.putExtra("userRole", "Korisnik");
+                    startActivity(intent);
+                } else {
 
+                    adapter.addFragment(new AboutDJFragment(), "DJ");
+                    adapter.addFragment(new PlaylistFragment(), "Playlist");
+                    adapter.addFragment(new EventFragment(), "Event");
+                }
+                break;
+            case "DJ":
+                if (sesija.isEmpty()) {
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.putExtra("userRole", "DJ");
+                    startActivity(intent);
+                } else {
 
-            if (sesija.equals("")) {
-                Intent intent = new Intent(this, LoginActivity.class);
+                    adapter.addFragment(new EditProfileFragment(), "Profile");
+                    adapter.addFragment(new ManageEventFragment(), "Manage Event");
+                    adapter.addFragment(new PlaylistFragment(), "Review Playlist");
+                }
+                break;
 
-             intent.putExtra("userRole", "Korisnik");
-                startActivity(intent);
-            }
-
-            else {
-
-                adapter.addFragment(new AboutDJFragment(), "DJ");
-                adapter.addFragment(new PlaylistFragment(), "Playlist");
-                adapter.addFragment(new EventFragment(), "Event");
-
-            }
-
-
-        } else {
-
-            if(sesija.equals("")){
-                Intent intent = new Intent(this, LoginActivity.class);
-                intent.putExtra("userRole","DJ");
-                startActivity(intent);
-            }
-
-            else {
-
-            adapter.addFragment(new EditProfileFragment(), "Profile");
-            adapter.addFragment(new ManageEventFragment(), "Manage Event");
-            adapter.addFragment(new PlaylistFragment(), "Review Playlist");
-              }
         }
+
         viewPager.setAdapter(adapter);
 
     }
@@ -213,23 +168,9 @@ public class FragmentAdapter extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        menuItem.setChecked(true);
-                        mDrawerLayout.closeDrawers();
-                        return true;
-                    }
-                });
-    }
-
     static class Adapter extends FragmentPagerAdapter {
         private final List<android.support.v4.app.Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
-       // private final List<String> mFragmentBundle = new ArrayList<>();
-
 
         public Adapter(FragmentManager fm) {
             super(fm);
@@ -238,20 +179,16 @@ public class FragmentAdapter extends AppCompatActivity {
         public void addFragment(android.support.v4.app.Fragment fragment, String title) {
             mFragments.add(fragment);
             mFragmentTitles.add(title);
-          //  mFragmentBundle.add((bundle));
 
         }
-
         @Override
         public android.support.v4.app.Fragment getItem(int position) {
             return mFragments.get(position);
         }
-
         @Override
         public int getCount() {
             return mFragments.size();
         }
-
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitles.get(position);
