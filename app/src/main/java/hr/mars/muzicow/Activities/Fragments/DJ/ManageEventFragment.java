@@ -90,6 +90,14 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
             }
         }
 
+        buildGoogleApiClient();
+
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
+                    .addConnectionCallbacks(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
         return view;
     }
 
@@ -99,6 +107,12 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                 .addConnectionCallbacks(this)
                 .addApi(LocationServices.API)
                 .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStop();
+        mGoogleApiClient.isConnected();
     }
 
 
@@ -136,6 +150,12 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
         // onConnectionFailed.
         Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
     }
+
+    /*
+    TODO
+    -fix callback
+    -activate location after premission is granted
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -167,7 +187,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
             // permissions this app might request
         }
     }
-
+    */
     @Override
     public void onConnectionSuspended(int cause) {
         // The connection to Google Play services was lost for some reason. We call connect() to
