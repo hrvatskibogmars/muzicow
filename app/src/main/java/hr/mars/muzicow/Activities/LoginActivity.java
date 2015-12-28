@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     public static LoginAtributes at = new LoginAtributes();
     TwitterRetData tw = new TwitterRetData();
     SNetworkChooser ch = new SNetworkChooser();
+    Twitter twit;
 
     public static LoginAtributes getAt() {
         return at;
@@ -83,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                         djObject.setNickname(userOb.data.screenName);
                         djObject.setWebsite(userOb.data.url);
                         showUserData(djObject);
+
                     }
 
                     @Override
