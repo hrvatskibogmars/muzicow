@@ -103,11 +103,6 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
 
 
     @Override
-    public void onStart() {
-        super.onStart();
-        mGoogleApiClient.connect();
-    }
-    @Override
     public void onStop() {
         super.onStop();
         if (mGoogleApiClient.isConnected()) {
@@ -159,6 +154,8 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                                 .build();
                     }
 
+                    mGoogleApiClient.connect();
+
 
                 } else {
                     Toast.makeText(getActivity(),"Enable location so people know here the event is!",Toast.LENGTH_LONG);
@@ -197,7 +194,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                     genre.setText(events.get(0).getGenre());
                     eventName.setText(events.get(0).getName());
                     createEvent.setEnabled(false);
-                    Toast.makeText(getActivity(), eventID, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getActivity(), eventID, Toast.LENGTH_LONG).show();
 
                 }
             }
