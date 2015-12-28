@@ -98,6 +98,8 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                     .addApi(LocationServices.API)
                     .build();
         }
+        mGoogleApiClient.connect();
+
         return view;
     }
 
