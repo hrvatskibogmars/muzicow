@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import hr.mars.muzicow.R;
 
@@ -20,11 +22,13 @@ public class EventInfo extends AppCompatActivity {
     TextView EventLatitude;
     TextView EventLongitude;
 
-    String Id;
-    String Genre;
-    String Name;
-    String Latitude;
-    String Longitude;
+    String id;
+    String genre;
+    String name;
+    String latitude;
+    String longitude;
+    String djId;
+    Button djButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,22 +44,36 @@ public class EventInfo extends AppCompatActivity {
         EventName = (TextView)findViewById(R.id.NameInfo);
 
         if (bundle != null) {
-            Id= bundle.getString("EventId");
-            Genre= bundle.getString("EventGenre");
-            Name= bundle.getString("EventName");
-            Latitude= bundle.getString("EventLatitude");
-            Longitude= bundle.getString("EventLongitude");
+            id= bundle.getString("EventId");
+            genre= bundle.getString("EventGenre");
+            name= bundle.getString("EventName");
+            latitude= bundle.getString("EventLatitude");
+            longitude= bundle.getString("EventLongitude");
+            djId=bundle.getString("EventDjId");
 
         }
 
         showData();
 
+        djButton= (Button)findViewById(R.id.djShowbtn);
+        djButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(EventInfo.this, AboutDJActivity.class);
+                intent.putExtra("EventDjId", djId);
+                Log.d("DJID", djId);
+                startActivity(intent);
+
+            }
+        });
+
     }
 
     public void showData(){
-        EventName.setText(Name);
-        EventGenre.setText(Genre);
-        EventLatitude.setText(Latitude);
-        EventLongitude.setText(Longitude);
+        EventName.setText(name);
+        EventGenre.setText(genre);
+        EventLatitude.setText(latitude);
+        EventLongitude.setText(longitude);
     }
 }

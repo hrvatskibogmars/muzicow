@@ -71,6 +71,7 @@ public class EventFragment extends Fragment  {
                             intent.putExtra("EventName", events.get(position).getName());
                             intent.putExtra("EventLatitude", events.get(position).getLatitude());
                             intent.putExtra("EventLongitude", events.get(position).getLongitude());
+                            intent.putExtra("EventDjId", events.get(position).getDj_ID());
                             startActivity(intent);
                         }
                     });

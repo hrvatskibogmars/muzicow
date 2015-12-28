@@ -25,6 +25,9 @@
         <activity android:label="@string/app_name"
             android:name=".Activities.Fragments.User.EventInfo"/>
 
+        <activity android:label="@string/app_name"
+            android:name=".Activities.Fragments.User.AboutDJActivity"/>
+
         <activity
             android:name=".Activities.Fragments.User.SongDetailActivity"
             android:parentActivityName=".Activities.adapters.FragmentAdapter">

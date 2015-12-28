@@ -38,7 +38,7 @@ import hr.mars.muzicow.Activities.MainActivity;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.Activities.Fragments.DJ.EditProfileFragment;
-import hr.mars.muzicow.Activities.Fragments.User.AboutDJFragment;
+import hr.mars.muzicow.Activities.Fragments.User.AboutDJActivity;
 import hr.mars.muzicow.Activities.Fragments.DJ.ManageEventFragment;
 import hr.mars.muzicow.Activities.Fragments.User.EventFragment;
 import hr.mars.muzicow.Activities.Fragments.User.PlaylistFragment;
@@ -125,7 +125,7 @@ public class FragmentAdapter extends AppCompatActivity {
                     startActivity(intent);
                 } else {
 
-                    adapter.addFragment(new AboutDJFragment(), "DJ");
+                   // adapter.addFragment(new AboutDJActivity(), "DJ");
                     adapter.addFragment(new PlaylistFragment(), "Playlist");
                     adapter.addFragment(new EventFragment(), "Event");
                 }
