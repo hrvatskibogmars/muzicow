@@ -14,8 +14,8 @@ import retrofit.http.Path;
  * Created by mars on 25/12/15.
  */
 public interface DJAPI {
-    @GET("/api/{email}")
-    void getDJ(@Path(value="email", encode=false) String st, Callback<List<DJ>> cb);
+    @GET("/api/{ID}")
+    void getDJ(@Path(value="ID", encode=false) String st, Callback<List<DJ>> cb);
 
 
     @FormUrlEncoded

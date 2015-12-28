@@ -1,9 +1,13 @@
 package hr.mars.muzicow.Activities.Fragments.DJ;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,22 +40,18 @@ import retrofit.client.Response;
  */
 public class ManageEventFragment extends Fragment implements View.OnClickListener,GoogleApiClient.ConnectionCallbacks{
     String eventID;
-    EditText djID;
     EditText latitude;
     EditText longitude;
     EditText genre;
-    EditText status;
     EditText eventName;
     Button createEvent;
     Button updateEvent;
     Button finishEvent;
     FragmentAdapter faObject = new FragmentAdapter();
 
-
+    public static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
     protected GoogleApiClient mGoogleApiClient;
     protected Location mLastLocation;
-    protected String mLatitudeLabel;
-    protected String mLongitudeLabel;
     protected static final String TAG = "MainActivity";
 
     @Nullable
@@ -73,6 +73,24 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
         genre= (EditText)view.findViewById(R.id.genre);
         eventName = (EditText)view.findViewById(R.id.eventName);
         active_event();
+
+
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+            } else {
+
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+            }
+        }
+
+
 
         buildGoogleApiClient();
 
@@ -124,8 +142,6 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
 
             Toast.makeText(getActivity(), R.string.no_location_detected, Toast.LENGTH_LONG).show();
 
-            //Toast.makeText(getActivity(), R.string.no_location_detected, Toast.LENGTH_LONG).show();
-
         }
     }
 
@@ -153,18 +169,14 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
             @Override
             public void success(List<Event> events, Response response) {
                 if (events.isEmpty()) {
-                    //Toast.makeText(getActivity(), "Create new event", Toast.LENGTH_LONG).show();
                     createEvent.setEnabled(true);
                     updateEvent.setEnabled(false);
                     finishEvent.setEnabled(false);
                 } else {
-                    //Log.d("Event update ok", "Success Update");
                     eventID = events.get(0).get_ID();
-                    //djID.setText(events.get(0).getDj_ID());
                     latitude.setText(events.get(0).getLatitude());
                     longitude.setText(events.get(0).getLongitude());
                     genre.setText(events.get(0).getGenre());
-                    //status.setText(events.get(0).getStatus());
                     eventName.setText(events.get(0).getName());
                     createEvent.setEnabled(false);
                     Toast.makeText(getActivity(), eventID, Toast.LENGTH_LONG).show();
@@ -195,7 +207,6 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                             public void success(Response events, Response req) {
                                 Log.d("Event Create ok", "Success Update");
                                 String json = events.getBody().toString();
-                                //Toast.makeText(getActivity(), json, Toast.LENGTH_LONG).show();
                                 Log.d("Event Create ok", json);
                                 updateEvent.setEnabled(true);
                                 createEvent.setEnabled(false);
@@ -220,7 +231,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                             @Override
                             public void success(Response resp, Response req) {
                                 String json = resp.getBody().toString();
-                                //Log.d("Event update ok", json);
+                                Log.d("Event update ok", json);
 
                             }
 

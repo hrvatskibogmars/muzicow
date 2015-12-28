@@ -38,7 +38,6 @@ import hr.mars.muzicow.Activities.MainActivity;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.Activities.Fragments.DJ.EditProfileFragment;
-import hr.mars.muzicow.Activities.Fragments.User.AboutDJActivity;
 import hr.mars.muzicow.Activities.Fragments.DJ.ManageEventFragment;
 import hr.mars.muzicow.Activities.Fragments.User.EventFragment;
 import hr.mars.muzicow.Activities.Fragments.User.PlaylistFragment;
@@ -48,7 +47,7 @@ public class FragmentAdapter extends AppCompatActivity {
 
     Context context;
     String role;
-    String sesija;
+    String session;
     int counter;
     public static DJ djObject;
 
@@ -62,16 +61,16 @@ public class FragmentAdapter extends AppCompatActivity {
 
         if (bundle != null) {
             role = bundle.getString("userRole");
-            sesija = bundle.getString("sesija");
+            session = bundle.getString("Session");
         }
 
 
-        if(sesija.isEmpty()){
+        if(session.isEmpty()){
 
         }
         else {
             try {
-                djObject = bundle.getParcelable("hr.mars.muzicow.RESTful.model.DJ");
+                djObject = bundle.getParcelable("Twitter object");
                 setDjObject(djObject);
             }
            catch (Exception e){
@@ -119,7 +118,7 @@ public class FragmentAdapter extends AppCompatActivity {
 
         switch(role) {
             case "Participant":
-                if (sesija.isEmpty()) {
+                if (session.isEmpty()) {
                     Intent intent = new Intent(this, MainActivity.class);
                     intent.putExtra("userRole", "Participant");
                     startActivity(intent);
@@ -131,7 +130,7 @@ public class FragmentAdapter extends AppCompatActivity {
                 }
                 break;
             case "Artist":
-                if (sesija.isEmpty()) {
+                if (session.isEmpty()) {
                     Intent intent = new Intent(this, MainActivity.class);
                     intent.putExtra("userRole", "DJ");
                     startActivity(intent);

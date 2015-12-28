@@ -21,7 +21,7 @@ import com.twitter.sdk.android.core.models.User;
 import hr.mars.muzicow.Activities.adapters.FragmentAdapter;
 
 import hr.mars.muzicow.Models.DJ;
-import hr.mars.muzicow.Models.LoginAtributes;
+import hr.mars.muzicow.Models.Login;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Services.TwitterLoginListener;
 import hr.mars.muzicow.Utils.SNetworkChooser;
@@ -35,18 +35,18 @@ public class MainActivity extends AppCompatActivity {
     private static final String TWITTER_KEY = "f6FNdst2ZaoQWZYvYOu2a5QCy";
     private static final String TWITTER_SECRET = "deHaJ2nBf5Lj5luPg2Avu7w0JOxbb61GUNZavlb4SELDyK0WUV ";
     private TwitterLoginButton loginButton;
-    DJ djObject;
-    public static LoginAtributes at = new LoginAtributes();
+    public static Login at = new Login();
     TwitterRetData tw = new TwitterRetData();
     SNetworkChooser ch = new SNetworkChooser();
     String role;
     Intent intent;
     Bundle bundle;
+    DJ djObject;
 
-    public static LoginAtributes getAt() {
+    public static Login getAt() {
         return at;
     }
-    public static void setAt(LoginAtributes at) {
+    public static void setAt(Login at) {
         MainActivity.at = at;
     }
 
@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void success(Result<User> userOb) {
                         djObject = new DJ();
-                        Log.d("pokazi", "ovo je id prosljeden" + userOb.data.idStr);
                         djObject.set_ID(userOb.data.idStr);
                         djObject.setName(userOb.data.name);
                         djObject.setDescription(userOb.data.description);
@@ -109,10 +108,9 @@ public class MainActivity extends AppCompatActivity {
                         showUserData(djObject);
 
                     }
-
                     @Override
                     public void failure(TwitterException e) {
-                        Log.d("pokazi", e.getMessage());
+                        Log.d("Tw - data get fail", e.getMessage());
 
                     }
                 });
@@ -138,14 +136,14 @@ public class MainActivity extends AppCompatActivity {
         Intent myIntent = new Intent(MainActivity.this, FragmentAdapter.class);
         if(role.equals("Participant")) {
             myIntent.putExtra("userRole", "Participant");
-            myIntent.putExtra("sesija", role);
-            myIntent.putExtra("hr.mars.muzicow.RESTful.model.DJ",  djObject);
+            myIntent.putExtra("Session", role);
+            myIntent.putExtra("Twitter object",  djObject);
             MainActivity.this.startActivity(myIntent);
         }
         else{
             myIntent.putExtra("userRole", "Artist");
-            myIntent.putExtra("sesija", role);
-            myIntent.putExtra("hr.mars.muzicow.RESTful.model.DJ",  djObject);
+            myIntent.putExtra("Session", role);
+            myIntent.putExtra("Twitter object",  djObject);
             MainActivity.this.startActivity(myIntent);
         }
     }

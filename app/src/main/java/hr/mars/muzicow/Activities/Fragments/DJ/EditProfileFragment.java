@@ -27,7 +27,6 @@ import retrofit.client.Response;
  * Created by mars on 14/11/15.
  */
 public class EditProfileFragment extends Fragment implements View.OnClickListener {
-    List<DJ>DJlist;
 
     Button updateProfileButton;
     TextView id;
@@ -59,8 +58,6 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         profileUrl =(TextView)view.findViewById(R.id.profileurl);
         twitterUrl =(TextView)view.findViewById(R.id.twitterurl);
         description = (TextView)view.findViewById(R.id.description);
-
-        //Log.d("DjShowData", "Twitter ID : "+ faObject.getDjObject().get_ID());
 
         loadData();
         return view;
@@ -100,7 +97,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
             @Override
             public void failure(RetrofitError error) {
-                //Log.d("Error Get DJ");
+                Log.d("Load data failed",error.getMessage());
             }
         });
     }

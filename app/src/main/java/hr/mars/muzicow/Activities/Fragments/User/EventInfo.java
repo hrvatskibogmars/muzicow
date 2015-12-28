@@ -62,9 +62,7 @@ public class EventInfo extends AppCompatActivity {
 
                 Intent intent = new Intent(EventInfo.this, AboutDJActivity.class);
                 intent.putExtra("EventDjId", djId);
-                Log.d("DJID", djId);
                 startActivity(intent);
-
             }
         });
 

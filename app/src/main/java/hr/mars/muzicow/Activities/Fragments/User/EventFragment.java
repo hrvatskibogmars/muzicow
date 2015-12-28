@@ -10,15 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import hr.mars.muzicow.APIs.GetEventAPI;
+import hr.mars.muzicow.APIs.UserAPI;
 import hr.mars.muzicow.Models.Event;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Services.ServiceGenerator;
@@ -39,8 +36,6 @@ public class EventFragment extends Fragment  {
 
         View view = inflater.inflate(R.layout.fragment_dj, container, false);
         lv = (ListView) view.findViewById(R.id.listView);
-
-
         loadData();
         return view;
 
@@ -49,7 +44,7 @@ public class EventFragment extends Fragment  {
     String status = "events?filter=%7B%22where%22%3A%7B%22status%22%3A%22" + "1" + "%22%7D%7D";
 
     public void loadData(){
-        GetEventAPI eventRetrofit = ServiceGenerator.createService(GetEventAPI.class);
+        UserAPI eventRetrofit = ServiceGenerator.createService(UserAPI.class);
         eventRetrofit.getEvent(status, new Callback<List<Event>>() {
             @Override
             public void success(final List<Event> events, Response response) {
@@ -80,22 +75,12 @@ public class EventFragment extends Fragment  {
                 catch (Exception e){
                     Toast.makeText(getActivity(),"No available events", Toast.LENGTH_LONG).show();
                 }
-
-
-
-
-
-
-
             }
-
             @Override
             public void failure(RetrofitError error) {
                 Log.d("Event",error.getMessage());
             }
         });
     }
-
-
-
 }
+

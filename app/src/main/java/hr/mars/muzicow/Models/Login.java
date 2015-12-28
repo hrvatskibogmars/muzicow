@@ -5,7 +5,7 @@ import com.twitter.sdk.android.core.TwitterSession;
 /**
  * Created by Emil on 26.12.2015..
  */
-public class LoginAtributes {
+public class Login {
     String role;
     TwitterSession session;
 
