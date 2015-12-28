@@ -34,7 +34,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import hr.mars.muzicow.Activities.LoginActivity;
+import hr.mars.muzicow.Activities.MainActivity;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.Activities.Fragments.DJ.EditProfileFragment;
@@ -65,6 +65,7 @@ public class FragmentAdapter extends AppCompatActivity {
             sesija = bundle.getString("sesija");
         }
 
+
         if(sesija.isEmpty()){
 
         }
@@ -74,7 +75,7 @@ public class FragmentAdapter extends AppCompatActivity {
                 setDjObject(djObject);
             }
            catch (Exception e){
-               Log.d("prikaz", e.getMessage());
+               Log.d("Show", e.getMessage());
            }
         }
 
@@ -117,10 +118,10 @@ public class FragmentAdapter extends AppCompatActivity {
         Adapter adapter = new Adapter(getSupportFragmentManager());
 
         switch(role) {
-            case "Korisnik":
+            case "Participant":
                 if (sesija.isEmpty()) {
-                    Intent intent = new Intent(this, LoginActivity.class);
-                    intent.putExtra("userRole", "Korisnik");
+                    Intent intent = new Intent(this, MainActivity.class);
+                    intent.putExtra("userRole", "Participant");
                     startActivity(intent);
                 } else {
 
@@ -129,9 +130,9 @@ public class FragmentAdapter extends AppCompatActivity {
                     adapter.addFragment(new EventFragment(), "Event");
                 }
                 break;
-            case "DJ":
+            case "Artist":
                 if (sesija.isEmpty()) {
-                    Intent intent = new Intent(this, LoginActivity.class);
+                    Intent intent = new Intent(this, MainActivity.class);
                     intent.putExtra("userRole", "DJ");
                     startActivity(intent);
                 } else {

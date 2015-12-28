@@ -13,8 +13,8 @@
     </string>
     <string name="menu_settings">Settings</string>
     <string-array name="spinner">
-        <item>Korisnik</item>
-        <item>DJ</item>
+        <item>Participant</item>
+        <item>Artist</item>
     </string-array>
 
 </resources>
