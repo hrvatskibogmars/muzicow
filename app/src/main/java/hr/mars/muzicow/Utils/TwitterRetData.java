@@ -11,7 +11,7 @@ import com.twitter.sdk.android.core.models.User;
 import hr.mars.muzicow.Services.SNetwork;
 import hr.mars.muzicow.Services.TwitterLoginListener;
 
-import static hr.mars.muzicow.Activities.LoginActivity.at;
+import static hr.mars.muzicow.Activities.MainActivity.at;
 
 /**
  * Created by Emil on 25.12.2015..
@@ -42,7 +42,7 @@ public class TwitterRetData implements SNetwork {
                         if (listener != null) {
                             listener.failure(e);
                         }
-                        Log.d("prikaz", e.getMessage());
+
                     }
                 });
 

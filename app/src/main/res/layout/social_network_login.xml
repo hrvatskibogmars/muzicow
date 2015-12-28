@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+
+    >
 
     <com.twitter.sdk.android.core.identity.TwitterLoginButton
         android:text="Sign in with Twitter"
@@ -23,6 +25,29 @@
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
         android:layout_above="@+id/twitter" />
+    <Spinner
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:entries="@array/spinner"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:spinnerMode="dialog"
+        style="@style/Base.Animation.AppCompat.DropDownUp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+
+        android:text="Choose your role"
+        android:id="@+id/chooseTxt"
+        android:layout_above="@+id/spinner"
+        android:layout_alignStart="@+id/spinner" />
 
 
 </RelativeLayout>
