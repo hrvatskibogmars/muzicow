@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,26 +53,36 @@ public class EventFragment extends Fragment  {
         eventRetrofit.getEvent(status, new Callback<List<Event>>() {
             @Override
             public void success(final List<Event> events, Response response) {
-                Log.d("Event",events.get(0).getName());
-                CustomEvenetListAdapter adapter = new CustomEvenetListAdapter(getContext(),events);
-                lv.setAdapter(adapter);
+                try {
+                    Log.d("Event",events.get(0).getName());
+                    CustomEvenetListAdapter adapter = new CustomEvenetListAdapter(getContext(),events);
+                    lv.setAdapter(adapter);
 
-                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                        int position = lv.getPositionForView(view);
-                        Log.d("Position", String.valueOf(position));
+                            int position = lv.getPositionForView(view);
+                            Log.d("Position", String.valueOf(position));
 
-                        Intent intent = new Intent(getContext(), EventInfo.class);
-                        intent.putExtra("EventId", events.get(position).getEvent_ID());
-                        intent.putExtra("EventGenre", events.get(position).getGenre());
-                        intent.putExtra("EventName", events.get(position).getName());
-                        intent.putExtra("EventLatitude", events.get(position).getLatitude());
-                        intent.putExtra("EventLongitude", events.get(position).getLongitude());
-                        startActivity(intent);
-                    }
-                });
+                            Intent intent = new Intent(getContext(), EventInfo.class);
+                            intent.putExtra("EventId", events.get(position).get_ID());
+                            intent.putExtra("EventGenre", events.get(position).getGenre());
+                            intent.putExtra("EventName", events.get(position).getName());
+                            intent.putExtra("EventLatitude", events.get(position).getLatitude());
+                            intent.putExtra("EventLongitude", events.get(position).getLongitude());
+                            startActivity(intent);
+                        }
+                    });
+
+                }
+                catch (Exception e){
+                    Toast.makeText(getActivity(),"No available events", Toast.LENGTH_LONG).show();
+                }
+
+
+
+
 
 
 
