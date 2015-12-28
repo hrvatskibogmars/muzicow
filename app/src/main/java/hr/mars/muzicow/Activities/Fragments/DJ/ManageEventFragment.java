@@ -235,8 +235,8 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                                 createEvent.setEnabled(true);
                                 updateEvent.setEnabled(false);
                                 finishEvent.setEnabled(false);
-                                latitude.setText("");
-                                longitude.setText("");
+                                latitude.setText(String.valueOf(mLastLocation.getLatitude()));
+                                longitude.setText(String.valueOf(mLastLocation.getLongitude()));
                                 eventName.setText("");
                                 genre.setText("");
                             }
