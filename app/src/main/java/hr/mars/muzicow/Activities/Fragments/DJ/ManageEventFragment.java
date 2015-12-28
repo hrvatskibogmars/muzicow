@@ -116,11 +116,17 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
 
+
         if (mLastLocation != null) {
             latitude.setText(String.valueOf(mLastLocation.getLatitude()));
             longitude.setText(String.valueOf(mLastLocation.getLongitude()));
         } else {
+<<<<<<< HEAD
+            Toast.makeText(getActivity(), R.string.no_location_detected, Toast.LENGTH_LONG).show();
+
+=======
             //Toast.makeText(getActivity(), R.string.no_location_detected, Toast.LENGTH_LONG).show();
+>>>>>>> origin/master
         }
     }
 
