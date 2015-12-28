@@ -90,16 +90,6 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
             }
         }
 
-
-
-        buildGoogleApiClient();
-
-        if (mGoogleApiClient == null) {
-            mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
-                    .addConnectionCallbacks(this)
-                    .addApi(LocationServices.API)
-                    .build();
-        }
         return view;
     }
 
@@ -151,7 +141,35 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
         // onConnectionFailed.
         Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
+                    buildGoogleApiClient();
+
+                    if (mGoogleApiClient == null) {
+                        mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
+                                .addConnectionCallbacks(this)
+                                .addApi(LocationServices.API)
+                                .build();
+                    }
+
+
+                } else {
+                    Toast.makeText(getActivity(),"Enable location so people know here the event is!",Toast.LENGTH_LONG);
+                    }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
 
     @Override
     public void onConnectionSuspended(int cause) {
