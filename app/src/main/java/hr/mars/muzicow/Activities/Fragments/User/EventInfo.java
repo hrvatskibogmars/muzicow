@@ -3,7 +3,11 @@ package hr.mars.muzicow.Activities.Fragments.User;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +39,11 @@ public class EventInfo extends AppCompatActivity {
 
         setContentView(R.layout.event_show_data);
         context = getApplicationContext();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+
+        final ActionBar ab = getSupportActionBar();
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 

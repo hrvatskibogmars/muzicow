@@ -3,6 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/include_list_viewpager"
+        android:layout_height="124dp"
+        android:layout_width="match_parent"
+        android:id="@+id/include" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -10,14 +15,6 @@
         android:text="Event Info"
         android:id="@+id/eventShowName"
         android:textAlignment="center" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show Artist Info"
-        android:id="@+id/djShowbtn"
-        android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="match_parent"
@@ -50,5 +47,13 @@
         android:text="Latitude"
         android:id="@+id/LatitudeInfo"
         android:textAlignment="center" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Artist Info"
+        android:id="@+id/djShowbtn"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

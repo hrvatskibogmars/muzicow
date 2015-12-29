@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -8,40 +8,27 @@
 
 
 
+    <include layout="@layout/include_list_viewpager"
+        android:layout_height="124dp"
+        android:layout_width="match_parent"
+        android:id="@+id/include"
+        />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="The Glitch Mob is an American three-piece electronic music group from Los Angeles, California. It consists of edIT (Edward Ma), Boreta (Justin Boreta) and Ooah (Josh Mayer).[1] Chris Martins of LA Weekly noted that they &quot;have undoubtedly found the largest audience of any L.A. beat scene artist yet.&quot;"
-                android:id="@+id/descriptionView"
-                android:layout_marginRight="20dp"
-                android:gravity="left"
-
-                android:layout_below="@+id/locationTxt"
-                android:layout_centerHorizontal="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TwitterUrl"
-                android:id="@+id/twUrlTxt"
-
-                android:layout_below="@+id/nickTxt"
-                android:layout_centerHorizontal="true" />
-
-
-
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Info about Artist"
+        android:id="@+id/textView2" />
 
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:id="@+id/imageView"
         android:src="@drawable/glitchmob"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp" />
+        android:layout_below="@+id/include"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -68,6 +55,15 @@
         android:layout_alignStart="@+id/twUrlTxt" />
 
     <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TwitterUrl"
+                android:id="@+id/twUrlTxt"
+
+                android:layout_below="@+id/nickTxt"
+                android:layout_centerHorizontal="true" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Website"
@@ -76,5 +72,16 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The Glitch Mob is an American three-piece electronic music group from Los Angeles, California. It consists of edIT (Edward Ma), Boreta (Justin Boreta) and Ooah (Josh Mayer).[1] Chris Martins of LA Weekly noted that they &quot;have undoubtedly found the largest audience of any L.A. beat scene artist yet.&quot;"
+        android:id="@+id/descriptionView"
+        android:layout_marginRight="20dp"
+        android:gravity="left"
 
-</RelativeLayout>
+        android:layout_below="@+id/locationTxt"
+        android:layout_centerHorizontal="true" />
+
+
+</LinearLayout>

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <color name="window_background">#FFF5F5F5</color>
+    <color name="window_background">#E3F2FD</color>
+    <color name="second_header">#2196F3</color>
+    <color name="first_header">#1565C0
+    </color>
+    <color name="listItem_color">#BBDEFB
+    </color>
 </resources>

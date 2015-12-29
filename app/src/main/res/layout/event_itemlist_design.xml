@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Event"
+        android:background="@color/listItem_color"
         android:id="@+id/eventItems"
         android:layout_weight="0.05"
         android:textAlignment="center"
