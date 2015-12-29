@@ -125,8 +125,8 @@ public class FragmentAdapter extends AppCompatActivity {
                 } else {
 
                    // adapter.addFragment(new AboutDJActivity(), "DJ");
-                    adapter.addFragment(new PlaylistFragment(), "Playlist");
                     adapter.addFragment(new EventFragment(), "Event");
+                    adapter.addFragment(new PlaylistFragment(), "Playlist");
                 }
                 break;
             case "Artist":

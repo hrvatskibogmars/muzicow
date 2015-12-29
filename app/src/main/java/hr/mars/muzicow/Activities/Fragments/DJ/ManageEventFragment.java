@@ -209,6 +209,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                     createEvent.setEnabled(true);
                     updateEvent.setEnabled(false);
                     finishEvent.setEnabled(false);
+
                 } else {
                     eventID = events.get(0).get_ID();
                     latitude.setText(events.get(0).getLatitude());
@@ -216,7 +217,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                     genre.setText(events.get(0).getGenre());
                     eventName.setText(events.get(0).getName());
                     createEvent.setEnabled(false);
-                    //Toast.makeText(getActivity(), eventID, Toast.LENGTH_LONG).show();
+
 
                 }
             }
@@ -249,6 +250,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                                 createEvent.setEnabled(false);
                                 finishEvent.setEnabled(true);
                                 active_event();
+                                Toast.makeText(getActivity(), "You have successfully created event", Toast.LENGTH_LONG).show();
                             }
 
                             @Override
@@ -269,6 +271,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                             public void success(Response resp, Response req) {
                                 String json = resp.getBody().toString();
                                 Log.d("Event update ok", json);
+                                Toast.makeText(getActivity(), "You have successfully updated event", Toast.LENGTH_LONG).show();
 
                             }
 
@@ -292,6 +295,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                                 longitude.setText(String.valueOf(mLastLocation.getLongitude()));
                                 eventName.setText("");
                                 genre.setText("");
+                                Toast.makeText(getActivity(), "You have successfully finished event", Toast.LENGTH_LONG).show();
                             }
 
                             @Override

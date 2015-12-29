@@ -44,9 +44,7 @@ public class SongDetailActivity extends AppCompatActivity {
         //final String role = "Korisnik";
         //intent.putExtra("userRole", role);
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);

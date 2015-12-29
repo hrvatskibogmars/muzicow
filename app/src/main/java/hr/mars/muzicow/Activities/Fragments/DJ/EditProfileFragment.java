@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -137,6 +138,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                     @Override
                     public void success(List<DJ> djs, Response response) {
                         Log.d("DJ Update ok","Success Update");
+
                     }
 
                     @Override
@@ -145,5 +147,6 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
                     }
                 });
+        Toast.makeText(getActivity(), "You have successfully updated profile", Toast.LENGTH_LONG).show();
     }
 }
