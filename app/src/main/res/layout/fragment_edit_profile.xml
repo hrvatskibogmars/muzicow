@@ -108,6 +108,17 @@
         android:onClick="updateProfile"
         android:layout_below="@+id/textView9"
         android:layout_alignStart="@+id/IDFd"
-        android:layout_alignEnd="@+id/textView9" />
+        android:layout_alignEnd="@+id/textView9"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        />
     </RelativeLayout>
 </ScrollView>
