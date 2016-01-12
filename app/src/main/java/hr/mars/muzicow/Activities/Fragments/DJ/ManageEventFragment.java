@@ -27,7 +27,9 @@ import org.json.JSONObject;
 import java.util.List;
 
 import hr.mars.muzicow.Activities.adapters.FragmentAdapter;
+import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.R;
+import hr.mars.muzicow.Registry.Registry;
 import hr.mars.muzicow.Services.ServiceGenerator;
 import hr.mars.muzicow.APIs.EventAPI;
 import hr.mars.muzicow.Models.Event;
@@ -47,7 +49,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
     Button createEvent;
     Button updateEvent;
     Button finishEvent;
-    FragmentAdapter faObject = new FragmentAdapter();
+
 
     public static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
     protected GoogleApiClient mGoogleApiClient;
@@ -200,7 +202,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
 
     public void active_event(){
         //{"where": {"and" : [ {"dj_ID":"6"},{"status":"status"}]}}
-        String eventUrl = "events?filter=%7B%22where%22%3A%20%7B%22and%22%20%3A%20%5B%20%7B%22dj_ID%22%3A%22"+faObject.getDjObject().get_ID()+"%22%7D%2C%7B%22status%22%3A%22"+ "1"+"%22%7D%5D%7D%7D";
+        String eventUrl = "events?filter=%7B%22where%22%3A%20%7B%22and%22%20%3A%20%5B%20%7B%22dj_ID%22%3A%22"+((DJ) Registry.getInstance().get("djObject")).get_ID()+"%22%7D%2C%7B%22status%22%3A%22"+ "1"+"%22%7D%5D%7D%7D";
         EventAPI eventRetrofit = ServiceGenerator.createService(EventAPI.class);
         eventRetrofit.getActiveEvent(eventUrl, new Callback<List<Event>>() {
             @Override
@@ -242,7 +244,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
         switch (view.getId()) {
 
             case R.id.createEvent:
-                eventRetrofit.createEvent(faObject.getDjObject().get_ID(), latitude.getText().toString(),
+                eventRetrofit.createEvent(((DJ) Registry.getInstance().get("djObject")).get_ID(), latitude.getText().toString(),
                         longitude.getText().toString(), genre.getText().toString(), "1", eventName.getText().toString(),
                         new Callback<Response>() {
                             @Override
@@ -272,7 +274,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                 break;
 
             case R.id.updateEvent:
-                eventRetrofit.updateEvent(eventUrl, faObject.getDjObject().get_ID(), latitude.getText().toString(),
+                eventRetrofit.updateEvent(eventUrl, ((DJ) Registry.getInstance().get("djObject")).get_ID(), latitude.getText().toString(),
                         longitude.getText().toString(), genre.getText().toString(), "1", eventName.getText().toString(),
                         new Callback<Response>() {
                             @Override
@@ -290,7 +292,7 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                         });
                 break;
             case R.id.finishEvent:
-                eventRetrofit.updateEvent(eventUrl, faObject.getDjObject().get_ID(), latitude.getText().toString(),
+                eventRetrofit.updateEvent(eventUrl,((DJ) Registry.getInstance().get("djObject")).get_ID(), latitude.getText().toString(),
                         longitude.getText().toString(), genre.getText().toString(), "0", eventName.getText().toString(),
                         new Callback<Response>() {
                             @Override

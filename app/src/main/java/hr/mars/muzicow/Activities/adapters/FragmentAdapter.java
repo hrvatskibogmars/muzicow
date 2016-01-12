@@ -41,6 +41,7 @@ import hr.mars.muzicow.Activities.Fragments.DJ.EditProfileFragment;
 import hr.mars.muzicow.Activities.Fragments.DJ.ManageEventFragment;
 import hr.mars.muzicow.Activities.Fragments.User.EventFragment;
 import hr.mars.muzicow.Activities.Fragments.User.PlaylistFragment;
+import hr.mars.muzicow.Registry.Registry;
 
 
 public class FragmentAdapter extends AppCompatActivity {
@@ -49,7 +50,7 @@ public class FragmentAdapter extends AppCompatActivity {
     String role;
     String session;
     int counter;
-    public static DJ djObject;
+    DJ djObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,8 @@ public class FragmentAdapter extends AppCompatActivity {
         else {
             try {
                 djObject = bundle.getParcelable("Twitter object");
-                setDjObject(djObject);
+                Registry.getInstance().set("djObject",djObject);
+
             }
            catch (Exception e){
                Log.d("Show", e.getMessage());
@@ -93,13 +95,7 @@ public class FragmentAdapter extends AppCompatActivity {
 
 
     }
-    public  DJ getDjObject() {
-        return djObject;
-    }
 
-    public void setDjObject(DJ djObject) {
-        FragmentAdapter.djObject = djObject;
-    }
 
     @Override
     public void onResume() {

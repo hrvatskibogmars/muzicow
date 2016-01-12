@@ -18,6 +18,7 @@ import hr.mars.muzicow.APIs.DJAPI;
 import hr.mars.muzicow.Activities.adapters.FragmentAdapter;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.R;
+import hr.mars.muzicow.Registry.Registry;
 import hr.mars.muzicow.Services.ServiceGenerator;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -38,7 +39,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     TextView profileUrl;
     TextView twitterUrl;
     TextView description;
-    FragmentAdapter faObject = new FragmentAdapter();
+
 
 
     @Nullable
@@ -64,7 +65,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         return view;
     }
 
-    String twitterID = "djs?filter=%7B%22where%22%3A%7B%22_ID%22%3A%22" + faObject.getDjObject().get_ID() + "%22%7D%7D";
+    String twitterID = "djs?filter=%7B%22where%22%3A%7B%22_ID%22%3A%22" + ((DJ) Registry.getInstance().get("djObject")).get_ID() + "%22%7D%7D";
 
     public void loadData(){
         DJAPI eventRetrofit = ServiceGenerator.createService(DJAPI.class);
@@ -73,14 +74,15 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
             public void success(List<DJ> djs, Response response) {
                 if(djs.isEmpty())
                 {
-                    id.setText(faObject.getDjObject().get_ID());
-                    name.setText(faObject.getDjObject().getName());
-                    website.setText(faObject.getDjObject().getWebsite());
-                    location.setText(faObject.getDjObject().getLocation());
-                    nickname.setText(faObject.getDjObject().getNickname());
-                    profileUrl.setText(faObject.getDjObject().getProfile_url());
-                    twitterUrl.setText("https://twitter.com/" + faObject.getDjObject().getName());
-                    description.setText(faObject.getDjObject().getDescription());
+
+                    id.setText(((DJ) Registry.getInstance().get("djObject")).get_ID());
+                    name.setText(((DJ) Registry.getInstance().get("djObject")).getName());
+                    website.setText(((DJ) Registry.getInstance().get("djObject")).getWebsite());
+                    location.setText(((DJ) Registry.getInstance().get("djObject")).getLocation());
+                    nickname.setText(((DJ) Registry.getInstance().get("djObject")).getNickname());
+                    profileUrl.setText(((DJ) Registry.getInstance().get("djObject")).getProfile_url());
+                    twitterUrl.setText("https://twitter.com/" + ((DJ) Registry.getInstance().get("djObject")).getName());
+                    description.setText(((DJ) Registry.getInstance().get("djObject")).getDescription());
                     createDJ();
 
                 }
@@ -128,7 +130,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        String url = "update?where=%7B%22_ID%22%3A%22"+faObject.getDjObject().get_ID()+"%22%7D";
+        String url = "update?where=%7B%22_ID%22%3A%22"+((DJ) Registry.getInstance().get("djObject")).get_ID()+"%22%7D";
         DJAPI eventRetrofit = ServiceGenerator.createService(DJAPI.class);
         eventRetrofit.updateDJ(url, id.getText().toString(),
                 name.getText().toString(), website.getText().toString(),

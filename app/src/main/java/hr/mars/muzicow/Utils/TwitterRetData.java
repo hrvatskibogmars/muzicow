@@ -8,10 +8,12 @@ import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.models.User;
 
+import hr.mars.muzicow.Models.Login;
+import hr.mars.muzicow.Registry.Registry;
 import hr.mars.muzicow.Services.SNetwork;
 import hr.mars.muzicow.Services.TwitterLoginListener;
 
-import static hr.mars.muzicow.Activities.MainActivity.at;
+
 
 /**
  * Created by Emil on 25.12.2015..
@@ -27,7 +29,7 @@ public class TwitterRetData implements SNetwork {
 
     public void retSNetData(){
 
-        Twitter.getApiClient(at.getSession()).getAccountService()
+        Twitter.getApiClient(((Login) Registry.getInstance().get("login.atr")).getSession()).getAccountService()
                 .verifyCredentials(true, false, new Callback<User>() {
                     @Override
                     public void success(Result<User> userResult) {

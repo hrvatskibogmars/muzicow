@@ -23,6 +23,7 @@ import hr.mars.muzicow.Activities.adapters.FragmentAdapter;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.Models.Login;
 import hr.mars.muzicow.R;
+import hr.mars.muzicow.Registry.Registry;
 import hr.mars.muzicow.Services.TwitterLoginListener;
 import hr.mars.muzicow.Utils.SNetworkChooser;
 import hr.mars.muzicow.Utils.TwitterRetData;
@@ -35,20 +36,14 @@ public class MainActivity extends AppCompatActivity {
     private static final String TWITTER_KEY = "f6FNdst2ZaoQWZYvYOu2a5QCy";
     private static final String TWITTER_SECRET = "deHaJ2nBf5Lj5luPg2Avu7w0JOxbb61GUNZavlb4SELDyK0WUV ";
     private TwitterLoginButton loginButton;
-    public static Login at = new Login();
+
+    Login at = new Login();
     TwitterRetData tw = new TwitterRetData();
     SNetworkChooser ch = new SNetworkChooser();
     String role;
     Intent intent;
     Bundle bundle;
     DJ djObject;
-
-    public static Login getAt() {
-        return at;
-    }
-    public static void setAt(Login at) {
-        MainActivity.at = at;
-    }
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -59,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.social_network_login);
         final Spinner mySpinner=(Spinner) findViewById(R.id.spinner);
-
+        Registry.getInstance().set("login.atr",at);
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -80,8 +75,10 @@ public class MainActivity extends AppCompatActivity {
 
         }
         if(bundle != null){
+
             role = bundle.getString("userRole");
-            at.setRole(bundle.getString(role));
+            ((Login)Registry.getInstance().get("login.atr")).setRole(bundle.getString(role));
+
         }
 
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter);
@@ -90,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void success(Result<TwitterSession> result) {
-                at.setSession(Twitter.getInstance().core.getSessionManager().getActiveSession());
+                ((Login)Registry.getInstance().get("login.atr")).setSession(Twitter.getInstance().core.getSessionManager().getActiveSession());
                 ch.setSNetwork(tw);
                 ch.loginChoice();
 
