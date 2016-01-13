@@ -49,7 +49,7 @@ public class EventFragment extends Fragment  {
             @Override
             public void success(final List<Event> events, Response response) {
                 try {
-                    Log.d("Event",events.get(0).getName());
+
                     CustomEvenetListAdapter adapter = new CustomEvenetListAdapter(getContext(),events);
                     lv.setAdapter(adapter);
 

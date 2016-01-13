@@ -27,6 +27,9 @@
 
         <activity android:label="@string/app_name"
             android:name=".Activities.Fragments.User.AboutDJActivity"/>
+        <activity android:label="@string/app_name"
+            android:name=".Activities.Fragments.User.RequestSong"/>
+
 
         <activity
             android:name=".Activities.Fragments.User.SongDetailActivity"
