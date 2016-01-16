@@ -49,7 +49,6 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
-
         updateProfileButton = (Button) view.findViewById(R.id.updateProfileButton);
         updateProfileButton.setOnClickListener(this);
         id = (TextView)view.findViewById(R.id.IDFd);

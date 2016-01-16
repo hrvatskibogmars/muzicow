@@ -74,6 +74,8 @@ public class FragmentAdapter extends AppCompatActivity {
                 djObject = bundle.getParcelable("Twitter object");
                 Registry.getInstance().set("djObject",djObject);
 
+
+
             }
            catch (Exception e){
                Log.d("Show", e.getMessage());
@@ -122,7 +124,7 @@ public class FragmentAdapter extends AppCompatActivity {
 
                    // adapter.addFragment(new AboutDJActivity(), "DJ");
                     adapter.addFragment(new EventFragment(), "Event");
-                    adapter.addFragment(new PlaylistFragment(), "Playlist");
+                   // adapter.addFragment(new PlaylistFragment(), "Playlist");
                 }
                 break;
             case "Artist":
@@ -132,9 +134,10 @@ public class FragmentAdapter extends AppCompatActivity {
                     startActivity(intent);
                 } else {
 
-                    adapter.addFragment(new EditProfileFragment(), "Profile");
+
                     adapter.addFragment(new ManageEventFragment(), "Manage Event");
                     adapter.addFragment(new PlaylistFragment(), "Review Playlist");
+                    adapter.addFragment(new EditProfileFragment(), "Profile");
                 }
                 break;
 

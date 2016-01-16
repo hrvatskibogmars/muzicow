@@ -3,6 +3,8 @@ package hr.mars.muzicow.APIs;
 import java.util.List;
 
 import hr.mars.muzicow.Models.DJ;
+import hr.mars.muzicow.Models.Event;
+import hr.mars.muzicow.Models.Song;
 import retrofit.Callback;
 import retrofit.client.Response;
 import retrofit.http.Field;
@@ -25,5 +27,8 @@ public interface SongAPI {
 
 
     @GET("/api/{event_ID}")
-    void getSong(@Path(value="event_ID", encode=false) String st, Callback<List<DJ>> cb);
+    void getEvent(@Path(value="event_ID", encode=false) String st, Callback<List<Event>> cb);
+
+    @GET("/api/{songs}")
+    void getSongs(@Path(value="songs", encode=false) String st, Callback<List<Song>> cb);
 }
