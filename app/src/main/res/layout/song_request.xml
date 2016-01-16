@@ -15,21 +15,39 @@
         android:ems="10"
         android:id="@+id/songTxt"
         android:layout_gravity="center_horizontal"
-        android:text="Song" />
+        android:text="SongName" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/artistTxt"
         android:layout_gravity="center_horizontal"
-        android:text="Artist" />
+        android:text="SongArtist" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/descriptionTxt"
+        android:layout_gravity="center_horizontal"
+        android:text="Description" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/ytbTxt"
+        android:layout_gravity="center_horizontal"
+        android:text="Youtube link" />
+
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Send request"
         android:id="@+id/sendBtn"
-        android:layout_gravity="center_horizontal"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:background="@drawable/buttonshape"

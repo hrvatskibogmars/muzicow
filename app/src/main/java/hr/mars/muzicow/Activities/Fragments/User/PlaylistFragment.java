@@ -17,8 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import hr.mars.muzicow.APIs.DJAPI;
+import hr.mars.muzicow.APIs.SongAPI;
+import hr.mars.muzicow.Models.DJ;
+import hr.mars.muzicow.Models.Song;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Models.DummyDataPlaylist;
+import hr.mars.muzicow.Registry.Registry;
+import hr.mars.muzicow.Services.ServiceGenerator;
 
 public class PlaylistFragment extends Fragment {
 
@@ -36,7 +42,14 @@ public class PlaylistFragment extends Fragment {
         recyclerView.setAdapter(new SimpleStringRecyclerViewAdapter(getActivity(),
                 getRandomSublist(DummyDataPlaylist.sCheeseStrings, 30)));
     }
-
+/*
+    private List<Song> getReqSongs(){
+        String event_id = "djs?filter=%7B%22where%22%3A%7B%22_ID%22%3A%22" + ((DJ) Registry.getInstance().get("djObject")).get_ID() + "%22%7D%7D";
+        SongAPI eventRetrofit = ServiceGenerator.createService(SongAPI.class);
+        eventRetrofit.getSong();
+        return
+    }
+*/
     private List<String> getRandomSublist(String[] array, int amount) {
         ArrayList<String> list = new ArrayList<>(amount);
         Random random = new Random();

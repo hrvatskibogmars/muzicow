@@ -9,10 +9,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import hr.mars.muzicow.APIs.SongAPI;
+import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.Models.Event;
+import hr.mars.muzicow.Models.Song;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Registry.Registry;
+import hr.mars.muzicow.Services.ServiceGenerator;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by Emil on 13.1.2016..
@@ -21,14 +29,17 @@ public class RequestSong extends AppCompatActivity implements View.OnClickListen
     Context context;
     EditText song;
     EditText artist;
+    EditText description;
+    EditText youtube;
     Button send;
+    Event eventObj;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.song_request);
         context = getApplicationContext();
-
+        eventObj= (Event)Registry.getInstance().get("Event");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -37,15 +48,34 @@ public class RequestSong extends AppCompatActivity implements View.OnClickListen
         send.setOnClickListener(this);
         song=(EditText)findViewById(R.id.songTxt);
         artist=(EditText)findViewById(R.id.artistTxt);
+        description=(EditText)findViewById(R.id.descriptionTxt);
+        youtube=(EditText)findViewById(R.id.ytbTxt);
 
 
 
     }
     public void onClick(View v) {
+        final SongAPI eventRetrofit = ServiceGenerator.createService(SongAPI.class);
         switch (v.getId()){
             case R.id.sendBtn:
 
-                Log.d("button",song.getText()+((Event) Registry.getInstance().get("Event")).getName());
+                eventRetrofit.createSong(artist.getText().toString(), eventObj.get_ID(),
+                        description.getText().toString(), "0", youtube.getText().toString(),
+                        song.getText().toString(),
+                        new Callback<Response>() {
+                            @Override
+                            public void success(Response response, Response response2) {
+                                Toast.makeText(RequestSong.this, "You have successfully requested song", Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void failure(RetrofitError error) {
+                                Toast.makeText(RequestSong.this, "Song wasnt succesfully requested", Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+
+                        Log.d("button", song.getText() + ((Event) Registry.getInstance().get("Event")).getName());
 
         }
     }

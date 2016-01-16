@@ -148,7 +148,7 @@ public class FragmentAdapter extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             counter++;
-            Toast toast = Toast.makeText(FragmentAdapter.this, "Press back to exit on more time?", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(FragmentAdapter.this, "Press back to exit one more time?", Toast.LENGTH_LONG);
             toast.show();
             if (counter == 2) {
                 Intent intent = new Intent(Intent.ACTION_MAIN);

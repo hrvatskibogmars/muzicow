@@ -36,6 +36,8 @@ public class EventInfo extends AppCompatActivity implements View.OnClickListener
     String djId;
     Button djButton;
     Button reqSong;
+
+    Event eventObj;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +51,9 @@ public class EventInfo extends AppCompatActivity implements View.OnClickListener
         final ActionBar ab = getSupportActionBar();
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-
+        Event eve = new Event();
+        Registry.getInstance().set("Event", eve);
+        eventObj= (Event)Registry.getInstance().get("Event");
         EventLatitude= (TextView) findViewById(R.id.LatitudeInfo);
         EventLongitude= (TextView)findViewById(R.id.LongitudeInfo);
         EventGenre= (TextView)findViewById(R.id.GenreInfo);
@@ -62,14 +66,14 @@ public class EventInfo extends AppCompatActivity implements View.OnClickListener
         reqSong.setOnClickListener(this);
 
         if (bundle != null) {
-            Event eve = new Event();
-            Registry.getInstance().set("Event", eve);
-            ((Event)Registry.getInstance().get("Event")).set_ID(bundle.getString("EventId"));
-            ((Event)Registry.getInstance().get("Event")).setName(bundle.getString("EventName"));
-            ((Event)Registry.getInstance().get("Event")).setGenre(bundle.getString("EventGenre"));
-            ((Event)Registry.getInstance().get("Event")).setLatitude(bundle.getString("EventLatitude"));
-            ((Event)Registry.getInstance().get("Event")).setLongitude(bundle.getString("EventLongitude"));
-            ((Event)Registry.getInstance().get("Event")).setDj_ID(bundle.getString("EventDjId"));
+
+
+            eventObj.set_ID(bundle.getString("EventId"));
+            eventObj.setName(bundle.getString("EventName"));
+            eventObj.setGenre(bundle.getString("EventGenre"));
+            eventObj.setLatitude(bundle.getString("EventLatitude"));
+            eventObj.setLongitude(bundle.getString("EventLongitude"));
+            eventObj.setDj_ID(bundle.getString("EventDjId"));
 
         }
 
@@ -82,7 +86,7 @@ public class EventInfo extends AppCompatActivity implements View.OnClickListener
         switch (view.getId()){
             case R.id.djShowbtn:
                 Intent intent = new Intent(EventInfo.this, AboutDJActivity.class);
-                intent.putExtra("EventDjId", djId);
+                //intent.putExtra("EventDjId", ((Event)Registry.getInstance().get("Event")).getDj_ID());
                 startActivity(intent);
                 break;
             case R.id.requestBtn:
@@ -95,10 +99,10 @@ public class EventInfo extends AppCompatActivity implements View.OnClickListener
     }
 
     public void showData(){
-        EventName.setText(((Event)Registry.getInstance().get("Event")).getName());
-        EventGenre.setText(((Event)Registry.getInstance().get("Event")).getGenre());
-        EventLatitude.setText(((Event)Registry.getInstance().get("Event")).getLatitude());
-        EventLongitude.setText(((Event)Registry.getInstance().get("Event")).getLongitude());
-        Log.d("event",((Event)Registry.getInstance().get("Event")).getName());
+        EventName.setText(eventObj.getName());
+        EventGenre.setText(eventObj.getGenre());
+        EventLatitude.setText(eventObj.getLatitude());
+        EventLongitude.setText(eventObj.getLongitude());
+        Log.d("event",eventObj.getName());
     }
 }
