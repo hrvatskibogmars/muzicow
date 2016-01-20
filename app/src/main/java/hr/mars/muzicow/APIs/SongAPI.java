@@ -31,4 +31,14 @@ public interface SongAPI {
 
     @GET("/api/{songs}")
     void getSongs(@Path(value="songs", encode=false) String st, Callback<List<Song>> cb);
+
+
+    @GET("/api/{status}")
+    void getStatus(@Path(value="status", encode=false) String st,Callback<List<Song>> cb);
+
+    @FormUrlEncoded
+    @POST("/api/songs/{url}")
+    void updateSong(@Path(value="url", encode = false) String url,
+                    @Field("status") String status,
+                  Callback<List<Song>> cb);
 }
