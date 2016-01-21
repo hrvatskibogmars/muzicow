@@ -1,16 +1,16 @@
 package hr.mars.muzicow.Activities.Fragments.User;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import hr.mars.muzicow.Models.Event;
@@ -18,10 +18,9 @@ import hr.mars.muzicow.R;
 import hr.mars.muzicow.Registry.Registry;
 
 /**
- * Created by Emil on 27.12.2015..
+ * Created by Emil on 20.1.2016..
  */
-public class EventInfo extends AppCompatActivity implements View.OnClickListener{
-    Context context;
+public class EventInfo extends Fragment implements View.OnClickListener {
 
     TextView EventGenre;
     TextView EventName;
@@ -36,61 +35,43 @@ public class EventInfo extends AppCompatActivity implements View.OnClickListener
     String djId;
     Button djButton;
     Button reqSong;
-
     Event eventObj;
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        setContentView(R.layout.event_show_data);
-        context = getApplicationContext();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        View view = inflater.inflate(R.layout.event_show_data, container, false);
 
-        final ActionBar ab = getSupportActionBar();
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        Event eve = new Event();
-        Registry.getInstance().set("Event", eve);
         eventObj= (Event)Registry.getInstance().get("Event");
-        EventLatitude= (TextView) findViewById(R.id.LatitudeInfo);
-        EventLongitude= (TextView)findViewById(R.id.LongitudeInfo);
-        EventGenre= (TextView)findViewById(R.id.GenreInfo);
-        EventName = (TextView)findViewById(R.id.NameInfo);
+        EventLatitude= (TextView) view.findViewById(R.id.LatitudeInfo);
+        EventLongitude= (TextView)view.findViewById(R.id.LongitudeInfo);
+        EventGenre= (TextView)view.findViewById(R.id.GenreInfo);
+        EventName = (TextView)view.findViewById(R.id.NameInfo);
 
-        djButton= (Button)findViewById(R.id.djShowbtn);
+        djButton= (Button)view.findViewById(R.id.djShowbtn);
         djButton.setOnClickListener(this);
 
-        reqSong=(Button)findViewById(R.id.requestBtn);
+        reqSong=(Button)view.findViewById(R.id.requestBtn);
         reqSong.setOnClickListener(this);
-
-        if (bundle != null) {
-
-
-            eventObj.set_ID(bundle.getString("EventId"));
-            eventObj.setName(bundle.getString("EventName"));
-            eventObj.setGenre(bundle.getString("EventGenre"));
-            eventObj.setLatitude(bundle.getString("EventLatitude"));
-            eventObj.setLongitude(bundle.getString("EventLongitude"));
-            eventObj.setDj_ID(bundle.getString("EventDjId"));
-
-        }
 
         showData();
 
+        return view;
+
     }
+
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.djShowbtn:
-                Intent intent = new Intent(EventInfo.this, AboutDJActivity.class);
+                Intent intent = new Intent(getActivity(), AboutDJActivity.class);
                 //intent.putExtra("EventDjId", ((Event)Registry.getInstance().get("Event")).getDj_ID());
                 startActivity(intent);
                 break;
             case R.id.requestBtn:
-                intent = new Intent(EventInfo.this, RequestSong.class);
+                intent = new Intent(getActivity(), RequestSong.class);
                 //intent.putExtra("EventDjId", djId);
                 startActivity(intent);
                 break;
@@ -103,6 +84,6 @@ public class EventInfo extends AppCompatActivity implements View.OnClickListener
         EventGenre.setText(eventObj.getGenre());
         EventLatitude.setText(eventObj.getLatitude());
         EventLongitude.setText(eventObj.getLongitude());
-        Log.d("event",eventObj.getName());
+        Log.d("event", eventObj.getName());
     }
 }

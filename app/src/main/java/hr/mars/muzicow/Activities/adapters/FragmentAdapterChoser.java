@@ -44,7 +44,7 @@ import hr.mars.muzicow.Activities.Fragments.User.PlaylistFragment;
 import hr.mars.muzicow.Registry.Registry;
 
 
-public class FragmentAdapter extends AppCompatActivity {
+public class FragmentAdapterChoser extends AppCompatActivity {
 
     Context context;
     String role;
@@ -151,7 +151,7 @@ public class FragmentAdapter extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             counter++;
-            Toast toast = Toast.makeText(FragmentAdapter.this, "Press back to exit one more time?", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(FragmentAdapterChoser.this, "Press back to exit one more time?", Toast.LENGTH_LONG);
             toast.show();
             if (counter == 2) {
                 Intent intent = new Intent(Intent.ACTION_MAIN);

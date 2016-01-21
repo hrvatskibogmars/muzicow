@@ -1,6 +1,5 @@
 package hr.mars.muzicow.Activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +17,7 @@ import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 import com.twitter.sdk.android.core.models.User;
 
-import hr.mars.muzicow.Activities.adapters.FragmentAdapter;
+import hr.mars.muzicow.Activities.adapters.FragmentAdapterChoser;
 
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.Models.Login;
@@ -130,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void showUserData(DJ djObject){
-        Intent myIntent = new Intent(MainActivity.this, FragmentAdapter.class);
+        Intent myIntent = new Intent(MainActivity.this, FragmentAdapterChoser.class);
         if(role.equals("Participant")) {
             myIntent.putExtra("userRole", "Participant");
             myIntent.putExtra("Session", role);

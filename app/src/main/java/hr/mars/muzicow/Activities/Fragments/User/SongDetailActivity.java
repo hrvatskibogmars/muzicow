@@ -56,7 +56,7 @@ public class SongDetailActivity extends AppCompatActivity {
         final String cheeseName = bundle.getString("SongName");
         status = bundle.getString("SongStatus");
         songID = bundle.getString("SongID");
-        if (status.equals("1")){
+        if (status.equals("1")||status.equals("2")){
             accept.setVisibility(View.INVISIBLE);
             decline.setVisibility(View.INVISIBLE);
         }
@@ -93,6 +93,20 @@ public class SongDetailActivity extends AppCompatActivity {
 
                 break;
             case R.id.declineB:
+                Toast.makeText(SongDetailActivity.this, "You have declined song", Toast.LENGTH_LONG).show();
+                accept.setVisibility(View.INVISIBLE);
+                decline.setVisibility(View.INVISIBLE);
+                eventRetrofit.updateSong(songsUrl, "2", new Callback<List<Song>>() {
+                    @Override
+                    public void success(List<Song> songs, Response response) {
+                        Toast.makeText(SongDetailActivity.this, "You have declined song", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+
+                    }
+                });
                 break;
 
         }

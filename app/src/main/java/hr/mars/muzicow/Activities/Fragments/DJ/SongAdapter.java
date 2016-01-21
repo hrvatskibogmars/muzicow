@@ -21,7 +21,7 @@ public class SongAdapter extends ArrayAdapter{
 
         List<Song> songs;
         public SongAdapter(Context context, List<Song> songs){
-            super(context, R.layout.event_itemlist_design,songs);
+            super(context, R.layout.songs_list_item_design,songs);
             this.songs = songs;
 
         }
@@ -29,16 +29,23 @@ public class SongAdapter extends ArrayAdapter{
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-            View customView = layoutInflater.inflate(R.layout.event_itemlist_design, parent, false);
-            TextView eventItems = (TextView)customView.findViewById(R.id.eventItems);
+            View customView = layoutInflater.inflate(R.layout.songs_list_item_design, parent, false);
+            TextView eventItems = (TextView)customView.findViewById(R.id.songItems);
             eventItems.setText(songs.get(position).getName());
-
-                if (songs.get(position).getStatus().equals("1")){
-                    eventItems.setTextColor(Color.parseColor("#673AB7"));
-                }
-                else {
+            switch (songs.get(position).getStatus()){
+                case "1":
+                    eventItems.setTextColor(Color.parseColor("#009688"));
+                    break;
+                case "2":
                     eventItems.setTextColor(Color.parseColor("#F44336"));
-                }
+                    break;
+                case "0":
+                    eventItems.setTextColor(Color.parseColor("#673AB7"));
+                    break;
+
+            }
+
+
 
 
             return customView;

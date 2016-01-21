@@ -21,12 +21,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.List;
 
-import hr.mars.muzicow.Activities.adapters.FragmentAdapter;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Registry.Registry;

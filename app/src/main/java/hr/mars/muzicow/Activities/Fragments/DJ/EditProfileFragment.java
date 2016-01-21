@@ -15,7 +15,6 @@ import android.widget.Toast;
 import java.util.List;
 
 import hr.mars.muzicow.APIs.DJAPI;
-import hr.mars.muzicow.Activities.adapters.FragmentAdapter;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Registry.Registry;
