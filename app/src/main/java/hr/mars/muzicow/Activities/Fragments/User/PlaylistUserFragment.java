@@ -82,27 +82,30 @@ public class PlaylistUserFragment extends Fragment {
                     eventRetrofit.getSongs(songs, new Callback<List<Song>>() {
                         @Override
                         public void success(final List<Song> songs, Response response) {
+                            //isAdded because of async call
+                            if(isAdded()){
+                                SongAdapter adapter = new SongAdapter(getContext(), songs);
+                                lv.setAdapter(adapter);
 
-                            SongAdapter adapter = new SongAdapter(getContext(), songs);
-                            lv.setAdapter(adapter);
+                                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                        int position = lv.getPositionForView(view);
 
-                                    int position = lv.getPositionForView(view);
+                                        Log.d("Position", String.valueOf(position));
 
-                                    Log.d("Position", String.valueOf(position));
+                                        Intent intent = new Intent(getContext(), SongDetailActivity.class);
+                                        intent.putExtra("SongName", songs.get(position).getName());
+                                        intent.putExtra("SongStatus", songs.get(position).getStatus());
+                                        intent.putExtra("SongID", songs.get(position).get_ID());
 
-                                    Intent intent = new Intent(getContext(), SongDetailActivity.class);
-                                    intent.putExtra("SongName", songs.get(position).getName());
-                                    intent.putExtra("SongStatus", songs.get(position).getStatus());
-                                    intent.putExtra("SongID", songs.get(position).get_ID());
+                                        startActivity(intent);
 
-                                    startActivity(intent);
+                                    }
+                                });
+                            }
 
-                                }
-                            });
                         }
 
                         @Override

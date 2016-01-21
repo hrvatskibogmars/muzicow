@@ -98,7 +98,7 @@ public class EventContain extends AppCompatActivity {
         viewPager.setAdapter(adapter);
 
     }
-
+/*
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -111,5 +111,5 @@ public class EventContain extends AppCompatActivity {
 
         return super.onKeyDown(keyCode, event);
     }
-
+*/
 }
