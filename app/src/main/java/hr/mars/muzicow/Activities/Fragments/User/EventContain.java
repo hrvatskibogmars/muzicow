@@ -5,18 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import hr.mars.muzicow.Activities.Fragments.DJ.EditProfileFragment;
-import hr.mars.muzicow.Activities.Fragments.DJ.ManageEventFragment;
-import hr.mars.muzicow.Activities.Fragments.FragmentAdapter;
+import hr.mars.muzicow.Activities.adapters.FragmentAdapter;
+import hr.mars.muzicow.Activities.adapters.FragmentAdapterChoser;
 import hr.mars.muzicow.Models.Event;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Registry.Registry;
@@ -44,7 +44,7 @@ public class EventContain extends AppCompatActivity {
     Event eventObj;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        try {
+
             super.onCreate(savedInstanceState);
 
             setContentView(R.layout.activity_main);
@@ -59,18 +59,7 @@ public class EventContain extends AppCompatActivity {
             Registry.getInstance().set("Event", eve);
 
             eventObj = (Event) Registry.getInstance().get("Event");
-        /*
-        EventLatitude= (TextView) findViewById(R.id.LatitudeInfo);
-        EventLongitude= (TextView)findViewById(R.id.LongitudeInfo);
-        EventGenre= (TextView)findViewById(R.id.GenreInfo);
-        EventName = (TextView)findViewById(R.id.NameInfo);
 
-        djButton= (Button)findViewById(R.id.djShowbtn);
-        djButton.setOnClickListener(this);
-
-        reqSong=(Button)findViewById(R.id.requestBtn);
-        reqSong.setOnClickListener(this);
-        */
             if (bundle != null) {
 
 
@@ -83,7 +72,6 @@ public class EventContain extends AppCompatActivity {
 
             }
 
-            //showData();
 
             ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
             if (viewPager != null) {
@@ -93,41 +81,7 @@ public class EventContain extends AppCompatActivity {
             TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
             tabLayout.setupWithViewPager(viewPager);
         }
-        catch (Exception e){
 
-        }
-    }
-/*
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.djShowbtn:
-                Intent intent = new Intent(EventContain.this, AboutDJActivity.class);
-                //intent.putExtra("EventDjId", ((Event)Registry.getInstance().get("Event")).getDj_ID());
-                startActivity(intent);
-                break;
-            case R.id.requestBtn:
-                intent = new Intent(EventContain.this, RequestSong.class);
-                //intent.putExtra("EventDjId", djId);
-                startActivity(intent);
-                break;
-
-        }
-    }
-*/
-    /*
-    public void showData(){
-        EventName.setText(eventObj.getName());
-        EventGenre.setText(eventObj.getGenre());
-        EventLatitude.setText(eventObj.getLatitude());
-        EventLongitude.setText(eventObj.getLongitude());
-        Log.d("event",eventObj.getName());
-    }
-*/
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
 
 
     @Override
@@ -139,10 +93,23 @@ public class EventContain extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
         adapter.addFragment(new EventInfo(), "Event info");
-        //adapter.addFragment(new PlaylistFragment(), "Review Playlist");
-        adapter.addFragment(new EditProfileFragment(), "Profile");
+        adapter.addFragment(new PlaylistUserFragment(), "Review Playlist");
+        //adapter.addFragment(new EditProfileFragment(), "Profile");
         viewPager.setAdapter(adapter);
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(this, FragmentAdapterChoser.class);
+            intent.putExtra("userRole", "Participant");
+            intent.putExtra("Session", "Session");
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
 }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import hr.mars.muzicow.APIs.UserAPI;
+import hr.mars.muzicow.Activities.adapters.CustomEvenetListAdapter;
 import hr.mars.muzicow.Models.Event;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Services.ServiceGenerator;
@@ -82,5 +83,6 @@ public class EventFragment extends Fragment  {
             }
         });
     }
+
 }
 

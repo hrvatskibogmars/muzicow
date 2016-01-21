@@ -34,13 +34,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import hr.mars.muzicow.Activities.Fragments.DJ.PlaylistDJFragment;
 import hr.mars.muzicow.Activities.MainActivity;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.Activities.Fragments.DJ.EditProfileFragment;
 import hr.mars.muzicow.Activities.Fragments.DJ.ManageEventFragment;
 import hr.mars.muzicow.Activities.Fragments.User.EventFragment;
-import hr.mars.muzicow.Activities.Fragments.User.PlaylistFragment;
 import hr.mars.muzicow.Registry.Registry;
 
 
@@ -124,7 +124,7 @@ public class FragmentAdapterChoser extends AppCompatActivity {
 
                    // adapter.addFragment(new AboutDJActivity(), "DJ");
                     adapter.addFragment(new EventFragment(), "Event");
-                   // adapter.addFragment(new PlaylistFragment(), "Playlist");
+                   // adapter.addFragment(new PlaylistDJFragment(), "Playlist");
                 }
                 break;
             case "Artist":
@@ -136,7 +136,7 @@ public class FragmentAdapterChoser extends AppCompatActivity {
 
 
                     adapter.addFragment(new ManageEventFragment(), "Manage Event");
-                    adapter.addFragment(new PlaylistFragment(), "Review Playlist");
+                    adapter.addFragment(new PlaylistDJFragment(), "Review Playlist");
                     adapter.addFragment(new EditProfileFragment(), "Profile");
                 }
                 break;

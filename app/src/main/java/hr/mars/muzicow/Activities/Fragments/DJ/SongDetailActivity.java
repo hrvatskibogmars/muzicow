@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package hr.mars.muzicow.Activities.Fragments.User;
+package hr.mars.muzicow.Activities.Fragments.DJ;
 
 
 import android.content.Context;
@@ -22,7 +22,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;

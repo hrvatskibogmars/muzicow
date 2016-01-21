@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Activities.Fragments.User;
+package hr.mars.muzicow.Activities.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

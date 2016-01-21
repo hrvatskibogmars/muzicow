@@ -32,7 +32,7 @@
 
 
         <activity
-            android:name=".Activities.Fragments.User.SongDetailActivity"
+            android:name=".Activities.Fragments.DJ.SongDetailActivity"
             android:parentActivityName=".Activities.adapters.FragmentAdapterChoser">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
