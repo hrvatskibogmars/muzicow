@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -16,7 +17,9 @@ import java.util.List;
 
 import hr.mars.muzicow.APIs.UserAPI;
 import hr.mars.muzicow.Models.DJ;
+import hr.mars.muzicow.Models.Event;
 import hr.mars.muzicow.R;
+import hr.mars.muzicow.Registry.Registry;
 import hr.mars.muzicow.Services.ServiceGenerator;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -47,9 +50,10 @@ public class AboutDJActivity extends AppCompatActivity {
         final ActionBar ab = getSupportActionBar();
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+        /*
         if (bundle != null) {
             djId=bundle.getString("EventDjId");
-        }
+        */
         showData();
         name=(TextView)findViewById(R.id.nameTxt);
         nick=(TextView)findViewById(R.id.nickTxt);
@@ -61,28 +65,34 @@ public class AboutDJActivity extends AppCompatActivity {
     }
 
     public void showData(){
-        String query = "djs?filter=%7B%22where%22%3A%7B%22_ID%22%3A%22" + djId + "%22%7D%7D";
+        String query = "djs?filter=%7B%22where%22%3A%7B%22_ID%22%3A%22" + ((Event) Registry.getInstance().get("Event")).getDj_ID() + "%22%7D%7D";
+        try {
+            UserAPI djInfoRetrofit = ServiceGenerator.createService(UserAPI.class);
+            djInfoRetrofit.getDJ(query, new Callback<List<DJ>>() {
+                @Override
+                public void success(List<DJ> djs, Response response) {
 
-        UserAPI djInfoRetrofit = ServiceGenerator.createService(UserAPI.class);
-        djInfoRetrofit.getDJ(query, new Callback<List<DJ>>() {
-            @Override
-            public void success(List<DJ> djs, Response response) {
+                    name.setText(djs.get(0).getName());
+                    nick.setText(djs.get(0).getNickname());
+                    web.setText(djs.get(0).getWebsite());
+                    location.setText(djs.get(0).getLocation());
+                    twUrl.setText(djs.get(0).getTwitter_url());
+                    description.setText((djs.get(0)).getDescription());
+                    path = djs.get(0).getProfile_url();
 
-                name.setText(djs.get(0).getName());
-                nick.setText(djs.get(0).getNickname());
-                web.setText(djs.get(0).getWebsite());
-                location.setText(djs.get(0).getLocation());
-                twUrl.setText(djs.get(0).getTwitter_url());
-                description.setText((djs.get(0)).getDescription());
-                path = djs.get(0).getProfile_url();
+                    Glide.with(AboutDJActivity.this).load(path).into(imageView);
+                }
 
-                Glide.with(AboutDJActivity.this).load(path).into(imageView);
-            }
+                @Override
+                public void failure(RetrofitError error) {
+                    Log.d("Get DJ ID error", error.getMessage());
+                }
+            });
+        }
+        catch (Exception e){
+            Toast.makeText(this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
 
-            @Override
-            public void failure(RetrofitError error) {
-                Log.d("Get DJ ID error", error.getMessage());
-            }
-        });
+        }
     }
 }

@@ -1,25 +1,26 @@
 package hr.mars.muzicow.Activities.Fragments.User;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import hr.mars.muzicow.Models.Event;
 import hr.mars.muzicow.R;
+import hr.mars.muzicow.Registry.Registry;
 
 /**
- * Created by Emil on 27.12.2015..
+ * Created by Emil on 20.1.2016..
  */
-public class EventInfo extends AppCompatActivity {
-    Context context;
+public class EventInfo extends Fragment implements View.OnClickListener {
 
     TextView EventGenre;
     TextView EventName;
@@ -33,54 +34,56 @@ public class EventInfo extends AppCompatActivity {
     String longitude;
     String djId;
     Button djButton;
+    Button reqSong;
+    Event eventObj;
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        setContentView(R.layout.event_show_data);
-        context = getApplicationContext();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        View view = inflater.inflate(R.layout.event_show_data, container, false);
 
-        final ActionBar ab = getSupportActionBar();
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
+        eventObj= (Event)Registry.getInstance().get("Event");
+        EventLatitude= (TextView) view.findViewById(R.id.LatitudeInfo);
+        EventLongitude= (TextView)view.findViewById(R.id.LongitudeInfo);
+        EventGenre= (TextView)view.findViewById(R.id.GenreInfo);
+        EventName = (TextView)view.findViewById(R.id.NameInfo);
 
-        EventLatitude= (TextView) findViewById(R.id.LatitudeInfo);
-        EventLongitude= (TextView)findViewById(R.id.LongitudeInfo);
-        EventGenre= (TextView)findViewById(R.id.GenreInfo);
-        EventName = (TextView)findViewById(R.id.NameInfo);
+        djButton= (Button)view.findViewById(R.id.djShowbtn);
+        djButton.setOnClickListener(this);
 
-        if (bundle != null) {
-            id= bundle.getString("EventId");
-            genre= bundle.getString("EventGenre");
-            name= bundle.getString("EventName");
-            latitude= bundle.getString("EventLatitude");
-            longitude= bundle.getString("EventLongitude");
-            djId=bundle.getString("EventDjId");
-
-        }
+        reqSong=(Button)view.findViewById(R.id.requestBtn);
+        reqSong.setOnClickListener(this);
 
         showData();
 
-        djButton= (Button)findViewById(R.id.djShowbtn);
-        djButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(EventInfo.this, AboutDJActivity.class);
-                intent.putExtra("EventDjId", djId);
-                startActivity(intent);
-            }
-        });
+        return view;
 
     }
 
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.djShowbtn:
+                Intent intent = new Intent(getActivity(), AboutDJActivity.class);
+                //intent.putExtra("EventDjId", ((Event)Registry.getInstance().get("Event")).getDj_ID());
+                startActivity(intent);
+                break;
+            case R.id.requestBtn:
+                intent = new Intent(getActivity(), RequestSong.class);
+                //intent.putExtra("EventDjId", djId);
+                startActivity(intent);
+                break;
+
+        }
+    }
+
     public void showData(){
-        EventName.setText(name);
-        EventGenre.setText(genre);
-        EventLatitude.setText(latitude);
-        EventLongitude.setText(longitude);
+        EventName.setText(eventObj.getName());
+        EventGenre.setText(eventObj.getGenre());
+        EventLatitude.setText(eventObj.getLatitude());
+        EventLongitude.setText(eventObj.getLongitude());
+        Log.d("event", eventObj.getName());
     }
 }

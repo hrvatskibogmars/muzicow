@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import hr.mars.muzicow.APIs.UserAPI;
+import hr.mars.muzicow.Activities.adapters.CustomEvenetListAdapter;
 import hr.mars.muzicow.Models.Event;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Services.ServiceGenerator;
@@ -49,7 +50,7 @@ public class EventFragment extends Fragment  {
             @Override
             public void success(final List<Event> events, Response response) {
                 try {
-                    Log.d("Event",events.get(0).getName());
+
                     CustomEvenetListAdapter adapter = new CustomEvenetListAdapter(getContext(),events);
                     lv.setAdapter(adapter);
 
@@ -60,7 +61,7 @@ public class EventFragment extends Fragment  {
                             int position = lv.getPositionForView(view);
                             Log.d("Position", String.valueOf(position));
 
-                            Intent intent = new Intent(getContext(), EventInfo.class);
+                            Intent intent = new Intent(getContext(), EventContain.class);
                             intent.putExtra("EventId", events.get(position).get_ID());
                             intent.putExtra("EventGenre", events.get(position).getGenre());
                             intent.putExtra("EventName", events.get(position).getName());
@@ -82,5 +83,6 @@ public class EventFragment extends Fragment  {
             }
         });
     }
+
 }
 

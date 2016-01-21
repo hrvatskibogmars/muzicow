@@ -20,20 +20,23 @@
 
 
         <activity android:label="@string/app_name"
-            android:name=".Activities.adapters.FragmentAdapter"/>
+            android:name=".Activities.adapters.FragmentAdapterChoser"/>
 
         <activity android:label="@string/app_name"
-            android:name=".Activities.Fragments.User.EventInfo"/>
+            android:name=".Activities.Fragments.User.EventContain"/>
 
         <activity android:label="@string/app_name"
             android:name=".Activities.Fragments.User.AboutDJActivity"/>
+        <activity android:label="@string/app_name"
+            android:name=".Activities.Fragments.User.RequestSong"/>
+
 
         <activity
-            android:name=".Activities.Fragments.User.SongDetailActivity"
-            android:parentActivityName=".Activities.adapters.FragmentAdapter">
+            android:name=".Activities.Fragments.DJ.SongDetailActivity"
+            android:parentActivityName=".Activities.adapters.FragmentAdapterChoser">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activities.adapters.FragmentAdapter" />
+                android:value=".Activities.adapters.FragmentAdapterChoser" />
         </activity>
 
         <activity android:name="com.facebook.FacebookActivity"

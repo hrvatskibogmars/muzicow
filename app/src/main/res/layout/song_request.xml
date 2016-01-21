@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/include_list_viewpager"
+        android:layout_height="124dp"
+        android:layout_width="match_parent"
+        android:id="@+id/include" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/songTxt"
+        android:layout_gravity="center_horizontal"
+        android:text="SongName" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/artistTxt"
+        android:layout_gravity="center_horizontal"
+        android:text="SongArtist" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/descriptionTxt"
+        android:layout_gravity="center_horizontal"
+        android:text="Description" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/ytbTxt"
+        android:layout_gravity="center_horizontal"
+        android:text="Youtube link" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send request"
+        android:id="@+id/sendBtn"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        />
+
+</LinearLayout>

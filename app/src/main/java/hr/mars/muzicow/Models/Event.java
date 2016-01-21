@@ -16,7 +16,7 @@ public class Event {
         return _ID;
     }
 
-    public void set_ID(String event_ID) {
+    public void set_ID(String _ID) {
         this._ID = _ID;
     }
 
