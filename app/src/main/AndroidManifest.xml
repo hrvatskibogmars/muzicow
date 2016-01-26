@@ -10,7 +10,7 @@
         android:theme="@style/Theme.DesignDemo">
 
         <activity
-            android:name=".Activities.MainActivity">
+            android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -20,21 +20,21 @@
 
 
         <activity android:label="@string/app_name"
-            android:name=".Adapter.FragmentAdapterChoser"/>
+            android:name=".adapter.FragmentAdapterChoser"/>
 
         <activity android:label="@string/app_name"
-            android:name=".Fragments.User.EventContain"/>
+            android:name=".fragments.user.EventContain"/>
 
         <activity android:label="@string/app_name"
-            android:name=".Fragments.User.AboutDJActivity"/>
+            android:name=".fragments.user.AboutDJActivity"/>
         <activity android:label="@string/app_name"
-            android:name=".Activities.SongInfoActivity"/>
+            android:name=".activities.SongInfoActivity"/>
         <activity
-            android:name=".Fragments.DJ.SongDetailActivity"
-            android:parentActivityName=".Adapter.FragmentAdapterChoser">
+            android:name=".fragments.dj.SongDetailActivity"
+            android:parentActivityName=".adapter.FragmentAdapterChoser">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Adapter.FragmentAdapterChoser" />
+                android:value=".adapter.FragmentAdapterChoser" />
         </activity>
 
         <activity android:name="com.facebook.FacebookActivity"
