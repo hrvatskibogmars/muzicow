@@ -20,7 +20,8 @@ public interface SongAPI {
     @POST("/api/songs/")
     void createSong(@Field("artist") String artist,
                      @Field("event_id") String event_id, @Field("description") String description,
-                     @Field("status") String status, @Field("youtube_link") String youtube_link,
+                     @Field("status") String status,@Field("upvoited") String upvoited,
+                     @Field("youtube_link") String youtube_link,
                      @Field("name") String name,
                      Callback<Response> cb);
 
@@ -40,4 +41,12 @@ public interface SongAPI {
     void updateSong(@Path(value="url", encode = false) String url,
                     @Field("status") String status,
                   Callback<List<Song>> cb);
+
+    @FormUrlEncoded
+    @POST("/api/songs/{url}")
+    void updateUpvoite(@Path(value="url", encode = false) String url,
+                    @Field("upvoited") String upvoited,
+                    Callback<Song> cb);
+
+
 }
