@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Activities.Fragments.User;
+package hr.mars.muzicow.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import hr.mars.muzicow.APIs.SongAPI;
+import hr.mars.muzicow.APICalls.SongAPI;
 import hr.mars.muzicow.Models.Song;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Services.ServiceGenerator;

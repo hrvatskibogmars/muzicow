@@ -18,7 +18,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import hr.mars.muzicow.APICalls.SongAPI;
-import hr.mars.muzicow.Fragments.DJ.SongDetailActivity;
+import hr.mars.muzicow.Activities.SongInfoActivity;
 import hr.mars.muzicow.Adapter.SongAdapter;
 import hr.mars.muzicow.Models.Event;
 import hr.mars.muzicow.Models.Song;
