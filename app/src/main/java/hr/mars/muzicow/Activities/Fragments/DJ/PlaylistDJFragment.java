@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import hr.mars.muzicow.APIs.SongAPI;
@@ -73,13 +75,18 @@ public class PlaylistDJFragment extends Fragment {
             @Override
             public void success(final List<Event> events, Response response) {
                 try {
-                    String eventID= events.get(1).get_ID();
+                    String eventID= events.get(0).get_ID();
                     String songs ="songs?filter=%7B%22where%22%3A%7B%22event_id%22%3A%22"+eventID+"%22%7D%7D";
                     Log.d("songs", "id eventa " + eventID);
                     eventRetrofit.getSongs(songs, new Callback<List<Song>>() {
                         @Override
                         public void success(final List<Song> songs, Response response) {
+                            Collections.sort(songs, new Comparator<Song>() {
 
+                                public int compare(Song o1, Song o2) {
+                                    return o2.getUpvoited().compareTo(o1.getUpvoited());
+                                }
+                            });
                             SongAdapter adapter = new SongAdapter(getContext(), songs);
                             lv.setAdapter(adapter);
 

@@ -44,6 +44,7 @@ public class PlaylistUserFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_playlist, container, false);
         lv = (ListView) view.findViewById(R.id.listView);
         eventObj = (Event) Registry.getInstance().get("Event");
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -95,10 +96,18 @@ public class PlaylistUserFragment extends Fragment {
 
                                         Log.d("Position", String.valueOf(position));
 
-                                        Intent intent = new Intent(getContext(), SongDetailActivity.class);
-                                        intent.putExtra("SongName", songs.get(position).getName());
-                                        intent.putExtra("SongStatus", songs.get(position).getStatus());
-                                        intent.putExtra("SongID", songs.get(position).get_ID());
+
+                                        Intent intent = new Intent(getContext(), SongInfoActivity.class);
+
+
+                                        intent.putExtra("SongsName", songs.get(position).getName());
+                                        intent.putExtra("SongArtist", songs.get(position).getArtist());
+                                        intent.putExtra("SongDescription", songs.get(position).getDescription());
+                                        intent.putExtra("SongId", songs.get(position).get_ID());
+                                        intent.putExtra("SongUpvoite",songs.get(position).getUpvoited());
+
+
+
 
                                         startActivity(intent);
 
@@ -122,5 +131,6 @@ public class PlaylistUserFragment extends Fragment {
                 }
             }
 
-    }
+
+}
 
