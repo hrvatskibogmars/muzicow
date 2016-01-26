@@ -14,6 +14,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import hr.mars.muzicow.APIs.SongAPI;
@@ -85,6 +87,13 @@ public class PlaylistUserFragment extends Fragment {
                         public void success(final List<Song> songs, Response response) {
                             //isAdded because of async call
                             if(isAdded()){
+                                // for comparing list
+                                Collections.sort(songs, new Comparator<Song>() {
+
+                                    public int compare(Song o1, Song o2) {
+                                        return o2.getUpvoited().compareTo(o1.getUpvoited());
+                                    }
+                                });
                                 SongAdapter adapter = new SongAdapter(getContext(), songs);
                                 lv.setAdapter(adapter);
 
