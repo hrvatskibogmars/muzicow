@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Activities.Fragments.User;
+package hr.mars.muzicow.Fragments.User;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,11 +15,11 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import hr.mars.muzicow.APIs.UserAPI;
+import hr.mars.muzicow.APICalls.UserAPI;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.Models.Event;
 import hr.mars.muzicow.R;
-import hr.mars.muzicow.Registry.Registry;
+import hr.mars.muzicow.Utils.Registry;
 import hr.mars.muzicow.Services.ServiceGenerator;
 import retrofit.Callback;
 import retrofit.RetrofitError;

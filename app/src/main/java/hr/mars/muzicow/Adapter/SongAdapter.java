@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Activities.adapters;
+package hr.mars.muzicow.Adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import hr.mars.muzicow.Models.Event;
 import hr.mars.muzicow.Models.Song;
 import hr.mars.muzicow.R;
 

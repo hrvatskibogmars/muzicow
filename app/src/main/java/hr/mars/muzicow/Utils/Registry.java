@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Registry;
+package hr.mars.muzicow.Utils;
 
 import java.util.HashMap;
 

@@ -1,7 +1,5 @@
 package hr.mars.muzicow.Utils;
 
-import android.util.Log;
-
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
@@ -9,7 +7,6 @@ import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.models.User;
 
 import hr.mars.muzicow.Models.Login;
-import hr.mars.muzicow.Registry.Registry;
 import hr.mars.muzicow.Services.SNetwork;
 import hr.mars.muzicow.Services.TwitterLoginListener;
 

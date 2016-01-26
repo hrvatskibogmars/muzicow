@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package hr.mars.muzicow.Activities.adapters;
+package hr.mars.muzicow.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -34,14 +34,14 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import hr.mars.muzicow.Activities.Fragments.DJ.PlaylistDJFragment;
+import hr.mars.muzicow.Fragments.DJ.PlaylistDJFragment;
 import hr.mars.muzicow.Activities.MainActivity;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Models.DJ;
-import hr.mars.muzicow.Activities.Fragments.DJ.EditProfileFragment;
-import hr.mars.muzicow.Activities.Fragments.DJ.ManageEventFragment;
-import hr.mars.muzicow.Activities.Fragments.User.EventFragment;
-import hr.mars.muzicow.Registry.Registry;
+import hr.mars.muzicow.Fragments.DJ.EditProfileFragment;
+import hr.mars.muzicow.Fragments.DJ.ManageEventFragment;
+import hr.mars.muzicow.Fragments.User.EventFragment;
+import hr.mars.muzicow.Utils.Registry;
 
 
 public class FragmentAdapterChoser extends AppCompatActivity {

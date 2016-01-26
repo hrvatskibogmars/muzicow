@@ -1,8 +1,7 @@
-package hr.mars.muzicow.APIs;
+package hr.mars.muzicow.APICalls;
 
 import java.util.List;
 
-import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.Models.Event;
 import hr.mars.muzicow.Models.Song;
 import retrofit.Callback;

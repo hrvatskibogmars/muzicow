@@ -1,4 +1,4 @@
-package hr.mars.muzicow.APIs;
+package hr.mars.muzicow.APICalls;
 
 import java.util.List;
 

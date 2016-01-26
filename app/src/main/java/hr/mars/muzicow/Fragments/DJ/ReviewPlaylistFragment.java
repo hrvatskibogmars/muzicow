@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Activities.Fragments.DJ;
+package hr.mars.muzicow.Fragments.DJ;
 
 
 import android.os.Bundle;

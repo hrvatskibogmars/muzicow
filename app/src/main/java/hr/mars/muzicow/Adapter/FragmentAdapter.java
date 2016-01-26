@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Activities.adapters;
+package hr.mars.muzicow.Adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

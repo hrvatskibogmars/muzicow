@@ -17,12 +17,12 @@ import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 import com.twitter.sdk.android.core.models.User;
 
-import hr.mars.muzicow.Activities.adapters.FragmentAdapterChoser;
+import hr.mars.muzicow.Adapter.FragmentAdapterChoser;
 
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.Models.Login;
 import hr.mars.muzicow.R;
-import hr.mars.muzicow.Registry.Registry;
+import hr.mars.muzicow.Utils.Registry;
 import hr.mars.muzicow.Services.TwitterLoginListener;
 import hr.mars.muzicow.Utils.SNetworkChooser;
 import hr.mars.muzicow.Utils.TwitterRetData;

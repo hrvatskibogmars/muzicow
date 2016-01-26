@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Activities.Fragments.DJ;
+package hr.mars.muzicow.Fragments.DJ;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -25,9 +25,9 @@ import java.util.List;
 
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.R;
-import hr.mars.muzicow.Registry.Registry;
+import hr.mars.muzicow.Utils.Registry;
 import hr.mars.muzicow.Services.ServiceGenerator;
-import hr.mars.muzicow.APIs.EventAPI;
+import hr.mars.muzicow.APICalls.EventAPI;
 import hr.mars.muzicow.Models.Event;
 import retrofit.Callback;
 import retrofit.RetrofitError;

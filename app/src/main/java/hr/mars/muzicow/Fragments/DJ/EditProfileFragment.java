@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Activities.Fragments.DJ;
+package hr.mars.muzicow.Fragments.DJ;
 
 
 import android.os.Bundle;
@@ -14,10 +14,10 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import hr.mars.muzicow.APIs.DJAPI;
+import hr.mars.muzicow.APICalls.DJAPI;
 import hr.mars.muzicow.Models.DJ;
 import hr.mars.muzicow.R;
-import hr.mars.muzicow.Registry.Registry;
+import hr.mars.muzicow.Utils.Registry;
 import hr.mars.muzicow.Services.ServiceGenerator;
 import retrofit.Callback;
 import retrofit.RetrofitError;

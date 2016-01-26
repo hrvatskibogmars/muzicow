@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Activities.Fragments.User;
+package hr.mars.muzicow.Fragments.User;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,12 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import hr.mars.muzicow.APIs.SongAPI;
-import hr.mars.muzicow.Models.DJ;
+import hr.mars.muzicow.APICalls.SongAPI;
 import hr.mars.muzicow.Models.Event;
-import hr.mars.muzicow.Models.Song;
 import hr.mars.muzicow.R;
-import hr.mars.muzicow.Registry.Registry;
+import hr.mars.muzicow.Utils.Registry;
 import hr.mars.muzicow.Services.ServiceGenerator;
 import retrofit.Callback;
 import retrofit.RetrofitError;

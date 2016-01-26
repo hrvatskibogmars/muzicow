@@ -1,21 +1,19 @@
-package hr.mars.muzicow.Activities.Fragments.User;
+package hr.mars.muzicow.Fragments.User;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import hr.mars.muzicow.Models.Event;
 import hr.mars.muzicow.R;
-import hr.mars.muzicow.Registry.Registry;
+import hr.mars.muzicow.Utils.Registry;
 
 /**
  * Created by Emil on 20.1.2016..

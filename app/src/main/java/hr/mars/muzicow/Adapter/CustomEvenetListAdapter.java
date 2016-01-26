@@ -1,4 +1,4 @@
-package hr.mars.muzicow.Activities.adapters;
+package hr.mars.muzicow.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import hr.mars.muzicow.Models.Event;

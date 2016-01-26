@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package hr.mars.muzicow.Activities.Fragments.DJ;
+package hr.mars.muzicow.Fragments.DJ;
 
 
 import android.content.Context;
@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import hr.mars.muzicow.APIs.SongAPI;
+import hr.mars.muzicow.APICalls.SongAPI;
 import hr.mars.muzicow.Models.Song;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.Services.ServiceGenerator;
