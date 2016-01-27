@@ -11,8 +11,5 @@ public class SNetworkChooser  {
         this.nObject = nObject;
     }
 
-    public void loginChoice(){
-
-        this.nObject.retSNetData();
-    }
+    public void loginChoice(){ this.nObject.retSNetData(); }
 }

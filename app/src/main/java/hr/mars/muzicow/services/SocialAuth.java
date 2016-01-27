@@ -2,6 +2,8 @@ package hr.mars.muzicow.services;
 
 import android.content.Context;
 
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
+
 /**
  * Created by mars on 27/01/16.
  */
@@ -22,7 +24,7 @@ public interface SocialAuth<ObjectLogin, T2, T3> {
     String getRole();
     boolean login();  // method retrieves oauth access_token from provider
     boolean logout(); // destroys the access_token from local cache
-    boolean signup(Context context); // tries to retrieve user data from provider and saves it to database
+    void signup(TwitterLoginButton loginButton); // tries to retrieve user data from provider and saves it to database
 }
 
 

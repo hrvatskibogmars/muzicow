@@ -2,6 +2,7 @@ package hr.mars.muzicow.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.facebook.login.widget.LoginButton;
@@ -40,30 +41,22 @@ public class TwitterAuth implements SocialAuth {
     SNetworkChooser ch = new SNetworkChooser();
 
     @Override
-    public void setProvider(String provider) {
-        this.Provider = provider;
-    }
+    public void setProvider(String provider) { this.Provider = provider; }
 
     @Override
-    public String getProvider() {
-        return Provider;
-    }
+    public String getProvider() {return Provider; }
 
     @Override
     public void setKey(String key) { this.TWITTER_KEY = key; }
 
     @Override
-    public String getKey() {
-        return TWITTER_KEY;
-    }
+    public String getKey() {return TWITTER_KEY; }
 
     @Override
     public void setSecret(String key) { this.TWITTER_SECRET = key; }
 
     @Override
-    public String getSecret() {
-        return TWITTER_KEY;
-    }
+    public String getSecret() { return TWITTER_SECRET; }
 
     @Override
     public boolean save(Object object_login) {
@@ -71,39 +64,26 @@ public class TwitterAuth implements SocialAuth {
     }
 
     @Override
-    public Object load() {
-        return null;
-    }
+    public Object load() { return null; }
 
     @Override
     public void setRole(String role) { this.role = role; }
 
     @Override
-    public String getRole() {
-        return role;
-    }
+    public String getRole() { return role; }
 
     @Override
-    public boolean login() {
-        return false;
-    }
+    public boolean login() { return false; }
 
     @Override
-    public boolean logout() {
-        return false;
-    }
+    public boolean logout() { return false; }
 
     @Override
-    public boolean signup(Context context) {
-        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
-        Fabric.with(context, new Twitter(authConfig));
-
-
+    public void signup(TwitterLoginButton loginButton) {
         loginButton.setCallback(new Callback<TwitterSession>() {
-
             @Override
             public void success(Result<TwitterSession> result) {
-                ((Login)Registry.getInstance().get("login.atr")).setSession(Twitter.getInstance().core.getSessionManager().getActiveSession());
+                ((Login) Registry.getInstance().get("login.atr")).setSession(Twitter.getInstance().core.getSessionManager().getActiveSession());
                 ch.setSNetwork(tw);
                 ch.loginChoice();
 
@@ -118,13 +98,13 @@ public class TwitterAuth implements SocialAuth {
                         djObject.setProfile_url(userOb.data.profileImageUrl);
                         djObject.setNickname(userOb.data.screenName);
                         djObject.setWebsite(userOb.data.url);
-                        showUserData(djObject);
-
+                        //showUserData(djObject);
+                        Log.d("Name", djObject.getName());
                     }
+
                     @Override
                     public void failure(TwitterException e) {
                         Log.d("Tw - data get fail", e.getMessage());
-
                     }
                 });
 
@@ -136,22 +116,6 @@ public class TwitterAuth implements SocialAuth {
             }
         });
 
-        return false;
     }
 
-    public void showUserData(DJ djObject){
-
-
-
-        if(role.equals("Participant")) {
-            ((Login)Registry.getInstance().get("login.atr")).setRole("Participant");
-            ((Login)Registry.getInstance().get("login.atr")).setSession(Twitter.getInstance().core.getSessionManager().getActiveSession());
-            ((Login)Registry.getInstance().get("login.atr")).setDjObject(djObject);
-        }
-        else{
-            ((Login)Registry.getInstance().get("login.atr")).setRole("Participant");
-            ((Login)Registry.getInstance().get("login.atr")).setSession(Twitter.getInstance().core.getSessionManager().getActiveSession());
-            ((Login)Registry.getInstance().get("login.atr")).setDjObject(djObject);
-        }
-    }
 }

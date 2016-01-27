@@ -61,8 +61,8 @@ public class FragmentAdapterChoser extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
 
         if (bundle != null) {
-            role = bundle.getString("userRole");
-            session = bundle.getString("Session");
+            role = Registry.getInstance().get(role).toString();
+
         }
 
 
