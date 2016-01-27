@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
         TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
         Fabric.with(this, new Twitter(authConfig));
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.social_network_login);
         final Spinner mySpinner=(Spinner) findViewById(R.id.spinner);

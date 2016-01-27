@@ -8,6 +8,17 @@ import com.twitter.sdk.android.core.TwitterSession;
 public class Login {
     String role;
     TwitterSession session;
+    DJ djObject;
+
+
+    public DJ getDjObject() {
+        return djObject;
+    }
+
+    public void setDjObject(DJ djObject) {
+        this.djObject = djObject;
+    }
+
 
     public String getRole() {
         return role;
