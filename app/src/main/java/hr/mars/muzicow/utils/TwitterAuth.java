@@ -81,6 +81,7 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
                 ((Login) Registry.getInstance().get("login.atr")).setSession(Twitter.getInstance().core.getSessionManager().getActiveSession());
                 ch.setSNetwork(tw);
                 ch.loginChoice();
+
                 tw.setListener(new TwitterLoginListener() {
                     @Override
                     public void success(Result<User> userOb) {

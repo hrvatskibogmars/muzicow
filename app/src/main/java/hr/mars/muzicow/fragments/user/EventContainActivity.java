@@ -1,5 +1,6 @@
 package hr.mars.muzicow.fragments.user;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,18 +9,25 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.twitter.sdk.android.Twitter;
+
+import hr.mars.muzicow.activities.MainActivity;
 import hr.mars.muzicow.adapter.FragmentAdapter;
 import hr.mars.muzicow.models.Event;
 import hr.mars.muzicow.R;
+import hr.mars.muzicow.utils.Logout;
 import hr.mars.muzicow.utils.Registry;
 
 /**
  * Created by Emil on 27.12.2015..
  */
-public class EventContain extends AppCompatActivity {
+public class EventContainActivity extends AppCompatActivity {
     Context context;
 
     TextView EventGenre;
@@ -45,6 +53,14 @@ public class EventContain extends AppCompatActivity {
             context = getApplicationContext();
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+            toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    Twitter.logOut();
+                    logout();
+                    return true;
+                }
+            });
 
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
@@ -85,6 +101,10 @@ public class EventContain extends AppCompatActivity {
         //adapter.addFragment(new EditProfileFragment(), "Profile");
         viewPager.setAdapter(adapter);
 
+    }
+    public void logout(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 /*
     @Override

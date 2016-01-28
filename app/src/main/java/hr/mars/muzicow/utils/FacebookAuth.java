@@ -150,6 +150,7 @@ public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager>
         myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (role.equals("Participant")) {
             myIntent.putExtra("userRole", "Participant");
+
             myIntent.putExtra("Session", role);
             myIntent.putExtra("Twitter object", djObject);
             this.ctx.startActivity(myIntent);

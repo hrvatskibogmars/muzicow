@@ -61,7 +61,7 @@ public class EventFragment extends Fragment  {
                             int position = lv.getPositionForView(view);
                             Log.d("Position", String.valueOf(position));
 
-                            Intent intent = new Intent(getContext(), EventContain.class);
+                            Intent intent = new Intent(getContext(), EventContainActivity.class);
                             intent.putExtra("EventId", events.get(position).get_ID());
                             intent.putExtra("EventGenre", events.get(position).getGenre());
                             intent.putExtra("EventName", events.get(position).getName());
