@@ -3,6 +3,8 @@ package hr.mars.muzicow.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 /**
  * Created by Emil on 16.1.2016..
  */
@@ -10,15 +12,25 @@ public class Song implements Parcelable {
     String _ID;
     String artist;
     String event_ID;
-    String description;
-    String upvoited;
 
-    public String getUpvoited() {
-        return upvoited;
+    public ArrayList<String> getVoted() {
+        return voted;
     }
 
-    public void setUpvoiteD(String upvoite) {
-        this.upvoited = upvoite;
+    public void setVoted(ArrayList<String> voted) {
+        this.voted = voted;
+    }
+
+    String description;
+    String upvoted;
+    ArrayList<String> voted;
+
+    public String getUpvoted() {
+        return upvoted;
+    }
+
+    public void setUpvoted(String upvoted) {
+        this.upvoted = upvoted;
     }
 
 
@@ -103,7 +115,7 @@ public class Song implements Parcelable {
         dest.writeString(this.status);
         dest.writeString(this.youtube);
         dest.writeString(this.name);
-        dest.writeString(this.upvoited);
+        dest.writeString(this.upvoted);
 
     }
 
@@ -116,7 +128,7 @@ public class Song implements Parcelable {
         this.status=in.readString();
         this.youtube=in.readString();
         this.name =in.readString();
-        this.upvoited =in.readString();
+        this.upvoted =in.readString();
 
     }
 

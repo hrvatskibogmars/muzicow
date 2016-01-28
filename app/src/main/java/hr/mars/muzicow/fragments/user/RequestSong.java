@@ -58,7 +58,7 @@ public class RequestSong extends AppCompatActivity implements View.OnClickListen
             case R.id.sendBtn:
 
                 eventRetrofit.createSong(artist.getText().toString(), eventObj.get_ID(),
-                        description.getText().toString(), "0","0", youtube.getText().toString(),
+                        description.getText().toString(), "0","0","", youtube.getText().toString(),
                         song.getText().toString(),
                         new Callback<Response>() {
                             @Override
@@ -73,7 +73,7 @@ public class RequestSong extends AppCompatActivity implements View.OnClickListen
                         });
 
 
-                        Log.d("button", song.getText() + ((Event) Registry.getInstance().get("Event")).getName());
+                Log.d("button", song.getText() + ((Event) Registry.getInstance().get("Event")).getName());
 
         }
     }
