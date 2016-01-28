@@ -1,14 +1,25 @@
 package hr.mars.muzicow.activities;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
 import com.facebook.login.widget.LoginButton;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import hr.mars.muzicow.models.DJ;
 import hr.mars.muzicow.models.Login;
 import hr.mars.muzicow.R;
@@ -19,18 +30,39 @@ import hr.mars.muzicow.utils.TwitterAuth;
  * Created by mars on 14/11/15.
  */
 public class MainActivity extends AppCompatActivity {
+
+    CallbackManager callbackManager;
     private TwitterLoginButton loginButton;
     private LoginButton loginButton1;
+
     Login at = new Login();
+
     TwitterAuth authManager = new TwitterAuth();
     FacebookAuth authManagerFB = new FacebookAuth();
+
     String role;
-    Intent intent;
-    Bundle bundle;
-    DJ djObject;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        /**
+         *
+         * Use this to generate Keyhash for facebook
+         */
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    getPackageName(), PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:",
+                        Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+        } catch (NoSuchAlgorithmException e) {
+        }
+
 
         Registry.getInstance().set("login.atr", at);
         //authManager.setContext(getBaseContext());
@@ -40,8 +72,10 @@ public class MainActivity extends AppCompatActivity {
         //authManager.setSecret("deHaJ2nBf5Lj5luPg2Avu7w0JOxbb61GUNZavlb4SELDyK0WUV");
         //authManager.setup();
 
-        authManagerFB.setContext(getBaseContext());
-        authManagerFB.setup();
+        //authManagerFB.setContext(getBaseContext());
+        //authManagerFB.setup();
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
 
 
         setContentView(R.layout.social_network_login);
@@ -51,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 role = mySpinner.getSelectedItem().toString();
-                authManager.setRole(role);
+                //authManager.setRole(role);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -59,18 +93,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter);
-        authManager.signup(loginButton);
+        //authManager.signup(loginButton);
 
 
         //info = (TextView)findViewById(R.id.info);
-        loginButton1 = (LoginButton)findViewById(R.id.login_button);
-    }
+        loginButton1 = (LoginButton)findViewById(R.id.login_buttonFB);
+}
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        loginButton.onActivityResult(requestCode, resultCode, data);
-        //callbackManager.onActivityResult(requestCode, resultCode, data);
+        //loginButton.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
 
     }
 }

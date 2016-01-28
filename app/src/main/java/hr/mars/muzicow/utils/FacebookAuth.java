@@ -32,21 +32,17 @@ import io.fabric.sdk.android.Fabric;
 /**
  * Created by mars on 27/01/16.
  */
-public class FacebookAuth implements SocialAuth<Login, Context, TwitterLoginButton> {
+public class FacebookAuth implements SocialAuth<Login, Context, LoginButton> {
     Context ctx;
-    TwitterLoginButton loginButton;
+    LoginButton loginButton;
     TextView info;
     String Provider;
-    String TWITTER_KEY;
-    String TWITTER_SECRET;
+    String FACEBOOK_KEY;
+    String FACEBOOK_SECRET;
     String role;
     CallbackManager callbackManager;
 
-    TwitterSession session;
     DJ djObject;
-
-    TwitterRetData tw = new TwitterRetData();
-    SNetworkChooser ch = new SNetworkChooser();
 
     @Override
     public void setContext(Context ctx) { this.ctx = ctx; }
@@ -55,10 +51,10 @@ public class FacebookAuth implements SocialAuth<Login, Context, TwitterLoginButt
     public Context getContext() { return this.ctx; }
 
     @Override
-    public void setLoginButton(TwitterLoginButton loginButton) { this.loginButton = loginButton; }
+    public void setLoginButton(LoginButton loginButton) { this.loginButton = loginButton; }
 
     @Override
-    public TwitterLoginButton getLoginButton() { return this.loginButton; }
+    public LoginButton getLoginButton() { return this.loginButton; }
 
     public void setup() {
         FacebookSdk.sdkInitialize(ctx);
@@ -72,16 +68,16 @@ public class FacebookAuth implements SocialAuth<Login, Context, TwitterLoginButt
     public String getProvider() {return Provider; }
 
     @Override
-    public void setKey(String key) { this.TWITTER_KEY = key; }
+    public void setKey(String key) { this.FACEBOOK_KEY = key; }
 
     @Override
-    public String getKey() {return TWITTER_KEY; }
+    public String getKey() {return FACEBOOK_KEY; }
 
     @Override
-    public void setSecret(String key) { this.TWITTER_SECRET = key; }
+    public void setSecret(String key) { this.FACEBOOK_SECRET = key; }
 
     @Override
-    public String getSecret() { return TWITTER_SECRET; }
+    public String getSecret() { return FACEBOOK_SECRET; }
 
     @Override
     public boolean save(Login object_login) {

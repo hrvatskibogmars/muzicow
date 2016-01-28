@@ -42,8 +42,8 @@ public class EventInfo extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.event_show_data, container, false);
 
         eventObj= (Event)Registry.getInstance().get("Event");
-        EventLatitude= (TextView) view.findViewById(R.id.LatitudeInfo);
-        EventLongitude= (TextView)view.findViewById(R.id.LongitudeInfo);
+        //EventLatitude= (TextView) view.findViewById(R.id.LatitudeInfo);
+        //EventLongitude= (TextView)view.findViewById(R.id.LongitudeInfo);
         EventGenre= (TextView)view.findViewById(R.id.GenreInfo);
         EventName = (TextView)view.findViewById(R.id.NameInfo);
 
