@@ -80,8 +80,6 @@ public class EventInfo extends Fragment implements View.OnClickListener {
     public void showData(){
         EventName.setText(eventObj.getName());
         EventGenre.setText(eventObj.getGenre());
-        //EventLatitude.setText(eventObj.getLatitude());
-       // EventLongitude.setText(eventObj.getLongitude());
         Log.d("event", eventObj.getName());
     }
 }
