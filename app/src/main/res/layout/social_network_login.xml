@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    >
+    android:gravity="center_horizontal">
 
     <com.twitter.sdk.android.core.identity.TwitterLoginButton
         android:id="@+id/twitter"
@@ -17,7 +17,7 @@
         android:layout_alignEnd="@+id/login_buttonFB" />
 
     <com.facebook.login.widget.LoginButton
-        xmlns:fb="http://schemas.android.com/apk/res-auto"
+
         android:id="@+id/login_buttonFB"
         android:layout_width="259dp"
         android:layout_height="200dp"
@@ -40,7 +40,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:entries="@array/spinner"
-        android:gravity="center"
         android:layout_gravity="center_horizontal"
         android:spinnerMode="dialog"
         style="@style/Base.Animation.AppCompat.DropDownUp"
@@ -56,19 +55,17 @@
         android:id="@+id/chooseTxt"
         android:layout_marginTop="20dp"
         android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/spinner" />
+        android:layout_alignEnd="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView2"
+        android:gravity="center_horizontal" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:id="@+id/imageView2"
         android:background="@drawable/logo"
-        android:longClickable="false"
-        android:contextClickable="false"
-        android:cropToPadding="false"
-        android:layout_above="@+id/twitter"
-        android:layout_alignTop="@+id/chooseTxt"
-        android:layout_alignParentStart="true" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
