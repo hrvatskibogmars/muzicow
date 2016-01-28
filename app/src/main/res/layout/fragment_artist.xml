@@ -26,18 +26,29 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:id="@+id/imageView"
-        android:src="@drawable/glitchmob"
+        android:src="@drawable/com_facebook_profile_picture_blank_portrait"
         android:layout_below="@+id/include"
         android:layout_centerHorizontal="true" />
 
+
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Artist:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+    <TextView
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
         android:id="@+id/nameTxt"
         android:layout_below="@+id/websiteTxt"
         android:layout_centerHorizontal="true" />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nickname:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +56,11 @@
         android:id="@+id/nickTxt"
         android:layout_below="@+id/nameTxt"
         android:layout_centerHorizontal="true" />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Location:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,6 +68,11 @@
         android:id="@+id/locationTxt"
         android:layout_below="@+id/twUrlTxt"
         android:layout_alignStart="@+id/twUrlTxt" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Follow me:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
     <TextView
                 android:layout_width="wrap_content"
@@ -64,6 +84,13 @@
                 android:layout_centerHorizontal="true" />
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My website:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Website"
@@ -72,10 +99,20 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About artist:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The Glitch Mob is an American three-piece electronic music group from Los Angeles, California. It consists of edIT (Edward Ma), Boreta (Justin Boreta) and Ooah (Josh Mayer).[1] Chris Martins of LA Weekly noted that they &quot;have undoubtedly found the largest audience of any L.A. beat scene artist yet.&quot;"
+
+        android:text="Lorem"
         android:id="@+id/descriptionView"
         android:layout_marginRight="20dp"
         android:gravity="left"

@@ -15,14 +15,14 @@
         android:ems="10"
         android:id="@+id/songTxt"
         android:layout_gravity="center_horizontal"
-        android:text="SongName" />
+        android:hint="eg. Born to be wild" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/artistTxt"
         android:layout_gravity="center_horizontal"
-        android:text="SongArtist" />
+        android:hint="eg. Steppenwolf" />
 
     <EditText
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
         android:ems="10"
         android:id="@+id/descriptionTxt"
         android:layout_gravity="center_horizontal"
-        android:text="Description" />
+        android:hint="Additional notes to Artist" />
 
     <EditText
         android:layout_width="match_parent"
@@ -40,21 +40,20 @@
         android:ems="10"
         android:id="@+id/ytbTxt"
         android:layout_gravity="center_horizontal"
-        android:text="Youtube link" />
+        android:hint="Youtube link" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Send request"
         android:id="@+id/sendBtn"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        android:background="@drawable/buttonshape"
-        android:shadowColor="#A8A8A8"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="5"
+        android:background="@drawable/tw__login_btn"
+
+
+
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
         />
