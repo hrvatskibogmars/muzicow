@@ -2,37 +2,32 @@ package hr.mars.muzicow.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.twitter.sdk.android.Twitter;
-import com.twitter.sdk.android.core.Callback;
-import com.twitter.sdk.android.core.Result;
-import com.twitter.sdk.android.core.TwitterAuthConfig;
-import com.twitter.sdk.android.core.TwitterException;
-import com.twitter.sdk.android.core.TwitterSession;
-import com.twitter.sdk.android.core.identity.TwitterLoginButton;
-import com.twitter.sdk.android.core.models.User;
 
-import hr.mars.muzicow.R;
+import org.json.JSONObject;
+
 import hr.mars.muzicow.adapter.FragmentAdapterChooser;
 import hr.mars.muzicow.models.DJ;
 import hr.mars.muzicow.models.Login;
 import hr.mars.muzicow.services.SocialAuth;
-import hr.mars.muzicow.services.TwitterLoginListener;
-import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by mars on 27/01/16.
  */
-public class FacebookAuth implements SocialAuth<Login, Context, LoginButton> {
+public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager> {
     Context ctx;
     LoginButton loginButton;
     TextView info;
@@ -51,14 +46,14 @@ public class FacebookAuth implements SocialAuth<Login, Context, LoginButton> {
     public Context getContext() { return this.ctx; }
 
     @Override
-    public void setLoginButton(LoginButton loginButton) { this.loginButton = loginButton; }
+    public void setSocialObject(CallbackManager callbackManager) { this.callbackManager = callbackManager; }
 
     @Override
-    public LoginButton getLoginButton() { return this.loginButton; }
+    public CallbackManager getsocialObject() { return this.callbackManager; }
 
     public void setup() {
         FacebookSdk.sdkInitialize(ctx);
-        callbackManager = CallbackManager.Factory.create();
+        this.setSocialObject(CallbackManager.Factory.create());
     }
 
     @Override
@@ -100,22 +95,45 @@ public class FacebookAuth implements SocialAuth<Login, Context, LoginButton> {
     public boolean logout() { return false; }
 
     @Override
-    public void signup(TwitterLoginButton loginButton){
-        //info = (TextView)findViewById(R.id.info);
+    public void signup(CallbackManager callbackManager){
+
+
 
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
+
                     @Override
                     public void onSuccess(LoginResult loginResult) {
-                        /*
-                        info.setText(
-                                "User ID: "
-                                        + loginResult.getAccessToken().getUserId()
-                                        + "\n" +
-                                        "Auth Token: "
-                                        + loginResult.getAccessToken().getToken()
-                        );
-                        */
+                        GraphRequest request = GraphRequest.newMeRequest(
+                                AccessToken.getCurrentAccessToken(),
+                                new GraphRequest.GraphJSONObjectCallback() {
+                                    @Override
+                                    public void onCompleted(
+                                            JSONObject object,
+                                            GraphResponse response) {
+
+                                        djObject = new DJ();
+                                        try {
+                                            djObject.set_ID( object.getString("id"));
+                                            djObject.setName(object.getString("name"));
+                                            //djObject.setDescription(userOb.data.description);
+                                            //djObject.setLocation(userOb.data.location);
+                                            djObject.setProfile_url(object.getString("link"));
+                                            //djObject.setNickname(userOb.data.screenName);
+                                            //djObject.setWebsite(userOb.data.url);
+                                        }
+                                        catch(Exception e){
+                                            Log.d("error", e.getMessage());
+                                        }
+
+
+                                        showUserData(djObject);
+                                    }
+                                });
+                        Bundle parameters = new Bundle();
+                        parameters.putString("fields", "id,name,link");
+                        request.setParameters(parameters);
+                        request.executeAsync();
                     }
 
                     @Override
@@ -128,5 +146,22 @@ public class FacebookAuth implements SocialAuth<Login, Context, LoginButton> {
                         //info.setText("Login attempt failed.");
                     }
                 });
+
+
+    }
+    public void showUserData(DJ djObject) {
+        Intent myIntent = new Intent(this.ctx, FragmentAdapterChooser.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (role.equals("Participant")) {
+            myIntent.putExtra("userRole", "Participant");
+            myIntent.putExtra("Session", role);
+            myIntent.putExtra("Twitter object", djObject);
+            this.ctx.startActivity(myIntent);
+        } else {
+            myIntent.putExtra("userRole", "Artist");
+            myIntent.putExtra("Session", role);
+            myIntent.putExtra("Twitter object", djObject);
+            this.ctx.startActivity(myIntent);
+        }
     }
 }

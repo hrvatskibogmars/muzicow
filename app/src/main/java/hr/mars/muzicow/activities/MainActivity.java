@@ -10,17 +10,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.facebook.CallbackManager;
-import com.facebook.FacebookSdk;
 import com.facebook.login.widget.LoginButton;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import hr.mars.muzicow.models.DJ;
 import hr.mars.muzicow.models.Login;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.utils.FacebookAuth;
@@ -65,18 +62,19 @@ public class MainActivity extends AppCompatActivity {
 
 
         Registry.getInstance().set("login.atr", at);
+
+        authManagerFB.setContext(getBaseContext());
+        authManagerFB.setProvider("Facebook");
+        authManagerFB.setup();
+        authManagerFB.signup(authManagerFB.getsocialObject());
+
+
         //authManager.setContext(getBaseContext());
-        //authManager.setLoginButton(loginButton);
+        //authManager.setSocialObject(loginButton);
         //authManager.setProvider("Twitter");
         //authManager.setKey("f6FNdst2ZaoQWZYvYOu2a5QCy");
         //authManager.setSecret("deHaJ2nBf5Lj5luPg2Avu7w0JOxbb61GUNZavlb4SELDyK0WUV");
         //authManager.setup();
-
-        //authManagerFB.setContext(getBaseContext());
-        //authManagerFB.setup();
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        callbackManager = CallbackManager.Factory.create();
-
 
         setContentView(R.layout.social_network_login);
 
@@ -86,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 role = mySpinner.getSelectedItem().toString();
                 //authManager.setRole(role);
+                authManagerFB.setRole(role);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -104,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //loginButton.onActivityResult(requestCode, resultCode, data);
+        callbackManager = authManagerFB.getsocialObject();
         callbackManager.onActivityResult(requestCode, resultCode, data);
 
     }

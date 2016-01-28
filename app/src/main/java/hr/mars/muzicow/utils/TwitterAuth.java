@@ -37,9 +37,9 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
     @Override
     public Context getContext() { return this.ctx; }
     @Override
-    public void setLoginButton(TwitterLoginButton loginButton) { this.loginButton = loginButton; }
+    public void setSocialObject(TwitterLoginButton loginButton) { this.loginButton = loginButton; }
     @Override
-    public TwitterLoginButton getLoginButton() { return this.loginButton; }
+    public TwitterLoginButton getsocialObject() { return this.loginButton; }
     public void setup() {
         TwitterAuthConfig authConfig = new TwitterAuthConfig(this.getKey(), this.getSecret());
         Fabric.with(this.ctx, new Twitter(authConfig));

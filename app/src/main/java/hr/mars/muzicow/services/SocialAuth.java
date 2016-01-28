@@ -4,7 +4,7 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 /**
  * Created by mars on 27/01/16.
  */
-public interface SocialAuth<LoginObject, ContextObject, LoginButton> {
+public interface SocialAuth<LoginObject, ContextObject, SocialObject> {
     /***
      * SocialAuth interface for implementing social authentication from different providers in 
      * the MusicCow app. 
@@ -12,8 +12,8 @@ public interface SocialAuth<LoginObject, ContextObject, LoginButton> {
      */
     void setContext(ContextObject ctx);
     ContextObject getContext();
-    void setLoginButton(LoginButton socialButton);
-    LoginButton getLoginButton();
+    void setSocialObject (SocialObject socialButton);
+    SocialObject getsocialObject();
     void setProvider(String provider);
     String getProvider();
     void setKey(String key);
@@ -27,5 +27,5 @@ public interface SocialAuth<LoginObject, ContextObject, LoginButton> {
     String getRole();
     boolean login();  // method retrieves oauth access_token from provider
     boolean logout(); // destroys the access_token from local cache
-    void signup(TwitterLoginButton loginButton); // tries to retrieve user data from provider and saves it to database
+    void signup(SocialObject loginButton); // tries to retrieve user data from provider and saves it to database
 }
