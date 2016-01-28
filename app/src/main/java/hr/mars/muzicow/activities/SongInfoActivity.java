@@ -57,7 +57,7 @@ public class SongInfoActivity extends AppCompatActivity {
             }
         });
         artist = (TextView) findViewById(R.id.artistPlTxt);
-        upVoteBtn = (ImageView) findViewById(R.id.upVoite);
+        upVoteBtn = (ImageView) findViewById(R.id.upVote);
         description = (TextView) findViewById(R.id.descriptionPlTxt);
         upvoted = (TextView) findViewById(R.id.upvoitedNmb);
         Intent intent = getIntent();
