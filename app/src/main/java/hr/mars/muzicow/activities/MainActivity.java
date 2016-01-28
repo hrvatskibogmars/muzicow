@@ -69,12 +69,12 @@ public class MainActivity extends AppCompatActivity {
         authManagerFB.signup(authManagerFB.getsocialObject());
 
 
-        //authManager.setContext(getBaseContext());
-        //authManager.setSocialObject(loginButton);
-        //authManager.setProvider("Twitter");
-        //authManager.setKey("f6FNdst2ZaoQWZYvYOu2a5QCy");
-        //authManager.setSecret("deHaJ2nBf5Lj5luPg2Avu7w0JOxbb61GUNZavlb4SELDyK0WUV");
-        //authManager.setup();
+        authManager.setContext(getBaseContext());
+        authManager.setSocialObject(loginButton);
+        authManager.setProvider("Twitter");
+        authManager.setKey("f6FNdst2ZaoQWZYvYOu2a5QCy");
+        authManager.setSecret("deHaJ2nBf5Lj5luPg2Avu7w0JOxbb61GUNZavlb4SELDyK0WUV");
+        authManager.setup();
 
         setContentView(R.layout.social_network_login);
 
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 role = mySpinner.getSelectedItem().toString();
-                //authManager.setRole(role);
+                authManager.setRole(role);
                 authManagerFB.setRole(role);
             }
             @Override
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter);
-        //authManager.signup(loginButton);
+        authManager.signup(loginButton);
 
 
         //info = (TextView)findViewById(R.id.info);
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //loginButton.onActivityResult(requestCode, resultCode, data);
+        loginButton.onActivityResult(requestCode, resultCode, data);
         callbackManager = authManagerFB.getsocialObject();
         callbackManager.onActivityResult(requestCode, resultCode, data);
 

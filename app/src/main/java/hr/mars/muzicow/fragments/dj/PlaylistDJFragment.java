@@ -84,7 +84,7 @@ public class PlaylistDJFragment extends Fragment {
                             Collections.sort(songs, new Comparator<Song>() {
 
                                 public int compare(Song o1, Song o2) {
-                                    return o2.getUpvoited().compareTo(o1.getUpvoited());
+                                    return o2.getUpvoted().compareTo(o1.getUpvoted());
                                 }
                             });
                             SongAdapter adapter = new SongAdapter(getContext(), songs);

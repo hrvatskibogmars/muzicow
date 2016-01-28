@@ -1,5 +1,6 @@
 package hr.mars.muzicow.requests;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import hr.mars.muzicow.models.Event;
@@ -19,11 +20,11 @@ public interface SongAPI {
     @FormUrlEncoded
     @POST("/api/songs/")
     void createSong(@Field("artist") String artist,
-                     @Field("event_id") String event_id, @Field("description") String description,
-                     @Field("status") String status,@Field("upvoited") String upvoited,
-                     @Field("youtube_link") String youtube_link,
-                     @Field("name") String name,
-                     Callback<Response> cb);
+                    @Field("event_id") String event_id, @Field("description") String description,
+                    @Field("status") String status,@Field("upvoted") String upvited,@Field("voted[]") String voted,
+                    @Field("youtube_link") String youtube_link,
+                    @Field("name") String name,
+                    Callback<Response> cb);
 
 
     @GET("/api/{event_ID}")
@@ -40,13 +41,13 @@ public interface SongAPI {
     @POST("/api/songs/{url}")
     void updateSong(@Path(value="url", encode = false) String url,
                     @Field("status") String status,
-                  Callback<List<Song>> cb);
+                    Callback<List<Song>> cb);
 
     @FormUrlEncoded
     @POST("/api/songs/{url}")
     void updateUpvoite(@Path(value="url", encode = false) String url,
-                    @Field("upvoited") String upvoited,
-                    Callback<Song> cb);
+                       @Field("upvoted") String upvoited, @Field("voted[]") ArrayList<String> voted,
+                       Callback<Song> cb);
 
 
 }

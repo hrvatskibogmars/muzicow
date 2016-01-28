@@ -89,7 +89,7 @@ public class PlaylistUserFragment extends Fragment {
                                 Collections.sort(songs, new Comparator<Song>() {
 
                                     public int compare(Song o1, Song o2) {
-                                        return o2.getUpvoited().compareTo(o1.getUpvoited());
+                                        return o2.getUpvoted().compareTo(o1.getUpvoted());
                                     }
                                 });
                                 SongAdapter adapter = new SongAdapter(getContext(), songs);
@@ -111,7 +111,7 @@ public class PlaylistUserFragment extends Fragment {
                                         intent.putExtra("SongArtist", songs.get(position).getArtist());
                                         intent.putExtra("SongDescription", songs.get(position).getDescription());
                                         intent.putExtra("SongId", songs.get(position).get_ID());
-                                        intent.putExtra("SongUpvoite",songs.get(position).getUpvoited());
+                                        intent.putExtra("SongUpvoite",songs.get(position).getUpvoted());
 
 
 
