@@ -21,33 +21,33 @@ public interface SongAPI {
     @POST("/api/songs/")
     void createSong(@Field("artist") String artist,
                     @Field("event_id") String event_id, @Field("description") String description,
-                    @Field("status") String status,@Field("upvoted") String upvited,@Field("voted[]") String voted,
+                    @Field("status") String status, @Field("upvoted") String upvited, @Field("voted[]") String voted,
                     @Field("youtube_link") String youtube_link,
                     @Field("name") String name,
                     Callback<Response> cb);
 
 
     @GET("/api/{event_ID}")
-    void getEvent(@Path(value="event_ID", encode=false) String st, Callback<List<Event>> cb);
+    void getEvent(@Path(value = "event_ID", encode = false) String st, Callback<List<Event>> cb);
 
     @GET("/api/{songs}")
-    void getSongs(@Path(value="songs", encode=false) String st, Callback<List<Song>> cb);
+    void getSongs(@Path(value = "songs", encode = false) String st, Callback<List<Song>> cb);
 
 
     @GET("/api/{status}")
-    void getStatus(@Path(value="status", encode=false) String st,Callback<List<Song>> cb);
+    void getStatus(@Path(value = "status", encode = false) String st, Callback<List<Song>> cb);
 
     @FormUrlEncoded
     @POST("/api/songs/{url}")
-    void updateSong(@Path(value="url", encode = false) String url,
+    void updateSong(@Path(value = "url", encode = false) String url,
                     @Field("status") String status,
                     Callback<List<Song>> cb);
 
     @FormUrlEncoded
     @POST("/api/songs/{url}")
-    void updateUpvote(@Path(value="url", encode = false) String url,
-                       @Field("upvoted") String upvoited, @Field("voted[]") ArrayList<String> voted,
-                       Callback<Song> cb);
+    void updateUpvote(@Path(value = "url", encode = false) String url,
+                      @Field("upvoted") String upvoited, @Field("voted[]") ArrayList<String> voted,
+                      Callback<Song> cb);
 
 
 }

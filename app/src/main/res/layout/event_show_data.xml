@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Event Info"
         android:id="@+id/eventShowName"
-        android:textAlignment="center" />
-
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="Event Info"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
         android:id="@+id/GenreInfo"
-        android:textAlignment="center" />
-
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Name"
+        android:text="Medium Text"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
         android:id="@+id/NameInfo"
-        android:textAlignment="center" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="100pt"
-        android:layout_height="wrap_content"
-        android:text="Show Artist Info"
         android:id="@+id/djShowbtn"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:background="@drawable/tw__login_btn_default"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:layout_marginTop="80dp" />
-
-    <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="100pt"
         android:layout_height="wrap_content"
-        android:text="Request a song"
-        android:id="@+id/requestBtn"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:background="@drawable/tw__login_btn_default"
-
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="80dp"
+        android:background="@drawable/tw__login_btn_default"
+        android:text="Show Artist Info"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 
+    <Button
+        android:id="@+id/requestBtn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="100pt"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/tw__login_btn_default"
+
+        android:text="Request a song"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 
 
 </LinearLayout>

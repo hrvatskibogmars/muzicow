@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 package hr.mars.muzicow.adapter;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +22,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -34,20 +34,23 @@ import com.twitter.sdk.android.Twitter;
 
 import java.util.ArrayList;
 import java.util.List;
-import hr.mars.muzicow.fragments.dj.PlaylistDJFragment;
-import hr.mars.muzicow.activities.MainActivity;
+
 import hr.mars.muzicow.R;
-import hr.mars.muzicow.models.DJ;
+import hr.mars.muzicow.activities.MainActivity;
 import hr.mars.muzicow.fragments.dj.EditProfileFragment;
 import hr.mars.muzicow.fragments.dj.ManageEventFragment;
+import hr.mars.muzicow.fragments.dj.PlaylistDJFragment;
 import hr.mars.muzicow.fragments.user.EventFragment;
+import hr.mars.muzicow.models.DJ;
 import hr.mars.muzicow.utils.Registry;
+
 public class FragmentAdapterChooser extends AppCompatActivity {
     Context context;
     String role;
     String session;
     int counter;
     DJ djObject;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,14 +59,12 @@ public class FragmentAdapterChooser extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         role = intent.getStringExtra("userRole");
         session = intent.getStringExtra("Session");
-        if(session.isEmpty()){
-        }
-        else {
+        if (session.isEmpty()) {
+        } else {
             try {
                 djObject = bundle.getParcelable("Twitter object");
-                Registry.getInstance().set("djObject",djObject);
-            }
-            catch (Exception e){
+                Registry.getInstance().set("djObject", djObject);
+            } catch (Exception e) {
                 Log.d("Show", e.getMessage());
             }
         }
@@ -86,18 +87,21 @@ public class FragmentAdapterChooser extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
     }
+
     @Override
     public void onResume() {
         super.onResume();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        switch(role) {
+        switch (role) {
             case "Participant":
                 if (session.isEmpty()) {
                     Intent intent = new Intent(this, MainActivity.class);
@@ -123,6 +127,7 @@ public class FragmentAdapterChooser extends AppCompatActivity {
         }
         viewPager.setAdapter(adapter);
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -140,28 +145,35 @@ public class FragmentAdapterChooser extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-    public void logout(){
+
+    public void logout() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
     static class Adapter extends FragmentPagerAdapter {
         private final List<android.support.v4.app.Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
+
         public Adapter(FragmentManager fm) {
             super(fm);
         }
+
         public void addFragment(android.support.v4.app.Fragment fragment, String title) {
             mFragments.add(fragment);
             mFragmentTitles.add(title);
         }
+
         @Override
         public android.support.v4.app.Fragment getItem(int position) {
             return mFragments.get(position);
         }
+
         @Override
         public int getCount() {
             return mFragments.size();
         }
+
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitles.get(position);

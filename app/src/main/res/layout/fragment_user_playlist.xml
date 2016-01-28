@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2015 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,25 +25,25 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/detail_backdrop_height"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
-            app:expandedTitleMarginEnd="64dp">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:layout_collapseMode="pin" />
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -75,17 +74,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Artist"
-                        android:textStyle="bold"
-                        android:textSize="25dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                         />
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/artistPlTxt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/artistPlTxt"
-                        android:textSize="30dp"
-                        android:text="Lude Krawe" />
+                        android:text="Lude Krawe"
+                        android:textSize="30dp" />
 
                 </LinearLayout>
 
@@ -108,38 +106,38 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.52"
                         android:text="Current UpVotes:"
-                        android:textSize="25dp"
-                        android:textStyle="bold"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:layout_weight="0.52" />
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/upvoitedNmb"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
-                        android:textSize="30dp"
-                        android:textStyle="bold"
+                        android:layout_marginTop="15dp"
                         android:text="10"
-                        android:id="@+id/upvoitedNmb"
                         android:textColor="#1c871a"
-                        android:layout_marginTop="15dp" />
-
-
+                        android:textSize="30dp"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
+
                 <LinearLayout
                     style="@style/Widget.CardContent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:weightSum="1"
-                    android:layout_gravity="right">
+                    android:layout_gravity="right"
+                    android:weightSum="1">
+
                     <ImageView
+                        android:id="@+id/upVote"
                         android:layout_width="100dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/upvote"
                         android:onClick="buttonClickFunction"
-                        android:id="@+id/upVote" />
+                        android:src="@drawable/upvote" />
 
 
                 </LinearLayout>
@@ -164,19 +162,18 @@
                         android:layout_height="wrap_content"
 
                         android:text="Description"
-                        android:textSize="25dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textSize="25dp" />
 
                     <TextView
+                        android:id="@+id/descriptionPlTxt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/descriptionPlTxt"
                         android:text="Punk" />
 
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
-
 
 
         </LinearLayout>

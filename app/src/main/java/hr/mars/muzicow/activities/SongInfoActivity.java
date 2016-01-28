@@ -18,10 +18,10 @@ import com.twitter.sdk.android.Twitter;
 import java.util.ArrayList;
 import java.util.List;
 
-import hr.mars.muzicow.models.DJ;
-import hr.mars.muzicow.requests.SongAPI;
-import hr.mars.muzicow.models.Song;
 import hr.mars.muzicow.R;
+import hr.mars.muzicow.models.DJ;
+import hr.mars.muzicow.models.Song;
+import hr.mars.muzicow.requests.SongAPI;
 import hr.mars.muzicow.services.ServiceGenerator;
 import hr.mars.muzicow.utils.Registry;
 import retrofit.Callback;
@@ -33,14 +33,15 @@ import retrofit.client.Response;
  */
 public class SongInfoActivity extends AppCompatActivity {
 
-    Context context;
-    TextView artist,description,upvoted;
     final SongAPI eventRetrofit = ServiceGenerator.createService(SongAPI.class);
-    String songID,songUpvote,songDescription,songArtist,songName,songsUrl;
-    int vote=0;
+    Context context;
+    TextView artist, description, upvoted;
+    String songID, songUpvote, songDescription, songArtist, songName, songsUrl;
+    int vote = 0;
     ImageView upVoteBtn;
     DJ djObject;
-    ArrayList<String>votedIDs;
+    ArrayList<String> votedIDs;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +87,7 @@ public class SongInfoActivity extends AppCompatActivity {
             public void success(List<Song> songs, Response response) {
                 if (!songs.isEmpty()) {
                     upvoted.setText(songs.get(0).getUpvoted());
-                    votedIDs=songs.get(0).getVoted();
+                    votedIDs = songs.get(0).getVoted();
                     for (int i = 0; i < songs.get(0).getVoted().size(); i++) {
                         if (songs.get(0).getVoted().get(i).equals(djObject.get_ID())) {
                             upVoteBtn.setVisibility(View.INVISIBLE);
@@ -105,7 +106,7 @@ public class SongInfoActivity extends AppCompatActivity {
         });
     }
 
-    public void logout(){
+    public void logout() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -114,7 +115,7 @@ public class SongInfoActivity extends AppCompatActivity {
 
         vote = Integer.parseInt(songUpvote) + 1;
         votedIDs.add(djObject.get_ID());
-        final String updateVoite = "update?where=%7B%22_ID%22%3A%20%22"+songID+"%22%7D";
+        final String updateVoite = "update?where=%7B%22_ID%22%3A%20%22" + songID + "%22%7D";
         eventRetrofit.updateUpvote(updateVoite, Integer.toString(vote), votedIDs, new Callback<Song>() {
                     @Override
                     public void success(Song songs, Response response) {
@@ -144,12 +145,6 @@ public class SongInfoActivity extends AppCompatActivity {
                         toast.show();
                     }
                 }
-
         );
-
-
-
     }
-
-
 }

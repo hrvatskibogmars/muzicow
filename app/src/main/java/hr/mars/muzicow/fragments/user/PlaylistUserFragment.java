@@ -48,7 +48,6 @@ public class PlaylistUserFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 while (true) {
                     try {
                         Thread.sleep(2000);
@@ -56,28 +55,21 @@ public class PlaylistUserFragment extends Fragment {
 
                             @Override
                             public void run() {
-                                // TODO Auto-generated method stub
                                 loadData();
                             }
                         });
                     } catch (Exception e) {
-                        // TODO: handle exception
                     }
                 }
             }
         }).start();
-
-
         return view;
-
     }
 
 
     public void loadData(){
         final SongAPI eventRetrofit = ServiceGenerator.createService(SongAPI.class);
-
                 try {
-
                     String songs ="songs?filter=%7B%22where%22%3A%7B%22event_id%22%3A%22"+eventObj.get_ID()+"%22%7D%7D";
                     Log.d("songs", "id eventa " + eventObj.get_ID());
                     eventRetrofit.getSongs(songs, new Callback<List<Song>>() {
@@ -103,41 +95,25 @@ public class PlaylistUserFragment extends Fragment {
 
                                         Log.d("Position", String.valueOf(position));
 
-
                                         Intent intent = new Intent(getContext(), SongInfoActivity.class);
-
-
                                         intent.putExtra("SongsName", songs.get(position).getName());
                                         intent.putExtra("SongArtist", songs.get(position).getArtist());
                                         intent.putExtra("SongDescription", songs.get(position).getDescription());
                                         intent.putExtra("SongId", songs.get(position).get_ID());
                                         intent.putExtra("SongUpvoite",songs.get(position).getUpvoted());
-
-
-
-
                                         startActivity(intent);
-
                                     }
                                 });
                             }
-
                         }
-
                         @Override
                         public void failure(RetrofitError error) {
-
                         }
                     });
-
-
-
                 }
                 catch (Exception e){
                     Toast.makeText(getActivity(), "No available events", Toast.LENGTH_LONG).show();
                 }
             }
-
-
 }
 

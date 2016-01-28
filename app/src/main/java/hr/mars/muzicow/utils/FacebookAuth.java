@@ -22,7 +22,6 @@ import org.json.JSONObject;
 import hr.mars.muzicow.adapter.FragmentAdapterChooser;
 import hr.mars.muzicow.models.DJ;
 import hr.mars.muzicow.models.Login;
-import hr.mars.muzicow.services.SocialAuth;
 
 /**
  * Created by mars on 27/01/16.
@@ -40,16 +39,24 @@ public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager>
     DJ djObject;
 
     @Override
-    public void setContext(Context ctx) { this.ctx = ctx; }
+    public Context getContext() {
+        return this.ctx;
+    }
 
     @Override
-    public Context getContext() { return this.ctx; }
+    public void setContext(Context ctx) {
+        this.ctx = ctx;
+    }
 
     @Override
-    public void setSocialObject(CallbackManager callbackManager) { this.callbackManager = callbackManager; }
+    public void setSocialObject(CallbackManager callbackManager) {
+        this.callbackManager = callbackManager;
+    }
 
     @Override
-    public CallbackManager getsocialObject() { return this.callbackManager; }
+    public CallbackManager getsocialObject() {
+        return this.callbackManager;
+    }
 
     public void setup() {
         FacebookSdk.sdkInitialize(ctx);
@@ -57,22 +64,34 @@ public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager>
     }
 
     @Override
-    public void setProvider(String provider) { this.Provider = provider; }
+    public String getProvider() {
+        return Provider;
+    }
 
     @Override
-    public String getProvider() {return Provider; }
+    public void setProvider(String provider) {
+        this.Provider = provider;
+    }
 
     @Override
-    public void setKey(String key) { this.FACEBOOK_KEY = key; }
+    public String getKey() {
+        return FACEBOOK_KEY;
+    }
 
     @Override
-    public String getKey() {return FACEBOOK_KEY; }
+    public void setKey(String key) {
+        this.FACEBOOK_KEY = key;
+    }
 
     @Override
-    public void setSecret(String key) { this.FACEBOOK_SECRET = key; }
+    public String getSecret() {
+        return FACEBOOK_SECRET;
+    }
 
     @Override
-    public String getSecret() { return FACEBOOK_SECRET; }
+    public void setSecret(String key) {
+        this.FACEBOOK_SECRET = key;
+    }
 
     @Override
     public boolean save(Login object_login) {
@@ -80,22 +99,32 @@ public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager>
     }
 
     @Override
-    public Login load() { return null; }
+    public Login load() {
+        return null;
+    }
 
     @Override
-    public void setRole(String role) { this.role = role; }
+    public String getRole() {
+        return role;
+    }
 
     @Override
-    public String getRole() { return role; }
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     @Override
-    public boolean login() { return false; }
+    public boolean login() {
+        return false;
+    }
 
     @Override
-    public boolean logout() { return false; }
+    public boolean logout() {
+        return false;
+    }
 
     @Override
-    public void signup(CallbackManager callbackManager){
+    public void signup(CallbackManager callbackManager) {
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
 
@@ -119,8 +148,7 @@ public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager>
                                             //djObject.setNickname(object.getString("middle_name"));
                                             //djObject.setWebsite(object.getString("website"));
                                             Log.d("fb object", object.toString());
-                                        }
-                                        catch(Exception e){
+                                        } catch (Exception e) {
                                             Log.d("error", e.getMessage());
                                         }
                                         showUserData(djObject);
@@ -145,6 +173,7 @@ public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager>
 
 
     }
+
     public void showUserData(DJ djObject) {
         Intent myIntent = new Intent(this.ctx, FragmentAdapterChooser.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

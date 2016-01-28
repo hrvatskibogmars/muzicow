@@ -15,10 +15,11 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import hr.mars.muzicow.requests.UserAPI;
+import hr.mars.muzicow.R;
+import hr.mars.muzicow.activities.EventContainActivity;
 import hr.mars.muzicow.adapter.CustomEvenetListAdapter;
 import hr.mars.muzicow.models.Event;
-import hr.mars.muzicow.R;
+import hr.mars.muzicow.requests.UserAPI;
 import hr.mars.muzicow.services.ServiceGenerator;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -27,8 +28,9 @@ import retrofit.client.Response;
 /**
  * Created by mars on 27/10/15.
  */
-public class EventFragment extends Fragment  {
+public class EventFragment extends Fragment {
     ListView lv;
+    String status = "events?filter=%7B%22where%22%3A%7B%22status%22%3A%22" + "1" + "%22%7D%7D";
 
     @Nullable
     @Override
@@ -42,16 +44,14 @@ public class EventFragment extends Fragment  {
 
     }
 
-    String status = "events?filter=%7B%22where%22%3A%7B%22status%22%3A%22" + "1" + "%22%7D%7D";
-
-    public void loadData(){
+    public void loadData() {
         UserAPI eventRetrofit = ServiceGenerator.createService(UserAPI.class);
         eventRetrofit.getEvent(status, new Callback<List<Event>>() {
             @Override
             public void success(final List<Event> events, Response response) {
                 try {
 
-                    CustomEvenetListAdapter adapter = new CustomEvenetListAdapter(getContext(),events);
+                    CustomEvenetListAdapter adapter = new CustomEvenetListAdapter(getContext(), events);
                     lv.setAdapter(adapter);
 
                     lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -72,14 +72,14 @@ public class EventFragment extends Fragment  {
                         }
                     });
 
-                }
-                catch (Exception e){
-                    Toast.makeText(getActivity(),"No available events", Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(), "No available events", Toast.LENGTH_LONG).show();
                 }
             }
+
             @Override
             public void failure(RetrofitError error) {
-                Log.d("Event",error.getMessage());
+                Log.d("Event", error.getMessage());
             }
         });
     }

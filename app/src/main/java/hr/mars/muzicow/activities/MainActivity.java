@@ -1,4 +1,5 @@
 package hr.mars.muzicow.activities;
+
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -11,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.login.widget.LoginButton;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
@@ -19,26 +19,24 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import hr.mars.muzicow.models.Login;
 import hr.mars.muzicow.R;
+import hr.mars.muzicow.models.Login;
 import hr.mars.muzicow.utils.FacebookAuth;
 import hr.mars.muzicow.utils.Registry;
 import hr.mars.muzicow.utils.TwitterAuth;
+
 /**
  * Created by mars on 14/11/15.
  */
 public class MainActivity extends AppCompatActivity {
 
     CallbackManager callbackManager;
-    private TwitterLoginButton loginButton;
-    private LoginButton loginButton1;
-
     Login at = new Login();
-
     TwitterAuth authManager = new TwitterAuth();
     FacebookAuth authManagerFB = new FacebookAuth();
-
     String role;
+    private TwitterLoginButton loginButton;
+    private LoginButton loginButton1;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -57,10 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("KeyHash:",
                         Base64.encodeToString(md.digest(), Base64.DEFAULT));
             }
-        }
-        catch (PackageManager.NameNotFoundException e) {
-        }
-        catch (NoSuchAlgorithmException e) {
+        } catch (PackageManager.NameNotFoundException e) {
+        } catch (NoSuchAlgorithmException e) {
         }
 
 
@@ -88,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 authManager.setRole(role);
                 authManagerFB.setRole(role);
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
@@ -96,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter);
         authManager.signup(loginButton);
 
-        loginButton1 = (LoginButton)findViewById(R.id.login_buttonFB);
+        loginButton1 = (LoginButton) findViewById(R.id.login_buttonFB);
     }
 
     @Override

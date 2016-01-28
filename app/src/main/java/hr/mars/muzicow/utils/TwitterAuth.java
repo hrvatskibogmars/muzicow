@@ -1,4 +1,5 @@
 package hr.mars.muzicow.utils;
+
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -15,9 +16,8 @@ import com.twitter.sdk.android.core.models.User;
 import hr.mars.muzicow.adapter.FragmentAdapterChooser;
 import hr.mars.muzicow.models.DJ;
 import hr.mars.muzicow.models.Login;
-import hr.mars.muzicow.services.SocialAuth;
-import hr.mars.muzicow.services.TwitterLoginListener;
 import io.fabric.sdk.android.Fabric;
+
 /**
  * Created by mars on 27/01/16.
  */
@@ -31,45 +31,92 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
     TwitterSession session;
     DJ djObject;
     TwitterRetData twitterReadData = new TwitterRetData();
-    
+
     @Override
-    public void setContext(Context ctx) { this.ctx = ctx; }
+    public Context getContext() {
+        return this.ctx;
+    }
+
     @Override
-    public Context getContext() { return this.ctx; }
+    public void setContext(Context ctx) {
+        this.ctx = ctx;
+    }
+
     @Override
-    public void setSocialObject(TwitterLoginButton loginButton) { this.loginButton = loginButton; }
+    public void setSocialObject(TwitterLoginButton loginButton) {
+        this.loginButton = loginButton;
+    }
+
     @Override
-    public TwitterLoginButton getsocialObject() { return this.loginButton; }
+    public TwitterLoginButton getsocialObject() {
+        return this.loginButton;
+    }
+
     public void setup() {
         TwitterAuthConfig authConfig = new TwitterAuthConfig(this.getKey(), this.getSecret());
         Fabric.with(this.ctx, new Twitter(authConfig));
     }
+
     @Override
-    public void setProvider(String provider) { this.Provider = provider; }
+    public String getProvider() {
+        return Provider;
+    }
+
     @Override
-    public String getProvider() {return Provider; }
+    public void setProvider(String provider) {
+        this.Provider = provider;
+    }
+
     @Override
-    public void setKey(String key) { this.TWITTER_KEY = key; }
+    public String getKey() {
+        return TWITTER_KEY;
+    }
+
     @Override
-    public String getKey() {return TWITTER_KEY; }
+    public void setKey(String key) {
+        this.TWITTER_KEY = key;
+    }
+
     @Override
-    public void setSecret(String key) { this.TWITTER_SECRET = key; }
+    public String getSecret() {
+        return TWITTER_SECRET;
+    }
+
     @Override
-    public String getSecret() { return TWITTER_SECRET; }
+    public void setSecret(String key) {
+        this.TWITTER_SECRET = key;
+    }
+
     @Override
     public boolean save(Login object_login) {
         return false;
     }
+
     @Override
-    public Login load() { return null; }
+    public Login load() {
+        return null;
+    }
+
     @Override
-    public void setRole(String role) { this.role = role; }
+    public String getRole() {
+        return role;
+    }
+
     @Override
-    public String getRole() { return role; }
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
-    public boolean login() { return false; }
+    public boolean login() {
+        return false;
+    }
+
     @Override
-    public boolean logout() { return false; }
+    public boolean logout() {
+        return false;
+    }
+
     @Override
     public void signup(TwitterLoginButton loginButton) {
         /*
@@ -79,6 +126,8 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
             @Override
             public void success(Result<TwitterSession> result) {
                 ((Login) Registry.getInstance().get("login.atr")).setSession(Twitter.getInstance().core.getSessionManager().getActiveSession());
+
+                twitterReadData.retSNetData();
                 twitterReadData.setListener(new TwitterLoginListener() {
                     @Override
                     public void success(Result<User> userOb) {
@@ -100,25 +149,26 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
                     }
                 });
             }
+
             @Override
             public void failure(TwitterException exception) {
                 Log.d("TwitterKit", "Login with Twitter failure", exception);
             }
         });
     }
-    public void showUserData(DJ djObject){
+
+    public void showUserData(DJ djObject) {
         Intent myIntent = new Intent(this.ctx, FragmentAdapterChooser.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if(role.equals("Participant")) {
+        if (role.equals("Participant")) {
             myIntent.putExtra("userRole", "Participant");
             myIntent.putExtra("Session", role);
-            myIntent.putExtra("Twitter object",  djObject);
+            myIntent.putExtra("Twitter object", djObject);
             this.ctx.startActivity(myIntent);
-        }
-        else{
+        } else {
             myIntent.putExtra("userRole", "Artist");
             myIntent.putExtra("Session", role);
-            myIntent.putExtra("Twitter object",  djObject);
+            myIntent.putExtra("Twitter object", djObject);
             this.ctx.startActivity(myIntent);
         }
     }

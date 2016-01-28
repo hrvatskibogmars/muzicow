@@ -25,12 +25,12 @@ public interface EventAPI {
 
     //Check for active event - if active get event
     @GET("/api/{event_active}")
-    void getActiveEvent(@Path(value="event_active", encode=false) String ea, Callback<List<Event>> ev);
+    void getActiveEvent(@Path(value = "event_active", encode = false) String ea, Callback<List<Event>> ev);
 
     //Update event
     @FormUrlEncoded
     @POST("/api/events/{eventUrl}")
-    void updateEvent(@Path(value="eventUrl", encode=false) String ea,
+    void updateEvent(@Path(value = "eventUrl", encode = false) String ea,
                      @Field("dj_ID") String djID, @Field("latitude") String latitude,
                      @Field("longitude") String longitude, @Field("genre") String genre,
                      @Field("status") String status, @Field("name") String name,

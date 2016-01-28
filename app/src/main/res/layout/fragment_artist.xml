@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
-
-    <include layout="@layout/include_list_viewpager"
-        android:layout_height="124dp"
-        android:layout_width="match_parent"
+    <include
         android:id="@+id/include"
-        />
+        layout="@layout/include_list_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="124dp" />
 
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Info about Artist"
-        android:id="@+id/textView2" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:id="@+id/imageView"
-        android:src="@drawable/com_facebook_profile_picture_blank_portrait"
         android:layout_below="@+id/include"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/com_facebook_profile_picture_blank_portrait" />
 
 
     <TextView
@@ -36,38 +34,44 @@
         android:layout_height="wrap_content"
         android:text="Artist:"
         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
     <TextView
 
+        android:id="@+id/nameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
-        android:id="@+id/nameTxt"
         android:layout_below="@+id/websiteTxt"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="Name" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nickname:"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
     <TextView
+        android:id="@+id/nickTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nickname"
-        android:id="@+id/nickTxt"
         android:layout_below="@+id/nameTxt"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="Nickname" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Location:"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
     <TextView
+        android:id="@+id/locationTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Location"
-        android:id="@+id/locationTxt"
+        android:layout_alignStart="@+id/twUrlTxt"
         android:layout_below="@+id/twUrlTxt"
-        android:layout_alignStart="@+id/twUrlTxt" />
+        android:text="Location" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -75,13 +79,13 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
     <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TwitterUrl"
-                android:id="@+id/twUrlTxt"
+        android:id="@+id/twUrlTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nickTxt"
 
-                android:layout_below="@+id/nickTxt"
-                android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="TwitterUrl" />
 
     <TextView
         android:layout_width="match_parent"
@@ -91,17 +95,18 @@
 
 
     <TextView
+        android:id="@+id/websiteTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Website"
-        android:id="@+id/websiteTxt"
+        android:layout_centerHorizontal="true"
 
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:text="Website" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></FrameLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -109,16 +114,16 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:text="Lorem"
         android:id="@+id/descriptionView"
-        android:layout_marginRight="20dp"
-        android:gravity="left"
+        android:layout_width="wrap_content"
 
+        android:layout_height="wrap_content"
         android:layout_below="@+id/locationTxt"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="20dp"
+
+        android:gravity="left"
+        android:text="Lorem" />
 
 
 </LinearLayout>

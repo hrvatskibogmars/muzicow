@@ -1,9 +1,8 @@
-package hr.mars.muzicow.fragments.user;
+package hr.mars.muzicow.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -17,13 +16,12 @@ import com.twitter.sdk.android.Twitter;
 
 import java.util.List;
 
-import hr.mars.muzicow.activities.MainActivity;
-import hr.mars.muzicow.requests.UserAPI;
+import hr.mars.muzicow.R;
 import hr.mars.muzicow.models.DJ;
 import hr.mars.muzicow.models.Event;
-import hr.mars.muzicow.R;
-import hr.mars.muzicow.utils.Registry;
+import hr.mars.muzicow.requests.UserAPI;
 import hr.mars.muzicow.services.ServiceGenerator;
+import hr.mars.muzicow.utils.Registry;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -61,19 +59,21 @@ public class AboutDJActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         showData();
-        name=(TextView)findViewById(R.id.nameTxt);
-        nick=(TextView)findViewById(R.id.nickTxt);
-        web=(TextView)findViewById(R.id.websiteTxt);
-        location=(TextView)findViewById(R.id.locationTxt);
-        twUrl=(TextView)findViewById(R.id.twUrlTxt);
-        description=(TextView)findViewById(R.id.descriptionView);
-        imageView = (ImageView)findViewById(R.id.imageView);
+        name = (TextView) findViewById(R.id.nameTxt);
+        nick = (TextView) findViewById(R.id.nickTxt);
+        web = (TextView) findViewById(R.id.websiteTxt);
+        location = (TextView) findViewById(R.id.locationTxt);
+        twUrl = (TextView) findViewById(R.id.twUrlTxt);
+        description = (TextView) findViewById(R.id.descriptionView);
+        imageView = (ImageView) findViewById(R.id.imageView);
     }
-    public void logout(){
+
+    public void logout() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-    public void showData(){
+
+    public void showData() {
         String query = "djs?filter=%7B%22where%22%3A%7B%22_ID%22%3A%22" + ((Event) Registry.getInstance().get("Event")).getDj_ID() + "%22%7D%7D";
         try {
             UserAPI djInfoRetrofit = ServiceGenerator.createService(UserAPI.class);
@@ -97,8 +97,7 @@ public class AboutDJActivity extends AppCompatActivity {
                     Log.d("Get DJ ID error", error.getMessage());
                 }
             });
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
 

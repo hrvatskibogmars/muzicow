@@ -15,23 +15,23 @@ import retrofit.http.Path;
  */
 public interface DJAPI {
     @GET("/api/{ID}")
-    void getDJ(@Path(value="ID", encode=false) String st, Callback<List<DJ>> cb);
+    void getDJ(@Path(value = "ID", encode = false) String st, Callback<List<DJ>> cb);
 
 
     @FormUrlEncoded
     @POST("/api/djs/")
     void createDJ(@Field("_ID") String ID,
                   @Field("name") String name, @Field("website") String website,
-                  @Field("location") String location,@Field("nickname") String nickname,
+                  @Field("location") String location, @Field("nickname") String nickname,
                   @Field("profile_url") String profile_url, @Field("twitter_url") String twitter_url,
                   @Field("description") String description,
                   Callback<List<DJ>> cb);
 
     @FormUrlEncoded
     @POST("/api/djs/{url}")
-    void updateDJ(@Path(value="url", encode = false) String url,@Field("_ID") String ID,
+    void updateDJ(@Path(value = "url", encode = false) String url, @Field("_ID") String ID,
                   @Field("name") String name, @Field("website") String website,
-                  @Field("location") String location,@Field("nickname") String nickname,
+                  @Field("location") String location, @Field("nickname") String nickname,
                   @Field("profile_url") String profile_url, @Field("twitter_url") String twitter_url,
                   @Field("description") String description,
                   Callback<List<DJ>> cb);

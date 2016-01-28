@@ -1,128 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <EditText
+        android:id="@+id/latitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/latitude"
-        android:hint="latitude"
-        android:layout_marginTop="45dp"
-        android:layout_below="@+id/genre"
-        android:layout_alignStart="@+id/longitude"
         android:layout_alignEnd="@+id/longitude"
+        android:layout_alignStart="@+id/longitude"
+        android:layout_below="@+id/genre"
+        android:layout_marginTop="45dp"
         android:clickable="false"
         android:editable="false"
         android:elegantTextHeight="false"
         android:enabled="false"
-        android:gravity="center" />
+        android:gravity="center"
+        android:hint="latitude" />
 
     <EditText
+        android:id="@+id/longitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/longitude"
-        android:hint="longitude"
-        android:layout_below="@+id/genre"
-
         android:layout_alignEnd="@+id/genre"
         android:layout_alignStart="@+id/genre"
+
+        android:layout_below="@+id/genre"
         android:clickable="false"
         android:editable="false"
         android:elegantTextHeight="false"
         android:enabled="false"
-        android:gravity="center" />
+        android:gravity="center"
+        android:hint="longitude" />
 
     <EditText
+        android:id="@+id/eventName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/eventName"
-        android:hint="Event Name"
-        android:layout_below="@+id/textView10"
         android:layout_alignEnd="@+id/createEvent"
         android:layout_alignStart="@+id/createEvent"
-        android:gravity="center" />
+        android:layout_below="@+id/textView10"
+        android:gravity="center"
+        android:hint="Event Name" />
 
     <EditText
+        android:id="@+id/genre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/genre"
-        android:hint="Genre"
-        android:layout_below="@+id/eventName"
-        android:layout_alignStart="@+id/eventName"
         android:layout_alignEnd="@+id/eventName"
-        android:gravity="center" />
+        android:layout_alignStart="@+id/eventName"
+        android:layout_below="@+id/eventName"
+        android:gravity="center"
+        android:hint="Genre" />
 
     <Button
+        android:id="@+id/createEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create event"
-        android:id="@+id/createEvent"
-        android:layout_below="@+id/latitude"
-        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/latitude"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:background="@drawable/tw__login_btn_default"
+
         android:shadowColor="#A8A8A8"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
+        android:text="Create event"
 
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp" />
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Manage events"
         android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:gravity="center" />
+        android:gravity="center"
+        android:text="Manage events"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="update"
         android:id="@+id/updateEvent"
-        android:layout_below="@+id/createEvent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-
-        android:background="@drawable/tw__login_btn_default"
-        android:shadowColor="#A8A8A8"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="5"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp" />
-
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Finish event"
-        android:id="@+id/finishEvent"
-        android:layout_below="@+id/updateEvent"
-        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/createEvent"
+        android:layout_marginLeft="40dp"
+
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="10dp"
+
         android:background="@drawable/tw__login_btn_default"
         android:shadowColor="#A8A8A8"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
-        android:layout_marginTop="10dp"
+        android:text="update"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/finishEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/updateEvent"
         android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp" />
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/tw__login_btn_default"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="Finish event"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 
 </RelativeLayout>

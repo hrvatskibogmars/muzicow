@@ -3,48 +3,50 @@ package hr.mars.muzicow.test;
 
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.activities.MainActivity;
+
 import com.robotium.solo.*;
+
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.EditText;
 
 
 public class ArtistCreateEvent extends ActivityInstrumentationTestCase2<MainActivity> {
 
-  	private Solo solo;
+    private Solo solo;
 
-  	public ArtistCreateEvent() {
-		super(MainActivity.class);
-  	}
+    public ArtistCreateEvent() {
+        super(MainActivity.class);
+    }
 
-  	public void setUp() throws Exception {
+    public void setUp() throws Exception {
         super.setUp();
-		solo = new Solo(getInstrumentation(),getActivity());
+        solo = new Solo(getInstrumentation(), getActivity());
 
-  	}
-  
-   	@Override
-   	public void tearDown() throws Exception {
+    }
+
+    @Override
+    public void tearDown() throws Exception {
         solo.finishOpenedActivities();
         super.tearDown();
-  	}
-  
-	public void testALogin()  throws Exception {
+    }
+
+    public void testALogin() throws Exception {
         //Wait for activity: 'hr.mars.muzicow.activities.MainActivity'
-		solo.waitForActivity(hr.mars.muzicow.activities.MainActivity.class, 2000);
+        solo.waitForActivity(hr.mars.muzicow.activities.MainActivity.class, 2000);
 
         //Click on Participant
-		solo.clickOnView(solo.getView(hr.mars.muzicow.R.id.spinner));
+        solo.clickOnView(solo.getView(hr.mars.muzicow.R.id.spinner));
         //Wait for spinner to open
-		solo.waitForDialogToOpen(5000);
+        solo.waitForDialogToOpen(5000);
         //Sleep for 1366 milliseconds
-		solo.sleep(1366);
+        solo.sleep(1366);
         //Click on Artist
-		solo.clickOnView(solo.getView(android.R.id.text1, 1));
+        solo.clickOnView(solo.getView(android.R.id.text1, 1));
         //Sleep for 2242 milliseconds
-		solo.sleep(2242);
+        solo.sleep(2242);
         //Click on Log in with Twitter
-		solo.clickOnView(solo.getView(hr.mars.muzicow.R.id.twitter));
-		//wait for authorization
+        solo.clickOnView(solo.getView(hr.mars.muzicow.R.id.twitter));
+        //wait for authorization
         solo.waitForDialogToOpen(50000);
         solo.enterText(2, "Testni event");
         //wait for text to be entered
@@ -66,8 +68,7 @@ public class ArtistCreateEvent extends ActivityInstrumentationTestCase2<MainActi
         solo.enterText(1, "Knin, Hrvatska");
         //wait
         solo.sleep(5000);
-	}
-
+    }
 
 
 }

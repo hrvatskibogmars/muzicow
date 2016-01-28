@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package hr.mars.muzicow.fragments.dj;
+package hr.mars.muzicow.activities;
 
 
 import android.content.Context;
@@ -33,10 +33,9 @@ import com.twitter.sdk.android.Twitter;
 
 import java.util.List;
 
-import hr.mars.muzicow.activities.MainActivity;
-import hr.mars.muzicow.requests.SongAPI;
-import hr.mars.muzicow.models.Song;
 import hr.mars.muzicow.R;
+import hr.mars.muzicow.models.Song;
+import hr.mars.muzicow.requests.SongAPI;
 import hr.mars.muzicow.services.ServiceGenerator;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -46,8 +45,9 @@ public class SongDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_NAME = "song_name";
     Context context;
-    Button accept,decline;
-    String status,songID;
+    Button accept, decline;
+    String status, songID;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,14 +63,14 @@ public class SongDetailActivity extends AppCompatActivity {
                 return true;
             }
         });
-        accept=(Button)findViewById(R.id.acceptB);
-        decline=(Button)findViewById(R.id.declineB);
+        accept = (Button) findViewById(R.id.acceptB);
+        decline = (Button) findViewById(R.id.declineB);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         final String cheeseName = bundle.getString("SongName");
         status = bundle.getString("SongStatus");
         songID = bundle.getString("SongID");
-        if (status.equals("1")||status.equals("2")){
+        if (status.equals("1") || status.equals("2")) {
             accept.setVisibility(View.INVISIBLE);
             decline.setVisibility(View.INVISIBLE);
         }
@@ -82,32 +82,33 @@ public class SongDetailActivity extends AppCompatActivity {
 
 
     }
-    public void logout(){
+
+    public void logout() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
     public void buttonClickFunction(View v) {
         final SongAPI eventRetrofit = ServiceGenerator.createService(SongAPI.class);
-        String songsUrl = "update?where=%7B%22_ID%22%3A%20%22"+songID+"%22%7D";
+        String songsUrl = "update?where=%7B%22_ID%22%3A%20%22" + songID + "%22%7D";
         switch (v.getId()) {
             case R.id.acceptB:
                 Toast.makeText(SongDetailActivity.this, "You have successfully accepted song", Toast.LENGTH_LONG).show();
                 accept.setVisibility(View.INVISIBLE);
                 decline.setVisibility(View.INVISIBLE);
-                    eventRetrofit.updateSong(songsUrl,"1", new Callback<List<Song>>() {
+                eventRetrofit.updateSong(songsUrl, "1", new Callback<List<Song>>() {
 
-                            @Override
-                            public void success (List < Song > songs, Response response){
-                            Toast.makeText(SongDetailActivity.this, "You have successfully accepted song", Toast.LENGTH_LONG).show();
-                        }
+                    @Override
+                    public void success(List<Song> songs, Response response) {
+                        Toast.makeText(SongDetailActivity.this, "You have successfully accepted song", Toast.LENGTH_LONG).show();
+                    }
 
-                            @Override
-                            public void failure (RetrofitError error){
-                            Log.d("error", error.getResponse().toString());
-                        }
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Log.d("error", error.getResponse().toString());
+                    }
 
-                    });
+                });
 
                 break;
             case R.id.declineB:
@@ -129,10 +130,4 @@ public class SongDetailActivity extends AppCompatActivity {
 
         }
     }
-    /*
-    public void buttonClickFunction(View v) {
-        Toast toast = Toast.makeText(context, "You have successfully upvoted song", Toast.LENGTH_LONG);
-        toast.show();
-    }
-    */
 }

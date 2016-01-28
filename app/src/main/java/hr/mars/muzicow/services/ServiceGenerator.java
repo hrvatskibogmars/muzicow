@@ -2,7 +2,6 @@ package hr.mars.muzicow.services;
 
 import com.squareup.okhttp.OkHttpClient;
 
-
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 
