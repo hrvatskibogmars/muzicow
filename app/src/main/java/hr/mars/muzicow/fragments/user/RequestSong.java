@@ -31,6 +31,7 @@ public class RequestSong extends AppCompatActivity implements View.OnClickListen
     EditText youtube;
     Button send;
     Event eventObj;
+    String sng;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +41,7 @@ public class RequestSong extends AppCompatActivity implements View.OnClickListen
         eventObj= (Event)Registry.getInstance().get("Event");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        //ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
         send = (Button)findViewById(R.id.sendBtn);
         send.setOnClickListener(this);
@@ -56,6 +57,11 @@ public class RequestSong extends AppCompatActivity implements View.OnClickListen
         final SongAPI eventRetrofit = ServiceGenerator.createService(SongAPI.class);
         switch (v.getId()){
             case R.id.sendBtn:
+                if(song.getText().toString().matches("")||artist.getText().toString().matches("")||
+                        description.getText().toString().matches("")||youtube.getText().toString().matches("")){
+                        Toast.makeText(RequestSong.this, "You must enter all values", Toast.LENGTH_LONG).show();
+                }
+                else {
 
                 eventRetrofit.createSong(artist.getText().toString(), eventObj.get_ID(),
                         description.getText().toString(), "0","0","", youtube.getText().toString(),
@@ -64,6 +70,7 @@ public class RequestSong extends AppCompatActivity implements View.OnClickListen
                             @Override
                             public void success(Response response, Response response2) {
                                 Toast.makeText(RequestSong.this, "You have successfully requested song", Toast.LENGTH_LONG).show();
+                                send.setVisibility(View.INVISIBLE);
                             }
 
                             @Override
@@ -73,9 +80,7 @@ public class RequestSong extends AppCompatActivity implements View.OnClickListen
                         });
 
 
-                Log.d("button", song.getText() + ((Event) Registry.getInstance().get("Event")).getName());
-
-        }
+        }}
     }
 
 
