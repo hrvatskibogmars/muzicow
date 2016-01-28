@@ -45,7 +45,7 @@ public interface SongAPI {
 
     @FormUrlEncoded
     @POST("/api/songs/{url}")
-    void updateUpvoite(@Path(value="url", encode = false) String url,
+    void updateUpvote(@Path(value="url", encode = false) String url,
                        @Field("upvoted") String upvoited, @Field("voted[]") ArrayList<String> voted,
                        Callback<Song> cb);
 

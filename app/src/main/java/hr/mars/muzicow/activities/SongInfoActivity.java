@@ -36,7 +36,7 @@ public class SongInfoActivity extends AppCompatActivity {
     int vote=0;
     ImageView upVoteBtn;
     DJ djObject;
-    ArrayList<String>voitedIDs;
+    ArrayList<String>votedIDs;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +72,7 @@ public class SongInfoActivity extends AppCompatActivity {
             public void success(List<Song> songs, Response response) {
                 if (!songs.isEmpty()) {
                     upvoted.setText(songs.get(0).getUpvoted());
-                    voitedIDs=songs.get(0).getVoted();
+                    votedIDs=songs.get(0).getVoted();
                     for (int i = 0; i < songs.get(0).getVoted().size(); i++) {
                         if (songs.get(0).getVoted().get(i).equals(djObject.get_ID())) {
                             upVoteBtn.setVisibility(View.INVISIBLE);
@@ -96,9 +96,9 @@ public class SongInfoActivity extends AppCompatActivity {
     public void buttonClickFunction(View v) {
 
         vote = Integer.parseInt(songUpvote) + 1;
-        voitedIDs.add(djObject.get_ID());
+        votedIDs.add(djObject.get_ID());
         final String updateVoite = "update?where=%7B%22_ID%22%3A%20%22"+songID+"%22%7D";
-        eventRetrofit.updateUpvoite(updateVoite, Integer.toString(vote),voitedIDs, new Callback<Song>() {
+        eventRetrofit.updateUpvote(updateVoite, Integer.toString(vote),votedIDs, new Callback<Song>() {
                     @Override
                     public void success(Song songs, Response response) {
                         if (!songs.equals(null)) {
