@@ -27,20 +27,20 @@ import retrofit.client.Response;
 public class SongInfoActivity extends AppCompatActivity {
 
     Context context;
-    TextView artist,description,upvoited;
+    TextView artist,description,upvoted;
     final SongAPI eventRetrofit = ServiceGenerator.createService(SongAPI.class);
-    String songID,songUpvoite,songDescription,songArtist,songName,songsUrl;
-    int voite=0;
-    ImageView upVoiteBtn;
+    String songID,songUpvote,songDescription,songArtist,songName,songsUrl;
+    int vote=0;
+    ImageView upVoteBtn;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_fragmet_playlist);
         context = getApplicationContext();
         artist=(TextView)findViewById(R.id.artistPlTxt);
-        upVoiteBtn=(ImageView)findViewById(R.id.upVoite);
+        upVoteBtn=(ImageView)findViewById(R.id.upVoite);
         description=(TextView)findViewById(R.id.descriptionPlTxt);
-        upvoited=(TextView)findViewById(R.id.upvoitedNmb);
+        upvoted=(TextView)findViewById(R.id.upvoitedNmb);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
@@ -49,7 +49,7 @@ public class SongInfoActivity extends AppCompatActivity {
             songArtist = bundle.getString("SongArtist");
             songDescription = bundle.getString("SongDescription");
             songID = bundle.getString("SongId");
-            songUpvoite = bundle.getString("SongUpvoite");
+            songUpvote = bundle.getString("SongUpvoite");
 
         }
 
@@ -65,7 +65,7 @@ public class SongInfoActivity extends AppCompatActivity {
             @Override
             public void success(List<Song> songs, Response response) {
                 if(!songs.isEmpty()) {
-                    upvoited.setText(songs.get(0).getUpvoited());
+                    upvoted.setText(songs.get(0).getUpvoited());
 
                 }
                 else {
@@ -86,20 +86,20 @@ public class SongInfoActivity extends AppCompatActivity {
 
     public void buttonClickFunction(View v) {
 
-            voite = Integer.parseInt(songUpvoite) + 1;
+            vote = Integer.parseInt(songUpvote) + 1;
 
             final String updateVoite = "update?where=%7B%22_ID%22%3A%20%22"+songID+"%22%7D";
-            eventRetrofit.updateUpvoite(updateVoite, Integer.toString(voite), new Callback<Song>() {
+            eventRetrofit.updateUpvoite(updateVoite, Integer.toString(vote), new Callback<Song>() {
                         @Override
                         public void success(Song songs, Response response) {
                             if (!songs.equals(null)) {
                                 Toast toast = Toast.makeText(context, "You have successfully upvoted song", Toast.LENGTH_LONG);
                                 toast.show();
-                                upVoiteBtn.setVisibility(View.INVISIBLE);
+                                upVoteBtn.setVisibility(View.INVISIBLE);
                                 eventRetrofit.getSongs(songsUrl, new Callback<List<Song>>() {
                                     @Override
                                     public void success(List<Song> songs, Response response) {
-                                        upvoited.setText(songs.get(0).getUpvoited());
+                                        upvoted.setText(songs.get(0).getUpvoited());
                                     }
 
                                     @Override
