@@ -36,10 +36,10 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:background="@drawable/tw__login_btn_default"
-        android:shadowColor="#A8A8A8"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
-        android:layout_marginTop="80dp" />
+        android:layout_marginTop="80dp"
+        />
 
     <Button
         style="?android:attr/buttonStyleSmall"

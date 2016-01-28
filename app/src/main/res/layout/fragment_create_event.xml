@@ -11,8 +11,13 @@
         android:hint="latitude"
         android:layout_marginTop="45dp"
         android:layout_below="@+id/genre"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignStart="@+id/longitude"
+        android:layout_alignEnd="@+id/longitude"
+        android:clickable="false"
+        android:editable="false"
+        android:elegantTextHeight="false"
+        android:enabled="false"
+        android:gravity="center" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -20,10 +25,14 @@
         android:id="@+id/longitude"
         android:hint="longitude"
         android:layout_below="@+id/genre"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
 
-        />
+        android:layout_alignEnd="@+id/genre"
+        android:layout_alignStart="@+id/genre"
+        android:clickable="false"
+        android:editable="false"
+        android:elegantTextHeight="false"
+        android:enabled="false"
+        android:gravity="center" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -31,17 +40,19 @@
         android:id="@+id/eventName"
         android:hint="Event Name"
         android:layout_below="@+id/textView10"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignEnd="@+id/createEvent"
+        android:layout_alignStart="@+id/createEvent"
+        android:gravity="center" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/genre"
         android:hint="Genre"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/eventName" />
+        android:layout_below="@+id/eventName"
+        android:layout_alignStart="@+id/eventName"
+        android:layout_alignEnd="@+id/eventName"
+        android:gravity="center" />
 
     <Button
         android:layout_width="wrap_content"
