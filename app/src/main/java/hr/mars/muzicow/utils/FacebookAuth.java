@@ -96,9 +96,6 @@ public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager>
 
     @Override
     public void signup(CallbackManager callbackManager){
-
-
-
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
 
@@ -114,24 +111,23 @@ public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager>
 
                                         djObject = new DJ();
                                         try {
-                                            djObject.set_ID( object.getString("id"));
+                                            djObject.set_ID(object.getString("id"));
                                             djObject.setName(object.getString("name"));
-                                            //djObject.setDescription(userOb.data.description);
-                                            //djObject.setLocation(userOb.data.location);
+                                            //djObject.setDescription(object.getString("about"));
+                                            //djObject.setLocation(object.getString("location"));
                                             djObject.setProfile_url(object.getString("link"));
-                                            //djObject.setNickname(userOb.data.screenName);
-                                            //djObject.setWebsite(userOb.data.url);
+                                            //djObject.setNickname(object.getString("middle_name"));
+                                            //djObject.setWebsite(object.getString("website"));
+                                            Log.d("fb object", object.toString());
                                         }
                                         catch(Exception e){
                                             Log.d("error", e.getMessage());
                                         }
-
-
                                         showUserData(djObject);
                                     }
                                 });
                         Bundle parameters = new Bundle();
-                        parameters.putString("fields", "id,name,link");
+                        parameters.putString("fields", "id,name,link,email,middle_name,website");
                         request.setParameters(parameters);
                         request.executeAsync();
                     }

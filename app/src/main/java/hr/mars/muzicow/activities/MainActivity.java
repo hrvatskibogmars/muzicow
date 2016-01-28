@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.login.widget.LoginButton;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
@@ -56,8 +57,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("KeyHash:",
                         Base64.encodeToString(md.digest(), Base64.DEFAULT));
             }
-        } catch (PackageManager.NameNotFoundException e) {
-        } catch (NoSuchAlgorithmException e) {
+        }
+        catch (PackageManager.NameNotFoundException e) {
+        }
+        catch (NoSuchAlgorithmException e) {
         }
 
 
@@ -67,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         authManagerFB.setProvider("Facebook");
         authManagerFB.setup();
         authManagerFB.signup(authManagerFB.getsocialObject());
-
 
         authManager.setContext(getBaseContext());
         authManager.setSocialObject(loginButton);
@@ -94,10 +96,8 @@ public class MainActivity extends AppCompatActivity {
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter);
         authManager.signup(loginButton);
 
-
-        //info = (TextView)findViewById(R.id.info);
         loginButton1 = (LoginButton)findViewById(R.id.login_buttonFB);
-}
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -105,6 +105,5 @@ public class MainActivity extends AppCompatActivity {
         loginButton.onActivityResult(requestCode, resultCode, data);
         callbackManager = authManagerFB.getsocialObject();
         callbackManager.onActivityResult(requestCode, resultCode, data);
-
     }
 }

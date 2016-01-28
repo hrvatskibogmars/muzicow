@@ -77,7 +77,7 @@ public class PlaylistDJFragment extends Fragment {
                 try {
                     String eventID= events.get(0).get_ID();
                     String songs ="songs?filter=%7B%22where%22%3A%7B%22event_id%22%3A%22"+eventID+"%22%7D%7D";
-                    Log.d("songs", "id eventa " + eventID);
+                    //Log.d("songs", "id eventa " + eventID);
                     eventRetrofit.getSongs(songs, new Callback<List<Song>>() {
                         @Override
                         public void success(final List<Song> songs, Response response) {
@@ -96,7 +96,7 @@ public class PlaylistDJFragment extends Fragment {
 
                                     int position = lv.getPositionForView(view);
 
-                                    Log.d("Position", String.valueOf(position));
+                                    //Log.d("Position", String.valueOf(position));
 
                                     Intent intent = new Intent(getContext(), SongDetailActivity.class);
                                     intent.putExtra("SongName", songs.get(position).getName());
@@ -119,7 +119,7 @@ public class PlaylistDJFragment extends Fragment {
 
                 }
                 catch (Exception e){
-                    Toast.makeText(getActivity(), "No available events", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getActivity(), "No available events", Toast.LENGTH_LONG).show();
                 }
             }
             @Override

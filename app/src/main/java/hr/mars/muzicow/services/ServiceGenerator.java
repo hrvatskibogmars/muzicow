@@ -15,7 +15,7 @@ public class ServiceGenerator {
 
     private static RestAdapter.Builder builder = new RestAdapter.Builder()
             .setEndpoint(API_BASE_URL)
-            .setLogLevel(RestAdapter.LogLevel.FULL)
+            .setLogLevel(RestAdapter.LogLevel.NONE)
             .setClient(new OkClient(new OkHttpClient()));
 
     public static <S> S createService(Class<S> serviceClass) {
