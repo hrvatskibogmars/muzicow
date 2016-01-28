@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.twitter.sdk.android.Twitter;
 
 import hr.mars.muzicow.R;
@@ -48,6 +49,7 @@ public class RequestSongActivity extends AppCompatActivity implements View.OnCli
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 Twitter.logOut();
+                LoginManager.getInstance().logOut();
                 logout();
                 return true;
             }

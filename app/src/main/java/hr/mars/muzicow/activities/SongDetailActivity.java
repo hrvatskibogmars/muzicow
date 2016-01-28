@@ -29,6 +29,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.twitter.sdk.android.Twitter;
 
 import java.util.List;
@@ -59,6 +60,7 @@ public class SongDetailActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 Twitter.logOut();
+                LoginManager.getInstance().logOut();
                 logout();
                 return true;
             }

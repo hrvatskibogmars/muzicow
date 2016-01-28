@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.facebook.login.LoginManager;
 import com.twitter.sdk.android.Twitter;
 
 import hr.mars.muzicow.R;
@@ -39,6 +40,7 @@ public class EventContainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 Twitter.logOut();
+                LoginManager.getInstance().logOut();
                 logout();
                 return true;
             }
