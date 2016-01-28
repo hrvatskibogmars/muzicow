@@ -8,19 +8,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.DesignDemo">
+        <meta-data android:name= "com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 
         <activity
             android:name=".activities.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
 
         <activity android:label="@string/app_name"
-            android:name=".adapter.FragmentAdapterChoser"/>
+            android:name=".adapter.FragmentAdapterChooser"/>
 
         <activity android:label="@string/app_name"
             android:name=".fragments.user.EventContain"/>
@@ -31,12 +34,11 @@
             android:name=".activities.SongInfoActivity"/>
         <activity
             android:name=".fragments.dj.SongDetailActivity"
-            android:parentActivityName=".adapter.FragmentAdapterChoser">
+            android:parentActivityName=".adapter.FragmentAdapterChooser">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".adapter.FragmentAdapterChoser" />
+                android:value=".adapter.FragmentAdapterChooser" />
         </activity>
-
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=
                 "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
