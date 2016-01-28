@@ -70,7 +70,7 @@ public class EventInfo extends Fragment implements View.OnClickListener {
                 break;
             case R.id.requestBtn:
                 intent = new Intent(getActivity(), RequestSong.class);
-                //intent.putExtra("EventDjId", djId);
+
                 startActivity(intent);
                 break;
 

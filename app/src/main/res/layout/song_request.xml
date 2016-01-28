@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/artistTxt"
         android:layout_gravity="center_horizontal"
-        android:hint="eg. Steppenwolf" />
+        android:hint="by Steppenwolf" />
 
     <EditText
         android:layout_width="match_parent"

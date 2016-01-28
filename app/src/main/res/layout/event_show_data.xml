@@ -38,8 +38,7 @@
         android:background="@drawable/tw__login_btn_default"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
-        android:layout_marginTop="80dp"
-        />
+        android:layout_marginTop="80dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -55,10 +54,6 @@
         android:layout_marginRight="80dp"
         android:layout_marginTop="50dp" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"></LinearLayout>
+
 
 </LinearLayout>
