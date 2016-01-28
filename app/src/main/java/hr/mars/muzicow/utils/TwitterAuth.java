@@ -30,8 +30,8 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
     String role;
     TwitterSession session;
     DJ djObject;
-    TwitterRetData tw = new TwitterRetData();
-    SNetworkChooser ch = new SNetworkChooser();
+    TwitterRetData twitterReadData = new TwitterRetData();
+    
     @Override
     public void setContext(Context ctx) { this.ctx = ctx; }
     @Override
@@ -79,10 +79,7 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
             @Override
             public void success(Result<TwitterSession> result) {
                 ((Login) Registry.getInstance().get("login.atr")).setSession(Twitter.getInstance().core.getSessionManager().getActiveSession());
-                ch.setSNetwork(tw);
-                ch.loginChoice();
-
-                tw.setListener(new TwitterLoginListener() {
+                twitterReadData.setListener(new TwitterLoginListener() {
                     @Override
                     public void success(Result<User> userOb) {
                         djObject = new DJ();
@@ -96,6 +93,7 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
                         showUserData(djObject);
                         Log.d("Name", djObject.getName());
                     }
+
                     @Override
                     public void failure(TwitterException e) {
                         Log.d("Tw - data get fail", e.getMessage());

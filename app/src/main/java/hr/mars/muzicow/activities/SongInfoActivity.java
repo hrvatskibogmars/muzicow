@@ -79,7 +79,7 @@ public class SongInfoActivity extends AppCompatActivity {
         collapsingToolbar.setTitle(songName);
         artist.setText(songArtist);
         description.setText(songDescription);
-        Log.d("test", songID);
+        //Log.d("test", songID);
         songsUrl = "songs?filter=%7B%22where%22%3A%7B%22_ID%22%3A%22" + songID + "%22%7D%7D";
         eventRetrofit.getSongs(songsUrl, new Callback<List<Song>>() {
             @Override
@@ -140,7 +140,7 @@ public class SongInfoActivity extends AppCompatActivity {
 
                     @Override
                     public void failure(RetrofitError error) {
-                        Toast toast = Toast.makeText(context, "You have didnt upvoted song", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(context, " Failed upvoting song", Toast.LENGTH_LONG);
                         toast.show();
                     }
                 }

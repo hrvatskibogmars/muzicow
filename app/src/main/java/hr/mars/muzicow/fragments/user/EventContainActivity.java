@@ -21,7 +21,6 @@ import hr.mars.muzicow.activities.MainActivity;
 import hr.mars.muzicow.adapter.FragmentAdapter;
 import hr.mars.muzicow.models.Event;
 import hr.mars.muzicow.R;
-import hr.mars.muzicow.utils.Logout;
 import hr.mars.muzicow.utils.Registry;
 
 /**
