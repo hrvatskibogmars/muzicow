@@ -40,7 +40,7 @@ public class SongInfoActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_fragmet_playlist);
+        setContentView(R.layout.fragment_user_playlist);
         context = getApplicationContext();
         artist = (TextView) findViewById(R.id.artistPlTxt);
         upVoteBtn = (ImageView) findViewById(R.id.upVoite);
@@ -98,7 +98,7 @@ public class SongInfoActivity extends AppCompatActivity {
         vote = Integer.parseInt(songUpvote) + 1;
         votedIDs.add(djObject.get_ID());
         final String updateVoite = "update?where=%7B%22_ID%22%3A%20%22"+songID+"%22%7D";
-        eventRetrofit.updateUpvote(updateVoite, Integer.toString(vote),votedIDs, new Callback<Song>() {
+        eventRetrofit.updateUpvote(updateVoite, Integer.toString(vote), votedIDs, new Callback<Song>() {
                     @Override
                     public void success(Song songs, Response response) {
                         if (!songs.equals(null)) {

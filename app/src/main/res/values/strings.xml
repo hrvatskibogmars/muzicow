@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
     <string name="app_name">MusiCow</string>
     <string name="facebook_app_id">908474575905004</string>
-
-  <string name="cheese_ipsum">Jarlsberg lancashire edam. Dolcelatte hard cheese brie st. agur blue
-    cheese caerphilly bavarian bergkase cheese and biscuits mascarpone. Cheeseburger swiss bavarian
-    bergkase cream cheese fromage frais cheesy feet port-salut airedale. St. agur blue cheese rubber
-    cheese caerphilly cheddar cheesecake cream cheese manchego lancashire. Roquefort squirty cheese
-    the big cheese.</string>
-     <string name="no_location_detected">
-        No location detected. Make sure location is enabled on the device.
-    </string>
+    <string name="no_location_detected">No location detected. Make sure location is enabled on the device.</string>
     <string name="menu_settings">Settings</string>
+
     <string-array name="spinner">
         <item>Participant</item>
         <item>Artist</item>
     </string-array>
-
 </resources>
