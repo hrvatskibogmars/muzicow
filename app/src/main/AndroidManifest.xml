@@ -52,6 +52,9 @@
                 android:value=".adapter.FragmentAdapterChooser" />
         </activity>
 
+        <activity android:label="@string/app_name"
+            android:name=".fragments.user.RequestSong"/>
+
         <activity
             android:name="com.facebook.FacebookActivity"
             android:screenOrientation="portrait"
