@@ -10,7 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.twitter.sdk.android.Twitter;
+
+import hr.mars.muzicow.activities.MainActivity;
 import hr.mars.muzicow.models.Event;
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.utils.Registry;
@@ -65,10 +69,10 @@ public class EventInfo extends Fragment implements View.OnClickListener {
         switch (view.getId()){
             case R.id.djShowbtn:
                 Intent intent = new Intent(getActivity(), AboutDJActivity.class);
-                //intent.putExtra("EventDjId", ((Event)Registry.getInstance().get("Event")).getDj_ID());
                 startActivity(intent);
                 break;
             case R.id.requestBtn:
+
                 intent = new Intent(getActivity(), RequestSong.class);
 
                 startActivity(intent);

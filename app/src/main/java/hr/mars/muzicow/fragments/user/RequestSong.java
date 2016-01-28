@@ -1,16 +1,21 @@
 package hr.mars.muzicow.fragments.user;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.twitter.sdk.android.Twitter;
+
+import hr.mars.muzicow.activities.MainActivity;
 import hr.mars.muzicow.requests.SongAPI;
 import hr.mars.muzicow.models.Event;
 import hr.mars.muzicow.R;
@@ -41,7 +46,14 @@ public class RequestSong extends AppCompatActivity implements View.OnClickListen
         eventObj= (Event)Registry.getInstance().get("Event");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Twitter.logOut();
+                logout();
+                return true;
+            }
+        });
 
         send = (Button)findViewById(R.id.sendBtn);
         send.setOnClickListener(this);
@@ -53,6 +65,12 @@ public class RequestSong extends AppCompatActivity implements View.OnClickListen
 
 
     }
+
+    public void logout(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void onClick(View v) {
         final SongAPI eventRetrofit = ServiceGenerator.createService(SongAPI.class);
         switch (v.getId()){
