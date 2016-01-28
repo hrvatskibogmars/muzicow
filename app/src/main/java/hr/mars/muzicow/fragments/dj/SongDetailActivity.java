@@ -22,13 +22,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.twitter.sdk.android.Twitter;
+
 import java.util.List;
 
+import hr.mars.muzicow.activities.MainActivity;
 import hr.mars.muzicow.requests.SongAPI;
 import hr.mars.muzicow.models.Song;
 import hr.mars.muzicow.R;
@@ -48,6 +53,16 @@ public class SongDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_song_detail);
         context = getApplicationContext();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Twitter.logOut();
+                logout();
+                return true;
+            }
+        });
         accept=(Button)findViewById(R.id.acceptB);
         decline=(Button)findViewById(R.id.declineB);
         Intent intent = getIntent();
@@ -66,6 +81,10 @@ public class SongDetailActivity extends AppCompatActivity {
         collapsingToolbar.setTitle(cheeseName);
 
 
+    }
+    public void logout(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     public void buttonClickFunction(View v) {

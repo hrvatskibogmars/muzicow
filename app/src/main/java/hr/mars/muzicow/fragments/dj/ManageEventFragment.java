@@ -240,55 +240,70 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
         switch (view.getId()) {
 
             case R.id.createEvent:
-                eventRetrofit.createEvent(((DJ) Registry.getInstance().get("djObject")).get_ID(), latitude.getText().toString(),
-                        longitude.getText().toString(), genre.getText().toString(), "1", eventName.getText().toString(),
-                        new Callback<Response>() {
-                            @Override
-                            public void success(Response events, Response req) {
-                                Log.d("Event Create ok", "Success Update");
-                                String json = events.getBody().toString();
-                                Log.d("Event Create ok", json);
+                if (eventName.getText().toString().matches("") || genre.getText().toString().matches("") ||
+                        latitude.getText().toString().matches("") || longitude.getText().toString().matches("")) {
+                    Toast.makeText(getActivity(), "You must enter all values", Toast.LENGTH_LONG).show();
 
-                                updateEvent.setEnabled(true);
-                                createEvent.setEnabled(false);
-                                finishEvent.setEnabled(true);
-                                createEvent.setVisibility(View.INVISIBLE);
-                                updateEvent.setVisibility(View.VISIBLE);
-                                finishEvent.setVisibility(View.VISIBLE);
-                                active_event();
-                                Toast.makeText(getActivity(), "You have successfully created event", Toast.LENGTH_LONG).show();
-                            }
+                } else {
+                    eventRetrofit.createEvent(((DJ) Registry.getInstance().get("djObject")).get_ID(), latitude.getText().toString(),
+                            longitude.getText().toString(), genre.getText().toString(), "1", eventName.getText().toString(),
+                            new Callback<Response>() {
+                                @Override
+                                public void success(Response events, Response req) {
+                                    Log.d("Event Create ok", "Success Update");
+                                    String json = events.getBody().toString();
+                                    Log.d("Event Create ok", json);
 
-                            @Override
-                            public void failure(RetrofitError error) {
-                                Log.d("Event Create error", error.getMessage());
+                                    updateEvent.setEnabled(true);
+                                    createEvent.setEnabled(false);
+                                    finishEvent.setEnabled(true);
+                                    createEvent.setVisibility(View.INVISIBLE);
+                                    updateEvent.setVisibility(View.VISIBLE);
+                                    finishEvent.setVisibility(View.VISIBLE);
+                                    active_event();
+                                    Toast.makeText(getActivity(), "You have successfully created event", Toast.LENGTH_LONG).show();
+
+                                }
+
+                                @Override
+                                public void failure(RetrofitError error) {
+                                    Log.d("Event Create error", error.getMessage());
 
 
-                            }
-                        });
+                                }
+                            });
+                }
 
                 break;
 
             case R.id.updateEvent:
-                eventRetrofit.updateEvent(eventUrl, ((DJ) Registry.getInstance().get("djObject")).get_ID(), latitude.getText().toString(),
-                        longitude.getText().toString(), genre.getText().toString(), "1", eventName.getText().toString(),
-                        new Callback<Response>() {
-                            @Override
-                            public void success(Response resp, Response req) {
-                                String json = resp.getBody().toString();
-                                Log.d("Event update ok", json);
-                                Toast.makeText(getActivity(), "You have successfully updated event", Toast.LENGTH_LONG).show();
+                if (eventName.getText().toString().matches("") || genre.getText().toString().matches("") ||
+                        latitude.getText().toString().matches("") || longitude.getText().toString().matches("")) {
+                    Toast.makeText(getActivity(), "You must enter all values", Toast.LENGTH_LONG).show();
 
-                            }
+                } else {
+                    eventRetrofit.updateEvent(eventUrl, ((DJ) Registry.getInstance().get("djObject")).get_ID(), latitude.getText().toString(),
+                            longitude.getText().toString(), genre.getText().toString(), "1", eventName.getText().toString(),
+                            new Callback<Response>() {
+                                @Override
+                                public void success(Response resp, Response req) {
+                                    String json = resp.getBody().toString();
+                                    Log.d("Event update ok", json);
 
-                            @Override
-                            public void failure(RetrofitError error) {
-                                Log.d("Event update error", error.getMessage());
-                            }
-                        });
+                                    Toast.makeText(getActivity(), "You have successfully updated event", Toast.LENGTH_LONG).show();
+
+
+                                }
+
+                                @Override
+                                public void failure(RetrofitError error) {
+                                    Log.d("Event update error", error.getMessage());
+                                }
+                            });
+                }
                 break;
             case R.id.finishEvent:
-                eventRetrofit.updateEvent(eventUrl,((DJ) Registry.getInstance().get("djObject")).get_ID(), latitude.getText().toString(),
+                eventRetrofit.updateEvent(eventUrl, ((DJ) Registry.getInstance().get("djObject")).get_ID(), latitude.getText().toString(),
                         longitude.getText().toString(), genre.getText().toString(), "0", eventName.getText().toString(),
                         new Callback<Response>() {
                             @Override

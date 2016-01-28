@@ -7,14 +7,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.twitter.sdk.android.Twitter;
 
 import java.util.List;
 
+import hr.mars.muzicow.activities.MainActivity;
 import hr.mars.muzicow.requests.UserAPI;
 import hr.mars.muzicow.models.DJ;
 import hr.mars.muzicow.models.Event;
@@ -47,7 +50,14 @@ public class AboutDJActivity extends AppCompatActivity {
         context = getApplicationContext();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final ActionBar ab = getSupportActionBar();
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Twitter.logOut();
+                logout();
+                return true;
+            }
+        });
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         showData();
@@ -59,7 +69,10 @@ public class AboutDJActivity extends AppCompatActivity {
         description=(TextView)findViewById(R.id.descriptionView);
         imageView = (ImageView)findViewById(R.id.imageView);
     }
-
+    public void logout(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
     public void showData(){
         String query = "djs?filter=%7B%22where%22%3A%7B%22_ID%22%3A%22" + ((Event) Registry.getInstance().get("Event")).getDj_ID() + "%22%7D%7D";
         try {

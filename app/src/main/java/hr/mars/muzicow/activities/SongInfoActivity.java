@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.twitter.sdk.android.Twitter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +46,16 @@ public class SongInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_user_playlist);
         context = getApplicationContext();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Twitter.logOut();
+                logout();
+                return true;
+            }
+        });
         artist = (TextView) findViewById(R.id.artistPlTxt);
         upVoteBtn = (ImageView) findViewById(R.id.upVoite);
         description = (TextView) findViewById(R.id.descriptionPlTxt);
@@ -91,7 +105,10 @@ public class SongInfoActivity extends AppCompatActivity {
         });
     }
 
-
+    public void logout(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
     public void buttonClickFunction(View v) {
 

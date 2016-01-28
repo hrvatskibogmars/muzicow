@@ -27,7 +27,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.twitter.sdk.android.Twitter;
+
 import java.util.ArrayList;
 import java.util.List;
 import hr.mars.muzicow.fragments.dj.PlaylistDJFragment;
@@ -66,7 +70,15 @@ public class FragmentAdapterChooser extends AppCompatActivity {
         context = getApplicationContext();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final ActionBar ab = getSupportActionBar();
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Twitter.logOut();
+                logout();
+                return true;
+            }
+        });
+
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         if (viewPager != null) {
             setupViewPager(viewPager);
@@ -127,6 +139,10 @@ public class FragmentAdapterChooser extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+    public void logout(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
     static class Adapter extends FragmentPagerAdapter {
         private final List<android.support.v4.app.Fragment> mFragments = new ArrayList<>();
