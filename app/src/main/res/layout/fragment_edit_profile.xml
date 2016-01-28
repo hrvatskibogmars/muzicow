@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
+    android:fillViewport="true">
 
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <EditText
         android:layout_width="wrap_content"
@@ -18,8 +18,10 @@
         android:id="@+id/IDFd"
         android:editable="false"
         android:focusable="false"
-        android:layout_below="@+id/updateProfileButton"
+        android:layout_below="@+id/textView9"
         android:layout_alignStart="@+id/textView9"
+        android:layout_marginTop="55dp"
+        android:gravity="center|center_horizontal"
         android:layout_alignEnd="@+id/textView9" />
 
     <EditText
@@ -31,16 +33,17 @@
         android:id="@+id/Location"
         android:layout_below="@+id/IDFd"
         android:text="Location"
-        android:layout_alignEnd="@+id/IDFd"
-        android:layout_alignStart="@+id/IDFd" />
+        android:layout_alignStart="@+id/IDFd"
+        android:gravity="center|center_horizontal"
+        android:layout_alignEnd="@+id/textView9" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Edit your profile DJ information"
+        android:text="Change your profile information"
         android:id="@+id/textView9"
-        android:textStyle="bold"
+        android:textStyle="italic"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -52,7 +55,8 @@
         android:text="Name"
         android:layout_below="@+id/Location"
         android:layout_alignStart="@+id/Location"
-        android:layout_alignEnd="@+id/Location" />
+        android:gravity="center|center_horizontal"
+        android:layout_alignEnd="@+id/textView9" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -60,9 +64,10 @@
         android:id="@+id/NicknameFd"
         android:layout_below="@+id/NameFd"
         android:layout_alignStart="@+id/NameFd"
-        android:layout_alignEnd="@+id/NameFd"
         android:hint="Nickname"
-        android:text="Nickname" />
+        android:text="Nickname"
+        android:gravity="center|center_horizontal"
+        android:layout_alignEnd="@+id/textView9" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -72,7 +77,8 @@
         android:text="WebSite"
         android:layout_below="@+id/NicknameFd"
         android:layout_alignStart="@+id/NicknameFd"
-        android:layout_alignEnd="@+id/NicknameFd" />
+        android:gravity="center|center_horizontal"
+        android:layout_alignEnd="@+id/textView9" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -81,7 +87,8 @@
         android:hint="Description"
         android:layout_below="@+id/WebsiteFd"
         android:layout_alignStart="@+id/WebsiteFd"
-        android:layout_alignEnd="@+id/WebsiteFd" />
+        android:gravity="center|center_horizontal"
+        android:layout_alignEnd="@+id/textView9" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -90,7 +97,8 @@
         android:hint="Twitter profile link"
         android:layout_below="@+id/description"
         android:layout_alignStart="@+id/description"
-        android:layout_alignEnd="@+id/description" />
+        android:gravity="center|center_horizontal"
+        android:layout_alignEnd="@+id/textView9" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -98,27 +106,28 @@
         android:id="@+id/profileurl"
         android:hint="Profile picture link"
         android:layout_below="@+id/twitterurl"
-        android:layout_alignEnd="@+id/twitterurl"
-        android:layout_alignStart="@+id/twitterurl" />
+        android:layout_alignStart="@+id/twitterurl"
+        android:gravity="center|center_horizontal"
+        android:layout_alignEnd="@+id/textView9" />
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Update Profile"
         android:id="@+id/updateProfileButton"
         android:onClick="updateProfile"
-        android:layout_below="@+id/textView9"
-        android:layout_alignStart="@+id/IDFd"
-        android:layout_alignEnd="@+id/textView9"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        android:background="@drawable/buttonshape"
-        android:shadowColor="#A8A8A8"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="5"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        />
-    </RelativeLayout>
+        android:background="@drawable/tw__login_btn_default"
+        android:layout_width="100pt"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="false"
+        android:gravity="center|center_horizontal"
+        android:layout_below="@+id/profileurl"
+        android:layout_centerHorizontal="true" />
+ <!--
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_below="@+id/textView9"
+        android:layout_centerHorizontal="true" /> -->
+</RelativeLayout>
 </ScrollView>
