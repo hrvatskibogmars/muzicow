@@ -31,6 +31,7 @@ import retrofit.client.Response;
 public class EventFragment extends Fragment {
     ListView lv;
     String status = "events?filter=%7B%22where%22%3A%7B%22status%22%3A%22" + "1" + "%22%7D%7D";
+    final static UserAPI eventRetrofit = ServiceGenerator.createService(UserAPI.class);
 
     @Nullable
     @Override
@@ -49,7 +50,6 @@ public class EventFragment extends Fragment {
      */
 
     public void loadData() {
-        UserAPI eventRetrofit = ServiceGenerator.createService(UserAPI.class);
         eventRetrofit.getEvent(status, new Callback<List<Event>>() {
             @Override
             public void success(final List<Event> events, Response response) {

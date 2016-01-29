@@ -37,6 +37,7 @@ import retrofit.client.Response;
  */
 public class ManageEventFragment extends Fragment implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks {
     public static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
+    final static EventAPI eventRetrofit = ServiceGenerator.createService(EventAPI.class);
     protected static final String TAG = "MainActivity";
     protected GoogleApiClient mGoogleApiClient;
     protected Location mLastLocation;
@@ -158,7 +159,6 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
      */
     public void active_event() {
         String eventUrl = "events?filter=%7B%22where%22%3A%20%7B%22and%22%20%3A%20%5B%20%7B%22dj_ID%22%3A%22" + ((DJ) Registry.getInstance().get("djObject")).get_ID() + "%22%7D%2C%7B%22status%22%3A%22" + "1" + "%22%7D%5D%7D%7D";
-        EventAPI eventRetrofit = ServiceGenerator.createService(EventAPI.class);
         eventRetrofit.getActiveEvent(eventUrl, new Callback<List<Event>>() {
             @Override
             public void success(List<Event> events, Response response) {
@@ -194,7 +194,6 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        final EventAPI eventRetrofit = ServiceGenerator.createService(EventAPI.class);
         String eventUrl = "update?where=%7B%22_ID%22%3A%20%22" + eventID + "%22%7D";
         switch (view.getId()) {
             case R.id.createEvent:

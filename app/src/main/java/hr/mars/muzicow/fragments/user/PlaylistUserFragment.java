@@ -36,6 +36,8 @@ public class PlaylistUserFragment extends Fragment {
     ListView lv;
     Handler mHandler = new Handler();
     Event eventObj;
+    final static SongAPI eventRetrofit = ServiceGenerator.createService(SongAPI.class);
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,53 +69,52 @@ public class PlaylistUserFragment extends Fragment {
     }
 
 
-    public void loadData(){
-        final SongAPI eventRetrofit = ServiceGenerator.createService(SongAPI.class);
-                try {
-                    String songs ="songs?filter=%7B%22where%22%3A%7B%22event_id%22%3A%22"+eventObj.get_ID()+"%22%7D%7D";
-                    Log.d("songs", "id eventa " + eventObj.get_ID());
-                    eventRetrofit.getSongs(songs, new Callback<List<Song>>() {
-                        @Override
-                        public void success(final List<Song> songs, Response response) {
-                            //isAdded because of async call
-                            if(isAdded()){
-                                // for comparing list
-                                Collections.sort(songs, new Comparator<Song>() {
+    public void loadData() {
+        try {
+            String songs = "songs?filter=%7B%22where%22%3A%7B%22event_id%22%3A%22" + eventObj.get_ID() + "%22%7D%7D";
+            Log.d("songs", "id eventa " + eventObj.get_ID());
+            eventRetrofit.getSongs(songs, new Callback<List<Song>>() {
+                @Override
+                public void success(final List<Song> songs, Response response) {
+                    //isAdded because of async call
+                    if (isAdded()) {
+                        // for comparing list
+                        Collections.sort(songs, new Comparator<Song>() {
 
-                                    public int compare(Song o1, Song o2) {
-                                        return o2.getUpvoted().compareTo(o1.getUpvoted());
-                                    }
-                                });
-                                SongAdapter adapter = new SongAdapter(getContext(), songs);
-                                lv.setAdapter(adapter);
-
-                                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                    @Override
-                                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                                        int position = lv.getPositionForView(view);
-
-                                        Log.d("Position", String.valueOf(position));
-
-                                        Intent intent = new Intent(getContext(), SongInfoActivity.class);
-                                        intent.putExtra("SongsName", songs.get(position).getName());
-                                        intent.putExtra("SongArtist", songs.get(position).getArtist());
-                                        intent.putExtra("SongDescription", songs.get(position).getDescription());
-                                        intent.putExtra("SongId", songs.get(position).get_ID());
-                                        intent.putExtra("SongUpvoite",songs.get(position).getUpvoted());
-                                        startActivity(intent);
-                                    }
-                                });
+                            public int compare(Song o1, Song o2) {
+                                return o2.getUpvoted().compareTo(o1.getUpvoted());
                             }
-                        }
-                        @Override
-                        public void failure(RetrofitError error) {
-                        }
-                    });
+                        });
+                        SongAdapter adapter = new SongAdapter(getContext(), songs);
+                        lv.setAdapter(adapter);
+
+                        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                                int position = lv.getPositionForView(view);
+
+                                Log.d("Position", String.valueOf(position));
+
+                                Intent intent = new Intent(getContext(), SongInfoActivity.class);
+                                intent.putExtra("SongsName", songs.get(position).getName());
+                                intent.putExtra("SongArtist", songs.get(position).getArtist());
+                                intent.putExtra("SongDescription", songs.get(position).getDescription());
+                                intent.putExtra("SongId", songs.get(position).get_ID());
+                                intent.putExtra("SongUpvoite", songs.get(position).getUpvoted());
+                                startActivity(intent);
+                            }
+                        });
+                    }
                 }
-                catch (Exception e){
-                    Toast.makeText(getActivity(), "No available events", Toast.LENGTH_LONG).show();
+
+                @Override
+                public void failure(RetrofitError error) {
                 }
-            }
+            });
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "No available events", Toast.LENGTH_LONG).show();
+        }
+    }
 }
 

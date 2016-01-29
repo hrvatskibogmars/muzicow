@@ -32,6 +32,8 @@ import retrofit.client.Response;
 
 public class PlaylistDJFragment extends Fragment {
     final String event_id = "events?filter=%7B%22where%22%3A%7B%22dj_ID%22%3A%22" + ((DJ) Registry.getInstance().get("djObject")).get_ID() + "%22%7D%7D";
+    final SongAPI eventRetrofit = ServiceGenerator.createService(SongAPI.class);
+
     ListView lv;
     Handler mHandler = new Handler();
 
@@ -64,7 +66,6 @@ public class PlaylistDJFragment extends Fragment {
     }
 
     public void loadData() {
-        final SongAPI eventRetrofit = ServiceGenerator.createService(SongAPI.class);
         eventRetrofit.getEvent(event_id, new Callback<List<Event>>() {
             @Override
             public void success(final List<Event> events, Response response) {

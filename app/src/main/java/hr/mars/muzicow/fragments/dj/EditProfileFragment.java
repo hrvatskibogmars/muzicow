@@ -28,6 +28,7 @@ import retrofit.client.Response;
  * Created by mars on 14/11/15.
  */
 public class EditProfileFragment extends Fragment implements View.OnClickListener {
+    final static DJAPI eventRetrofit = ServiceGenerator.createService(DJAPI.class);
 
     Button updateProfileButton;
     TextView id;
@@ -63,7 +64,6 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     }
 
     public void loadData() {
-        DJAPI eventRetrofit = ServiceGenerator.createService(DJAPI.class);
         eventRetrofit.getDJ(twitterID, new Callback<List<DJ>>() {
             @Override
             public void success(List<DJ> djs, Response response) {
@@ -97,7 +97,6 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     }
 
     public void createDJ() {
-        DJAPI eventRetrofit = ServiceGenerator.createService(DJAPI.class);
         eventRetrofit.createDJ(id.getText().toString(),
                 name.getText().toString(), website.getText().toString(),
                 location.getText().toString(), nickname.getText().toString(), profileUrl.getText().toString(),
@@ -118,7 +117,6 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View view) {
         String url = "update?where=%7B%22_ID%22%3A%22" + ((DJ) Registry.getInstance().get("djObject")).get_ID() + "%22%7D";
-        DJAPI eventRetrofit = ServiceGenerator.createService(DJAPI.class);
         eventRetrofit.updateDJ(url, id.getText().toString(),
                 name.getText().toString(), website.getText().toString(),
                 location.getText().toString(), nickname.getText().toString(), profileUrl.getText().toString(),
