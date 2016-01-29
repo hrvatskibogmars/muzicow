@@ -69,9 +69,12 @@ public class PlaylistDJFragment extends Fragment {
             @Override
             public void success(final List<Event> events, Response response) {
                 try {
+                    /**
+                     * Method for getting songs from selected event
+                     * based on event ID
+                     */
                     String eventID = events.get(0).get_ID();
                     String songs = "songs?filter=%7B%22where%22%3A%7B%22event_id%22%3A%22" + eventID + "%22%7D%7D";
-                    //Log.d("songs", "id eventa " + eventID);
                     eventRetrofit.getSongs(songs, new Callback<List<Song>>() {
                         @Override
                         public void success(final List<Song> songs, Response response) {
@@ -103,7 +106,6 @@ public class PlaylistDJFragment extends Fragment {
                         }
                     });
                 } catch (Exception e) {
-                    //Toast.makeText(getActivity(), "No available events", Toast.LENGTH_LONG).show();
                 }
             }
 

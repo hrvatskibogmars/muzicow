@@ -69,7 +69,12 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
         eventName = (EditText) view.findViewById(R.id.eventName);
         active_event();
 
-
+        /**
+         * Method for ask user if he will give application acces
+         * to  his gps location
+         * @param getActivity    current activity
+         * @param Manifest.permission.ACCESS_FINE_LOCATION  premission for gps location
+         */
         if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -120,7 +125,10 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
             mGoogleApiClient.disconnect();
         }
     }
-
+    /**
+     * Method for get user longitude and latitude position
+     * @param connectionHint    Bundle object
+     */
     @Override
     public void onConnected(Bundle connectionHint) {
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
@@ -141,9 +149,14 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
         Log.i(TAG, "Connection suspended");
         mGoogleApiClient.connect();
     }
-
+    /**
+     * Method for check if event is enabled or not
+     * If it is enabled then its sets data to
+     * TextViews and create button is set to invisible.
+     * If its not enabled it sets create button to enabled,
+     * and update and finish button to invisible
+     */
     public void active_event() {
-        //{"where": {"and" : [ {"dj_ID":"6"},{"status":"status"}]}}
         String eventUrl = "events?filter=%7B%22where%22%3A%20%7B%22and%22%20%3A%20%5B%20%7B%22dj_ID%22%3A%22" + ((DJ) Registry.getInstance().get("djObject")).get_ID() + "%22%7D%2C%7B%22status%22%3A%22" + "1" + "%22%7D%5D%7D%7D";
         EventAPI eventRetrofit = ServiceGenerator.createService(EventAPI.class);
         eventRetrofit.getActiveEvent(eventUrl, new Callback<List<Event>>() {
@@ -174,7 +187,10 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
             }
         });
     }
-
+    /**
+     * Method for checking witch button is clicked
+     * @param view    View object
+     */
 
     @Override
     public void onClick(View view) {
@@ -186,6 +202,15 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                         latitude.getText().toString().matches("") || longitude.getText().toString().matches("")) {
                     Toast.makeText(getActivity(), "You must enter all values", Toast.LENGTH_LONG).show();
                 } else {
+                    /**
+                     * Method for create event based.
+                     * It insert data to API from this paramaters
+                     * @param get_ID()   Artist ID value
+                     * @param latitude()   latitude value
+                     * @param longitude()   longitude value
+                     * @param genre()   genre of songs on event
+                     * @param genre()   event name
+                     */
                     eventRetrofit.createEvent(((DJ) Registry.getInstance().get("djObject")).get_ID(), latitude.getText().toString(),
                             longitude.getText().toString(), genre.getText().toString(), "1", eventName.getText().toString(),
                             new Callback<Response>() {
@@ -220,6 +245,15 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                     Toast.makeText(getActivity(), "You must enter all values", Toast.LENGTH_LONG).show();
 
                 } else {
+                    /**
+                     * Method for update event based on parameters.
+                     * It insert data to API from this paramaters
+                     * @param get_ID()   Artist ID value
+                     * @param latitude()   latitude value
+                     * @param longitude()   longitude value
+                     * @param genre()   genre of songs on event
+                     * @param genre()   event name
+                     */
                     eventRetrofit.updateEvent(eventUrl, ((DJ) Registry.getInstance().get("djObject")).get_ID(), latitude.getText().toString(),
                             longitude.getText().toString(), genre.getText().toString(), "1", eventName.getText().toString(),
                             new Callback<Response>() {
@@ -242,6 +276,9 @@ public class ManageEventFragment extends Fragment implements View.OnClickListene
                 eventRetrofit.updateEvent(eventUrl, ((DJ) Registry.getInstance().get("djObject")).get_ID(), latitude.getText().toString(),
                         longitude.getText().toString(), genre.getText().toString(), "0", eventName.getText().toString(),
                         new Callback<Response>() {
+                            /**
+                             * Method for finish active event
+                             */
                             @Override
                             public void success(Response resp, Response req) {
                                 Log.d("Event finished ok", "Success Update");

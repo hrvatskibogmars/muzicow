@@ -30,7 +30,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.internal.TwitterCollection;
+import com.twitter.sdk.android.core.internal.TwitterSessionVerifier;
+import com.twitter.sdk.android.tweetcomposer.TweetUploadService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +49,7 @@ import hr.mars.muzicow.fragments.dj.PlaylistDJFragment;
 import hr.mars.muzicow.fragments.user.EventFragment;
 import hr.mars.muzicow.models.DJ;
 import hr.mars.muzicow.utils.Registry;
+import hr.mars.muzicow.utils.TwitterLoginListener;
 
 public class FragmentAdapterChooser extends AppCompatActivity {
     Context context;
@@ -74,7 +81,8 @@ public class FragmentAdapterChooser extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Twitter.logOut();
+                TwitterCore.getInstance().logOut();
+                LoginManager.getInstance().logOut();
                 logout();
                 return true;
             }
@@ -98,9 +106,13 @@ public class FragmentAdapterChooser extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
+    /**
+     * Method for adding fragments to viewPager
+     * based on role
+     * @param viewPager    ViewPager object
+     */
     private void setupViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(getSupportFragmentManager());
+        FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
         switch (role) {
             case "Participant":
                 if (session.isEmpty()) {
@@ -108,9 +120,7 @@ public class FragmentAdapterChooser extends AppCompatActivity {
                     intent.putExtra("userRole", "Participant");
                     startActivity(intent);
                 } else {
-                    // adapter.addFragment(new AboutDJActivity(), "DJ");
                     adapter.addFragment(new EventFragment(), "Event");
-                    // adapter.addFragment(new PlaylistDJFragment(), "Playlist");
                 }
                 break;
             case "Artist":
@@ -127,7 +137,12 @@ public class FragmentAdapterChooser extends AppCompatActivity {
         }
         viewPager.setAdapter(adapter);
     }
-
+    /**
+     * Method for exit aplication based on
+     * number of clicks
+     * @param event    ViewPager event
+     * @param keyCode  key event for back button
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -145,38 +160,13 @@ public class FragmentAdapterChooser extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+    /**
+     * Method for logout
 
+     */
     public void logout() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    static class Adapter extends FragmentPagerAdapter {
-        private final List<android.support.v4.app.Fragment> mFragments = new ArrayList<>();
-        private final List<String> mFragmentTitles = new ArrayList<>();
-
-        public Adapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        public void addFragment(android.support.v4.app.Fragment fragment, String title) {
-            mFragments.add(fragment);
-            mFragmentTitles.add(title);
-        }
-
-        @Override
-        public android.support.v4.app.Fragment getItem(int position) {
-            return mFragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragments.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitles.get(position);
-        }
-    }
 }

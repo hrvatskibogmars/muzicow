@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.facebook.login.LoginManager;
 import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterCore;
 
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.adapter.FragmentAdapter;
@@ -36,10 +37,14 @@ public class EventContainActivity extends AppCompatActivity {
         context = getApplicationContext();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        /**
+         * Listener for click in menu items
+         * @param item clicked item
+         */
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Twitter.logOut();
+                TwitterCore.getInstance().logOut();
                 LoginManager.getInstance().logOut();
                 logout();
                 return true;
@@ -49,6 +54,10 @@ public class EventContainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         Event eve = new Event();
+        /**
+         * Setting Event object to hashmap
+         * @param eve    Event object
+         */
         Registry.getInstance().set("Event", eve);
 
         eventObj = (Event) Registry.getInstance().get("Event");
@@ -77,7 +86,11 @@ public class EventContainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
+    /**
+     * Method for adding fragments to viewPager
+     * based on role
+     * @param viewPager    ViewPager object
+     */
     private void setupViewPager(ViewPager viewPager) {
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
         adapter.addFragment(new EventInfoFragment(), "Event info");
@@ -85,7 +98,9 @@ public class EventContainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
 
     }
-
+    /**
+     * Method for logout
+     */
     public void logout() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

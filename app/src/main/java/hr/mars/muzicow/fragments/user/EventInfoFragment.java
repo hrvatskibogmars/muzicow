@@ -49,7 +49,12 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
         return view;
     }
 
-
+    /**
+     * Method listening onClick event for buttons
+     * It's starting new activity based on which
+     * button is clicked
+     * @param view    View object
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -66,7 +71,9 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
 
         }
     }
-
+    /**
+     * Method listening show Event data in TextView
+     */
     public void showData() {
         EventName.setText(eventObj.getName());
         EventGenre.setText(eventObj.getGenre());

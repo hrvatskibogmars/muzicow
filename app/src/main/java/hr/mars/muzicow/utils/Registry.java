@@ -21,7 +21,12 @@ public class Registry {
         }
         return instance;
     }
-
+    /**
+     * Methods for setting and gettng "alive" objects
+     * in aplication
+     * @param key   key for hashmap
+     * @param value   value of object for hashmap
+     */
     public void set(String key, Object value) {
         this.items.put(key, value);
     }

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
 import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterCore;
 
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.models.Event;
@@ -45,10 +46,14 @@ public class RequestSongActivity extends AppCompatActivity implements View.OnCli
         eventObj = (Event) Registry.getInstance().get("Event");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        /**
+         * Listener for click in menu items
+         * @param item clicked item
+         */
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Twitter.logOut();
+                TwitterCore.getInstance().logOut();
                 LoginManager.getInstance().logOut();
                 logout();
                 return true;
@@ -62,21 +67,38 @@ public class RequestSongActivity extends AppCompatActivity implements View.OnCli
         description = (EditText) findViewById(R.id.descriptionTxt);
         youtube = (EditText) findViewById(R.id.ytbTxt);
     }
-
+    /**
+     * Method for logout
+     */
     public void logout() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
+    /**
+     * Method listening onClick event for buttons
+     * It's starting new activity based on which
+     * button is clicked
+     * @param v    View object
+     */
     public void onClick(View v) {
         final SongAPI eventRetrofit = ServiceGenerator.createService(SongAPI.class);
         switch (v.getId()) {
             case R.id.sendBtn:
+                /**
+                 * Checking if all values are entered
+                 */
                 if (song.getText().toString().matches("") || artist.getText().toString().matches("") ||
                         description.getText().toString().matches("") || youtube.getText().toString().matches("")) {
                     Toast.makeText(RequestSongActivity.this, "You must enter all values", Toast.LENGTH_LONG).show();
                 } else {
-
+                    /**
+                     * Sending data to api based on query
+                     * @param artist artist name
+                     * @param eventObj event ID
+                     * @param description song description
+                     * @param youtube youtube link
+                     * @param song song name
+                     */
                     eventRetrofit.createSong(artist.getText().toString(), eventObj.get_ID(),
                             description.getText().toString(), "0", "0", "", youtube.getText().toString(),
                             song.getText().toString(),

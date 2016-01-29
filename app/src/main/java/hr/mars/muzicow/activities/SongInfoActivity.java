@@ -15,6 +15,13 @@ import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
 import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterApiClient;
+import com.twitter.sdk.android.core.TwitterAuthToken;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.identity.TwitterAuthClient;
+import com.twitter.sdk.android.core.internal.TwitterApi;
+import com.twitter.sdk.android.tweetui.TwitterListTimeline;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +32,7 @@ import hr.mars.muzicow.models.Song;
 import hr.mars.muzicow.requests.SongAPI;
 import hr.mars.muzicow.services.ServiceGenerator;
 import hr.mars.muzicow.utils.Registry;
+import hr.mars.muzicow.utils.TwitterAuth;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -53,7 +61,7 @@ public class SongInfoActivity extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Twitter.logOut();
+                TwitterCore.getInstance().logOut();
                 LoginManager.getInstance().logOut();
                 logout();
                 return true;

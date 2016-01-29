@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.facebook.login.LoginManager;
 import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterCore;
 
 import java.util.List;
 
@@ -49,10 +50,14 @@ public class AboutDJActivity extends AppCompatActivity {
         context = getApplicationContext();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        /**
+         * Listener for click in menu items
+         * @param item clicked item
+         */
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Twitter.logOut();
+                TwitterCore.getInstance().logOut();
                 LoginManager.getInstance().logOut();
                 logout();
                 return true;
@@ -69,17 +74,28 @@ public class AboutDJActivity extends AppCompatActivity {
         description = (TextView) findViewById(R.id.descriptionView);
         imageView = (ImageView) findViewById(R.id.imageView);
     }
-
+    /**
+     * Method for logout,
+     * it calls MainActivity
+     */
     public void logout() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
+    /**
+     * Method for show participant data for chosed event
+     */
     public void showData() {
         String query = "djs?filter=%7B%22where%22%3A%7B%22_ID%22%3A%22" + ((Event) Registry.getInstance().get("Event")).getDj_ID() + "%22%7D%7D";
         try {
             UserAPI djInfoRetrofit = ServiceGenerator.createService(UserAPI.class);
             djInfoRetrofit.getDJ(query, new Callback<List<DJ>>() {
+                /**
+                 * Method for retriving data from API
+                 * based on query
+                 * @param djs DJ object data returned from API
+                 * @param response Response object which has head, body messages
+                 */
                 @Override
                 public void success(List<DJ> djs, Response response) {
 

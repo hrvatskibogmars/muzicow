@@ -43,6 +43,10 @@ public class EventFragment extends Fragment {
         return view;
 
     }
+    /**
+     * Method for load data from API based
+     * on query
+     */
 
     public void loadData() {
         UserAPI eventRetrofit = ServiceGenerator.createService(UserAPI.class);
@@ -50,11 +54,18 @@ public class EventFragment extends Fragment {
             @Override
             public void success(final List<Event> events, Response response) {
                 try {
-
+                    /**
+                     * Method for setting list to adapter
+                     * @param events list of events getted from API
+                     */
                     CustomEvenetListAdapter adapter = new CustomEvenetListAdapter(getContext(), events);
                     lv.setAdapter(adapter);
-
+                    /**
+                     * Method listening onClick event in list
+                     * @param AdapterView.OnItemClickListener()   list view adapter
+                     */
                     lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 

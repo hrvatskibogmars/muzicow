@@ -11,7 +11,11 @@ import retrofit.client.OkClient;
 public class ServiceGenerator {
 
     public static final String API_BASE_URL = "http://46.101.121.184:3000";
-
+    /**
+     * Method for building connection to REST service
+     * @param API_BASE_URL   end point of API where app will connect
+     * @param OkHttpClient   expected response if everything is fine
+     */
     private static RestAdapter.Builder builder = new RestAdapter.Builder()
             .setEndpoint(API_BASE_URL)
             .setLogLevel(RestAdapter.LogLevel.NONE)

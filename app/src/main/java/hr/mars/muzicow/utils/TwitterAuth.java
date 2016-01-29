@@ -117,6 +117,18 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
         return false;
     }
 
+    /**
+     * Implemented method from SocialAth interface
+     * When login button is clicked, it calls callback which
+     * implements 2 methods, succes and failure.
+     * <p/>
+     * Succes result returns Twitter session.
+     * That session is setted in Singleton class Registry,
+     * so that object is alive thrue application life cycle.
+     *
+     * @param Result<TwitterSession> result    object of Twitter session
+     * @param login.atr name of active session in hashmap
+     */
     @Override
     public void signup(TwitterLoginButton loginButton) {
         /*
@@ -126,7 +138,9 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
             @Override
             public void success(Result<TwitterSession> result) {
                 ((Login) Registry.getInstance().get("login.atr")).setSession(Twitter.getInstance().core.getSessionManager().getActiveSession());
-
+                  /*
+                    method which gets user from Twitter API
+                */
                 twitterReadData.retSNetData();
                 twitterReadData.setListener(new TwitterLoginListener() {
                     @Override
@@ -156,6 +170,10 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
             }
         });
     }
+    /**
+     * Method for sending active user data
+     * @param djObject   object of logged in user
+     */
 
     public void showUserData(DJ djObject) {
         Intent myIntent = new Intent(this.ctx, FragmentAdapterChooser.class);
