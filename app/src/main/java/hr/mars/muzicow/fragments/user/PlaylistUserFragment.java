@@ -72,7 +72,7 @@ public class PlaylistUserFragment extends Fragment {
     public void loadData() {
         try {
             String songs = "songs?filter=%7B%22where%22%3A%7B%22event_id%22%3A%22" + eventObj.get_ID() + "%22%7D%7D";
-            Log.d("songs", "id eventa " + eventObj.get_ID());
+            //Log.d("songs", "id eventa " + eventObj.get_ID());
             eventRetrofit.getSongs(songs, new Callback<List<Song>>() {
                 @Override
                 public void success(final List<Song> songs, Response response) {

@@ -88,16 +88,6 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
     }
 
     @Override
-    public boolean save(Login object_login) {
-        return false;
-    }
-
-    @Override
-    public Login load() {
-        return null;
-    }
-
-    @Override
     public String getRole() {
         return role;
     }
@@ -105,16 +95,6 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
     @Override
     public void setRole(String role) {
         this.role = role;
-    }
-
-    @Override
-    public boolean login() {
-        return false;
-    }
-
-    @Override
-    public boolean logout() {
-        return false;
     }
 
     /**

@@ -74,7 +74,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                     location.setText(((DJ) Registry.getInstance().get("djObject")).getLocation());
                     nickname.setText(((DJ) Registry.getInstance().get("djObject")).getNickname());
                     profileUrl.setText(((DJ) Registry.getInstance().get("djObject")).getProfile_url());
-                    twitterUrl.setText("https://twitter.com/" + ((DJ) Registry.getInstance().get("djObject")).getName());
+                    //twitterUrl.setText("https://twitter.com/" + ((DJ) Registry.getInstance().get("djObject")).getName());
                     description.setText(((DJ) Registry.getInstance().get("djObject")).getDescription());
                     createDJ();
                 } else {
@@ -84,7 +84,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                     location.setText(djs.get(0).getLocation());
                     nickname.setText(djs.get(0).getNickname());
                     profileUrl.setText(djs.get(0).getProfile_url());
-                    twitterUrl.setText(djs.get(0).getTwitter_url());
+                    //twitterUrl.setText(djs.get(0).getTwitter_url());
                     description.setText(djs.get(0).getDescription());
                 }
             }

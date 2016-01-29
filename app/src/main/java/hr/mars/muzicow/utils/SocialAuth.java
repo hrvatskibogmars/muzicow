@@ -32,17 +32,9 @@ public interface SocialAuth<LoginObject, ContextObject, SocialObject> {
 
     void setup();
 
-    boolean save(LoginObject object_login); // should serialize and save data to global cache, returns error code
-
-    LoginObject load(); // reads from global cache and returns the ObjectLogin
-
     String getRole();
 
     void setRole(String role);
 
-    boolean login();  // method retrieves oauth access_token from provider
-
-    boolean logout(); // destroys the access_token from local cache
-
-    void signup(SocialObject loginButton); // tries to retrieve user data from provider and saves it to database
+    void signup(SocialObject loginButton);
 }

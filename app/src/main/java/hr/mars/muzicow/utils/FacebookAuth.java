@@ -94,16 +94,6 @@ public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager>
     }
 
     @Override
-    public boolean save(Login object_login) {
-        return false;
-    }
-
-    @Override
-    public Login load() {
-        return null;
-    }
-
-    @Override
     public String getRole() {
         return role;
     }
@@ -111,16 +101,6 @@ public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager>
     @Override
     public void setRole(String role) {
         this.role = role;
-    }
-
-    @Override
-    public boolean login() {
-        return false;
-    }
-
-    @Override
-    public boolean logout() {
-        return false;
     }
 
     @Override
