@@ -167,6 +167,7 @@ public class FragmentAdapterChooser extends AppCompatActivity {
     public void logout() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+
     }
 
 }

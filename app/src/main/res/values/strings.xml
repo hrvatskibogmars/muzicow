@@ -8,4 +8,9 @@
         <item>Participant</item>
         <item>Artist</item>
     </string-array>
+
+    <string-array name="sNChoose">
+        <item>Facebook</item>
+        <item>Twitter</item>
+    </string-array>
 </resources>
