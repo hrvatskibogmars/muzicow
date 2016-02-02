@@ -27,7 +27,7 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
     String Provider;
     String TWITTER_KEY;
     String TWITTER_SECRET;
-    String role;
+    String role,choice;
     TwitterSession session;
     DJ djObject;
     TwitterRetData twitterReadData = new TwitterRetData();
@@ -97,6 +97,7 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
         return null;
     }
 
+
     @Override
     public String getRole() {
         return role;
@@ -133,6 +134,7 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
     public void signup(TwitterLoginButton loginButton) {
         /*
             Signup implementation for Twitter login.
+
         */
         loginButton.setCallback(new Callback<TwitterSession>() {
             @Override

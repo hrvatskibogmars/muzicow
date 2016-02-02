@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/chooseTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/imageView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/imageView2"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="Choose your role"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_gravity="center_horizontal" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        style="@style/Base.Animation.AppCompat.DropDownUp"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chooseTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:entries="@array/spinner"
+        android:spinnerMode="dialog" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_buttonFB"
+        android:layout_width="259dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="37dp"
+        android:paddingBottom="13dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="13dp"
+        android:scaleType="centerInside"
+        android:textSize="18dp" />
+
+</LinearLayout>

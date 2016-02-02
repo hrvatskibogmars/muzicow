@@ -36,6 +36,7 @@ public interface SocialAuth<LoginObject, ContextObject, SocialObject> {
 
     LoginObject load(); // reads from global cache and returns the ObjectLogin
 
+
     String getRole();
 
     void setRole(String role);
