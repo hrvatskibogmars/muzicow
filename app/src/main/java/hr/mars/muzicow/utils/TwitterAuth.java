@@ -26,8 +26,8 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
     Context ctx;
     TwitterLoginButton loginButton;
     String Provider;
-    String TWITTER_KEY;
-    String TWITTER_SECRET;
+    String TWITTER_KEY="f6FNdst2ZaoQWZYvYOu2a5QCy";
+    String TWITTER_SECRET="deHaJ2nBf5Lj5luPg2Avu7w0JOxbb61GUNZavlb4SELDyK0WUV";
     String role;
     TwitterSession session;
     DJ djObject;

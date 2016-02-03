@@ -44,12 +44,14 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 switch (choice) {
                     case "Facebook":
-                        Intent intent = new Intent(MainActivity.this, FacebookLoginActivity.class);
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        intent.putExtra("networkChoice", "Facebook");
                         startActivity(intent);
 
                         break;
                     case "Twitter":
-                        intent = new Intent(MainActivity.this, TwitterLoginActivity.class);
+                        intent = new Intent(MainActivity.this, LoginActivity.class);
+                        intent.putExtra("networkChoice", "Twitter");
                         startActivity(intent);
                         break;
                 }
