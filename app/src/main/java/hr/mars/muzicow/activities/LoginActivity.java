@@ -75,11 +75,12 @@ public class LoginActivity extends AppCompatActivity {
                 break;
             case "Twitter":
                 at = new Login();
+                Registry.getInstance().set("login.atr", at);
                 authManager = new TwitterAuth();
                 obj=loginButton;
                 break;
         }
-        Registry.getInstance().set("login.atr", at);
+
         Registry.getInstance().set("authManager", authManager);
         authManager.setContext(getBaseContext());
         authManager.setSocialObject(obj);
