@@ -20,6 +20,7 @@ import hr.mars.muzicow.fragments.user.EventInfoFragment;
 import hr.mars.muzicow.fragments.user.PlaylistUserFragment;
 import hr.mars.muzicow.models.Event;
 import hr.mars.muzicow.utils.Registry;
+import hr.mars.muzicow.utils.SocialAuth;
 
 /**
  * Created by Emil on 27.12.2015..
@@ -44,8 +45,8 @@ public class EventContainActivity extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                TwitterCore.getInstance().logOut();
-                LoginManager.getInstance().logOut();
+                SocialAuth at=(SocialAuth)Registry.getInstance().get("authManager");
+                at.logout();
                 logout();
                 return true;
             }
