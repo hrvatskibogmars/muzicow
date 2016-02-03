@@ -48,7 +48,9 @@ import hr.mars.muzicow.fragments.dj.ManageEventFragment;
 import hr.mars.muzicow.fragments.dj.PlaylistDJFragment;
 import hr.mars.muzicow.fragments.user.EventFragment;
 import hr.mars.muzicow.models.DJ;
+import hr.mars.muzicow.models.Login;
 import hr.mars.muzicow.utils.Registry;
+import hr.mars.muzicow.utils.SocialAuth;
 import hr.mars.muzicow.utils.TwitterLoginListener;
 
 public class FragmentAdapterChooser extends AppCompatActivity {
@@ -57,6 +59,7 @@ public class FragmentAdapterChooser extends AppCompatActivity {
     String session;
     int counter;
     DJ djObject;
+    Login at;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,7 @@ public class FragmentAdapterChooser extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         role = intent.getStringExtra("userRole");
         session = intent.getStringExtra("Session");
+        at=(Login)Registry.getInstance().get("login.atr");
         if (session.isEmpty()) {
         } else {
             try {
@@ -81,8 +85,8 @@ public class FragmentAdapterChooser extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                TwitterCore.getInstance().logOut();
-                LoginManager.getInstance().logOut();
+                SocialAuth at=(SocialAuth)Registry.getInstance().get("authManager");
+                at.logout();
                 logout();
                 return true;
             }

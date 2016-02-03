@@ -8,6 +8,7 @@ import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
@@ -95,6 +96,11 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
     @Override
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public void logout() {
+        TwitterCore.getInstance().logOut();
     }
 
     /**

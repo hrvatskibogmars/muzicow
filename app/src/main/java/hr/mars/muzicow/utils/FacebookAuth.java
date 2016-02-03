@@ -104,6 +104,11 @@ public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager>
     }
 
     @Override
+    public void logout() {
+        LoginManager.getInstance().logOut();
+    }
+
+    @Override
     public void signup(CallbackManager callbackManager) {
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
