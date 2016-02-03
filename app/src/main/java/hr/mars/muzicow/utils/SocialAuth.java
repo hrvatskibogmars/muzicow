@@ -35,6 +35,7 @@ public interface SocialAuth<LoginObject, ContextObject, SocialObject> {
     String getRole();
 
     void setRole(String role);
+    void logout();
 
     void signup(SocialObject loginButton);
 }

@@ -21,6 +21,7 @@ import java.security.NoSuchAlgorithmException;
 
 import hr.mars.muzicow.R;
 import hr.mars.muzicow.utils.FacebookAuth;
+import hr.mars.muzicow.utils.Registry;
 import hr.mars.muzicow.utils.SocialAuth;
 
 /**
@@ -47,7 +48,7 @@ public class FacebookLoginActivity extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
         } catch (NoSuchAlgorithmException e) {
         }
-
+        Registry.getInstance().set("authManager", authManager);
         authManager.setContext(getBaseContext());
         authManager.setProvider("Facebook");
         authManager.setup();

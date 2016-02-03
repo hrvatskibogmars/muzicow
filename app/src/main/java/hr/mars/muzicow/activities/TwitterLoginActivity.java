@@ -28,7 +28,7 @@ public class TwitterLoginActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Registry.getInstance().set("login.atr", at);
-
+        Registry.getInstance().set("authManager", authManager);
         authManager.setContext(getBaseContext());
         authManager.setSocialObject(loginButton);
         authManager.setProvider("Twitter");
@@ -39,6 +39,7 @@ public class TwitterLoginActivity extends AppCompatActivity {
         setContentView(R.layout.twitter_login); // mjenjat
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter);
         authManager.signup(loginButton);
+
 
 
         final Spinner mySpinner = (Spinner) findViewById(R.id.spinner);
