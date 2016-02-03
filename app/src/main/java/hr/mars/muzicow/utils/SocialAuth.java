@@ -18,10 +18,6 @@ public interface SocialAuth<LoginObject, ContextObject, SocialObject> {
 
     SocialObject getsocialObject();
 
-    String getProvider();
-
-    void setProvider(String provider);
-
     String getKey();
 
     void setKey(String key);
@@ -35,6 +31,7 @@ public interface SocialAuth<LoginObject, ContextObject, SocialObject> {
     String getRole();
 
     void setRole(String role);
+
     void logout();
 
     void signup(SocialObject loginButton);

@@ -58,15 +58,6 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
         Fabric.with(this.ctx, new Twitter(authConfig));
     }
 
-    @Override
-    public String getProvider() {
-        return Provider;
-    }
-
-    @Override
-    public void setProvider(String provider) {
-        this.Provider = provider;
-    }
 
     @Override
     public String getKey() {
@@ -112,8 +103,8 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
      * That session is setted in Singleton class Registry,
      * so that object is alive thrue application life cycle.
      *
-     * @param Result<TwitterSession> result    object of Twitter session
-     * @param login.atr name of active session in hashmap
+     * @param loginButton object of Twitter button
+     *
      */
     @Override
     public void signup(TwitterLoginButton loginButton) {
@@ -164,14 +155,14 @@ public class TwitterAuth implements SocialAuth<Login, Context, TwitterLoginButto
     public void showUserData(DJ djObject) {
         Intent myIntent = new Intent(this.ctx, FragmentAdapterChooser.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (role.equals("Participant")) {
+        if (getRole().equals("Participant")) {
             myIntent.putExtra("userRole", "Participant");
-            myIntent.putExtra("Session", role);
+            myIntent.putExtra("Session", getRole());
             myIntent.putExtra("Twitter object", djObject);
             this.ctx.startActivity(myIntent);
         } else {
             myIntent.putExtra("userRole", "Artist");
-            myIntent.putExtra("Session", role);
+            myIntent.putExtra("Session", getRole());
             myIntent.putExtra("Twitter object", djObject);
             this.ctx.startActivity(myIntent);
         }
