@@ -30,7 +30,6 @@ public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager>
     Context ctx;
     LoginButton loginButton;
     TextView info;
-    String Provider;
     String FACEBOOK_KEY;
     String FACEBOOK_SECRET;
     String role;
@@ -63,15 +62,7 @@ public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager>
         this.setSocialObject(CallbackManager.Factory.create());
     }
 
-    @Override
-    public String getProvider() {
-        return Provider;
-    }
 
-    @Override
-    public void setProvider(String provider) {
-        this.Provider = provider;
-    }
 
     @Override
     public String getKey() {
@@ -128,12 +119,7 @@ public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager>
                                         try {
                                             djObject.set_ID(object.getString("id"));
                                             djObject.setName(object.getString("name"));
-                                            //djObject.setDescription(object.getString("about"));
-                                            //djObject.setLocation(object.getString("location"));
                                             djObject.setProfile_url(object.getString("link"));
-                                            //djObject.setNickname(object.getString("middle_name"));
-                                            //djObject.setWebsite(object.getString("website"));
-                                            Log.d("fb object", object.toString());
                                         } catch (Exception e) {
                                             Log.d("error", e.getMessage());
                                         }
@@ -163,15 +149,15 @@ public class FacebookAuth implements SocialAuth<Login, Context, CallbackManager>
     public void showUserData(DJ djObject) {
         Intent myIntent = new Intent(this.ctx, FragmentAdapterChooser.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (role.equals("Participant")) {
+        if (getRole().equals("Participant")) {
             myIntent.putExtra("userRole", "Participant");
 
-            myIntent.putExtra("Session", role);
+            myIntent.putExtra("Session", getRole());
             myIntent.putExtra("Twitter object", djObject);
             this.ctx.startActivity(myIntent);
         } else {
             myIntent.putExtra("userRole", "Artist");
-            myIntent.putExtra("Session", role);
+            myIntent.putExtra("Session", getRole());
             myIntent.putExtra("Twitter object", djObject);
             this.ctx.startActivity(myIntent);
         }
